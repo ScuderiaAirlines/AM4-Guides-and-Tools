@@ -12,5 +12,3 @@
     TRIP Airlines
     
     
-</body>  
-</html>
