@@ -8,7 +8,7 @@
   </li>
   <br>
   <li>
-    <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQzMPLnucz20YDVYYFUx0dmn-_uzA1rNL5ZnzUQFW3NQZit60Vr_-gN4i2iBh0Scs_3_9QK_0z2tGrt/pubhtml"><h2>Seat Configuration & Profit Calculator</h2></a>
+    <a href="https://docs.google.com/spreadsheets/d/1oA0RrodmMxWZoVr0vLwQOKNSsvHrcwU-KryTi64AMig/edit?usp=sharing"><h2>Seat Configuration & Profit Calculator</h2></a>
     Created By:
     TRIP Airlines
 
