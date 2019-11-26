@@ -7,11 +7,10 @@
     Scuderia Airlines, Ramos, CallumAir, Gomenasai, MoneyyBear --- 
   </li>
   <br>
-  <br>
   <li>
     <a href=""><h2>Seat Configuration & Profit Calculator</h2></a>
     Created By:
     TRIP Airlines
-</ul>
+
     
     
