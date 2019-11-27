@@ -16,22 +16,22 @@
     <section>
         <div class="container">
             <div class="content">
-                <div class="seat-configuration box-radius-content">
+                <div class="seat-configuration box-radius-content" id="blur-bg">
                     <button id="alterMode" class="button-white-radius">Advanced</button>
                     <h2>Seats Configuration</h2>
                     <div class="seatConfiguration" id="sc-form">
-                        <input type="text" class="sc-input show" id="demandY" placeholder="Economic demand" required>
-                        <input type="text" class="sc-input show" id="demandB" placeholder="Executive Demand" required>
-                        <input type="text" class="sc-input show" id="demandF" placeholder="First Class Demand" required>
+                        <input type="text" class="sc-input show" id="demandY" placeholder="Economy (Y) Demand" required>
+                        <input type="text" class="sc-input show" id="demandB" placeholder="Business (J) Demand" required>
+                        <input type="text" class="sc-input show" id="demandF" placeholder="First Class (F) Demand" required>
                         <input type="text" class="sc-input show" id="totalSeats" placeholder="Maximum seats" required>
                         <input type="text" class="sc-input Adv" id="distanceRoute" placeholder="Distance" required>
                         <input type="text" class="sc-input Adv" id="speedAirCraft" placeholder="Speed Aircraft" required>
                         <button id="btnCalcSC" class="button-white-radius">Calculate!</button>
                     </div>
                     <div id="results">
-                        <label class="lb basic">Economic Seats: <output class="out" id="ySeats"></output></label>
-                        <label class="lb basic">Executive Seats: <output class="out" id="bSeats"></output></label>
-                        <label class="lb basic">First Class Seats: <output class="out" id="fSeats"></output></label>
+                        <label class="lb basic">Economy (Y) Seats: <output class="out" id="ySeats"></output></label>
+                        <label class="lb basic">Business (J) Seats: <output class="out" id="bSeats"></output></label>
+                        <label class="lb basic">First Class (F) Seats: <output class="out" id="fSeats"></output></label>
                         <label class="lb advanced">Travel/day: <output class="out" id="travelDay"></output></label>
                         <label class="lb advanced">Aircraft/route(Easy): <output class="out" id="emAircraftRoute"></output></label>
                         <label class="lb advanced">Aircraft/route(Realism): <output class="out" id="rmAircraftRoute"></output></label>
