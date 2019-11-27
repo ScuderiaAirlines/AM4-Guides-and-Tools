@@ -35,8 +35,10 @@
 
 body {
     width: 100%;
-    background-image: url('../assets/img/background-sky-am4-calculator.jpg');
+    height: 100%;
+    background-image: url('../assets/img/download.jpg');
     background-attachment: fixed;
+    background-size: contain;
 }
 
 .home-page header {
