@@ -8,29 +8,36 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/design.css">
     <link rel="stylesheet" href="css/action.css">
-    <title>AM4 Calculator - Seats Configuration</title>
+    <title>AM4 Calculator - Profit Calculator</title>
 </head>
 
-<body class="seat-configuration">
-    <a href="index.html" class="button-white-radius buttonBack">Back</a>
+<body class="profit-calculator">
+    <a href="index.html" class="back-button-position default-button">Back</a>
     <section>
         <div class="container">
-            <div class="content">
-                <div class="seat-configuration box-radius-content">
+            <div class="content-all">
+                <div class="content-box">
                     <h2>Profit Calculator</h2>
-                    <form class="seatConfiguration" action="" method="post">
-                        <input type="text" class="sc-input inputShow" id="demandY" placeholder="Economy (Y) demand">
-                        <input type="text" class="sc-input inputShow" id="demandB" placeholder="Business (J) Demand">
-                        <input type="text" class="sc-input inputShow" id="demandF" placeholder="First Class (F) Demand">
-                        <input type="text" class="sc-input inputShow" id="totalSeats" placeholder="Maximum Seats">
-                        <input type="text" class="sc-input inputShow" id="distanceRoute" placeholder="Distance">
-                        <input type="text" class="sc-input inputShow" id="speedAirCraft" placeholder="Aircraft Speed">
-                        <button class="button-white-radius">Calculate!</button>
-                    </form>
+                    <div class="form-box" id="pc-form">
+                        <input type="text" class="pc-input show" id="seatsY" placeholder="Seats(Y)" required>
+                        <input type="text" class="pc-input show" id="seatsJ" placeholder="Seats(J)" required>
+                        <input type="text" class="pc-input show" id="seatsF" placeholder="Seats(F)" required>
+                        <input type="text" class="pc-input show" id="flightRange" placeholder="Flight Range" required>
+                        <input type="text" class="pc-input show" id="airSpeed" placeholder="Airplane speed" required>
+                        <input type="text" class="pc-input show" id="fuel" placeholder="Fuel" required>
+                        <input type="text" class="pc-input show" id="co2" placeholder="Co2" required>
+                        <input type="text" class="pc-input show" id="reput" placeholder="Reputation" required>
+                        <button id="btnCalcPC" class="default-button" onclick="calcProfit()">Calculate!</button>
+                    </div>
+                    <div class="results-box" id="results">
+                        <label class="lb">RM - Profit: <output class="out Realism" id="profitTrip"></output></label>
+                        <label class="lb">EM - Profit: <output class="out Easy" id="profitTrip"></output></label>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,19 @@
-.button-white-radius {
+/*PAGE GENERAL BODY*/
+
+body {
+    width: 100%;
+    height: 100%;
+    background: #0575E6;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #021B79, #0575E6);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #021B79, #0575E6);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-attachment: fixed;
+    background-size: contain;
+}
+
+.default-button {
     width: 100px;
     height: 30px;
     margin: 0 auto;
@@ -10,43 +25,93 @@
     text-decoration: none;
 }
 
-.button-white-radius:hover {
+.default-button:hover {
     transition: background 0.5s ease-out;
     background: rgba(0, 93, 146, 0.8);
     cursor: pointer;
 }
 
-.box-radius-content {
+.content-box {
     width: 100%;
     padding: 15px 50px;
+    margin: 30px 0;
     text-align: center;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 30px;
     color: white;
+    z-index: 200;
 }
 
-.flex {
+.back-button-position {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 70px;
+    z-index: 1000;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.flexible-box {
     display: flex;
     justify-content: space-between;
 }
 
-.flex a {
+.flexible-box a {
     width: 90px;
 }
 
-body {
-    width: 100%;
-    height: 100%;
-    background-image: url('../asses/img/download.jpg');
-    background: #0575E6;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background-attachment: fixed;
-    background-size: contain;
+.form-box {
+    padding-top: 25px;
+}
+
+.form-box button {
+    border: none;
+    margin: 50px 0!important;
+}
+
+.form-box input {
+    display: none;
+    width: 70%;
+    margin: 5px auto!important;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    border-bottom: white solid;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.form-box input:focus {
+    border-bottom: rgb(0, 93, 146) solid;
+}
+
+.form-box input::placeholder {
+    font-size: 15px;
+    color: rgb(0, 93, 146);
+}
+
+.results-box {
+    font-size: 13px;
+    text-align: center;
+    display: block;
+}
+
+.results-box label {
+    display: none;
+    padding-top: 5px;
+}
+
+.results-box label output {
+    font-weight: 900;
 }
 
 
-
+/*  HOME PAGE  */
 
 .home-page header {
     width: 100%;
@@ -69,52 +134,11 @@ body {
     line-height: 50px;
 }
 
-.home-page section .container {
-    width: 80%;
-    margin: 0 auto;
-}
-
-.home-page section .container .welcome {
-    width: 100%;
-    height: 100vh;
-    padding: 20vh 0;
-    text-align: center;
-    font-size: 12px;
-}
-
-.home-page section .container .welcome img {
-    width: 45%;
-}
-
-.home-page section .container .welcome span {
-    font-size: 40px;
-}
-
-.home-page section .container .welcome p {
-    text-align: justify;
-    padding: 20px 0;
-    font-size: 15px;
-}
-
-.home-page section .container .content {
-    width: 100%;
-    margin: 30px auto;
-}
-
-.home-page section .container .content .seat-configuration h2 {
+.home-page section .container .content-all h2 {
     font-size: 20px;
 }
 
-.home-page section .container .content .seat-configuration p {
-    padding: 20px 0;
-    font-size: 15px;
-}
-
-.home-page section .container .content .profit-calculator h2 {
-    font-size: 20px;
-}
-
-.home-page section .container .content .profit-calculator p {
+.home-page section .container .content-all p {
     padding: 20px 0;
     font-size: 15px;
 }
@@ -128,75 +152,34 @@ body {
     position: relative;
 }
 
-.seat-configuration section .container .content .box-radius-content {
-    margin-bottom: 25px;
-}
-
-.seat-configuration .container {
-    width: 80%;
-    margin: 0 auto;
-}
-
-.seat-configuration #alterMode {
-    margin-bottom: 30px;
-}
-
-.seat-configuration .container .content .seat-configuration h2 {
+.seat-configuration .container .content-all h2 {
     font-size: 20px;
 }
 
-.seat-configuration .buttonBack {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 70px;
-    z-index: 1000;
+
+/*  PROFIT CALCULATOR PAGE  */
+
+.profit-calculator section {
+    height: 100vh;
+    padding-top: 18vh;
+    position: relative;
 }
 
-.seat-configuration #sc-form {
-    padding-top: 25px;
+.profit-calculator .container .content-all h2 {
+    font-size: 20px;
 }
 
-.seat-configuration #sc-form button {
-    border: none;
-    margin: 50px 0!important;
+
+/*  PROFIT CALCULATOR PAGE  */
+
+.ticket-calculator section {
+    height: 100vh;
+    padding-top: 18vh;
+    position: relative;
 }
 
-.seat-configuration #sc-form input {
-    display: none;
-    width: 70%;
-    margin: 5px auto!important;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    border-bottom: white solid;
-    text-align: center;
-    font-size: 25px;
-    font-weight: 800;
-}
-
-.seat-configuration #sc-form input:focus {
-    border-bottom: rgb(0, 93, 146) solid;
-}
-
-.seat-configuration #sc-form input::placeholder {
-    font-size: 15px;
-    color: rgb(0, 93, 146);
-}
-
-.seat-configuration .results {
-    font-size: 13px;
-    text-align: center;
-    display: block;
-}
-
-.seat-configuration #results label {
-    display: none;
-    padding-top: 5px;
-}
-
-.seat-configuration #results label output {
-    font-weight: 900;
+.ticket-calculator .container .content-all h2 {
+    font-size: 20px;
 }
 
 
@@ -208,32 +191,33 @@ body {
     position: relative;
 }
 
-.underDev .container {
-    width: 80%;
-    margin: 0 auto;
-    text-align: center;
-}
-
 .underDev .container img {
     width: 50%;
     padding-left: 10px;
 }
 
-.underDev .container .content h2 {
+.underDev .container .content-all h2 {
     font-size: 20px;
 }
 
-.underDev .container .content p {
+.underDev .container .content-all p {
     padding: 15px 0;
 }
 
-.underDev .buttonBack {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 70px;
-    z-index: 1000;
-}
-background: #6441A5;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2a0845, #6441A5);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2a0845, #6441A5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+/*background: #6441A5;*/
+
+
+/* fallback for old browsers */
+
+
+/*background: -webkit-linear-gradient(to right, #2a0845, #6441A5);*/
+
+
+/* Chrome 10-25, Safari 5.1-6 */
+
+
+/*background: linear-gradient(to right, #2a0845, #6441A5);*/
+
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */

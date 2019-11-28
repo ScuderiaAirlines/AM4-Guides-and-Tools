@@ -1,111 +1,153 @@
-let advMode;
-let calcMode, demandY, demandB, demandF, seatsTotal, distanceRoute, speedAirCraft;
+let demandY, demandJ, demandF, seatsTotal, totalDemand;
+let seatsY, seatsJ, seatsF, flightRange, airSpeed, fuel, co2, reput;
+let ticketPriceY, ticketPriceJ, ticketPriceF;
 
-document.querySelector('#alterMode').addEventListener('click', e => {
-    let this_button = document.getElementById('alterMode');
-    let elements = document.getElementsByClassName('sc-input');
-    let element = document.getElementsByClassName('lb');
 
-    for (let index = 0; index < elements.length; index++) {
-        elements[index].classList.remove('show');
+let seatsForY = function() {
+    return eval(Math.round((demandY / totalDemand * seatsTotal) * (seatsTotal / (demandY / totalDemand * seatsTotal + 2 * demandJ / totalDemand * seatsTotal + 3 * demandF / totalDemand * seatsTotal))));
+};
+let seatsForJ = function() {
+    return Math.round((demandJ / totalDemand * seatsTotal) * (seatsTotal / (demandY / totalDemand * seatsTotal + 2 * demandJ / totalDemand * seatsTotal + 3 * demandF / totalDemand * seatsTotal)));
+};
+let seatsForF = function() {
+    return Math.round((demandF / totalDemand * seatsTotal) * (seatsTotal / (demandY / totalDemand * seatsTotal + demandJ / totalDemand * seatsTotal * 2 + demandF / totalDemand * seatsTotal * 3)));
+};
+let profitPerTrip = function() {
+    return Math.round((((seatsY * ticketPriceY) + (seatsY * ticketPriceY) + (seatsY * ticketPriceY)) * (reput / 100) - fuel - co2Cost()));
+};
+let co2Cost = function() {
+    return Math.round((co2 / 1000) * 0.20);
+};
+
+function calcTicketPrice(mode) {
+    if (mode == "Realism") {
+        ticketPriceY = Math.round(((299 / 998) * flightRange + (75377 / 499)) * 1.10);
+        ticketPriceJ = Math.round(((599 / 998) * flightRange + (249486 / 499)) * 1.8);
+        ticketPriceF = Math.round(((449 / 499) * flightRange + (499513 / 499)) * 1.6);
+    } else if (mode == "Easy") {
+        ticketPriceY = Math.round(((97 / 243) * flightRange + (41410 / 243)) * 1.10);
+        ticketPriceJ = Math.round(((194 / 243) * flightRange + (136280 / 243)) * 1.8);
+        ticketPriceF = Math.round(((97 / 81) * flightRange + (97300 / 81)) * 1.6);
     }
-    elements = document.getElementsByClassName('sc-input');
+};
 
-    if (this_button.innerHTML != "Basic") {
-        this_button.innerHTML = "Basic";
-    } else {
-        this_button.innerHTML = "Advanced";
-    }
-
-    for (let index = 0; index < elements.length; index++) {
-        if (!elements[index].classList.contains('Adv')) {
-            elements[index].classList.add('show')
-        }
-        if (this_button.innerText == "Basic") {
-            if (elements[index].classList.contains('Adv')) {
-                elements[index].classList.add('show');
-                elements[index].value = "";
-            }
-        }
-    }
-
-    for (let index = 0; index < element.length; index++) {
-        element[index].classList.remove('show');
-    }
-});
-
-document.querySelector('#btnCalcSC').addEventListener('click', e => {
-    let element = document.getElementsByClassName('lb');
-    let e_result = document.getElementsByClassName('out');
-    for (let index = 0; index < element.length; index++) {
-        element[index].classList.remove('show');
+function calcSeats() {
+    let labels = document.getElementsByClassName('lb');
+    let out_result = document.getElementsByClassName('out');
+    for (let index = 0; index < labels.length; index++) {
+        labels[index].classList.remove('show');
     }
 
     demandY = eval(document.getElementById('demandY').value);
-    demandB = eval(document.getElementById('demandB').value);
+    demandJ = eval(document.getElementById('demandJ').value);
     demandF = eval(document.getElementById('demandF').value);
     seatsTotal = document.getElementById('totalSeats').value;
-    distanceRoute = eval(document.getElementById('distanceRoute').value);
-    speedAirCraft = eval(document.getElementById('speedAirCraft').value);
-    totalDemand = demandY + demandB + demandF;
+    totalDemand = demandY + demandJ + demandF;
 
-    if (demandY == "" || demandB == "" || demandF == "" || seatsTotal == "") {
+    if (demandY == "" || demandJ == "" || demandF == "" || seatsTotal == "") {
         alert('Please fill in all fields for the calculation to be done correctly! ;)');
         return;
     }
-    if (document.getElementById('alterMode').innerText == "Basic") {
-        if (distanceRoute == "" || speedAirCraft == "") {
-            alert('Please fill in all fields for the calculation to be done correctly! ;)');
-            return;
-        }
-    }
 
-    let result_demandY = Math.round((demandY / totalDemand * seatsTotal) * (seatsTotal / (demandY / totalDemand * seatsTotal + 2 * demandB / totalDemand * seatsTotal + 3 * demandF / totalDemand * seatsTotal)));
-    let result_demandB = Math.round((demandB / totalDemand * seatsTotal) * (seatsTotal / (demandY / totalDemand * seatsTotal + 2 * demandB / totalDemand * seatsTotal + 3 * demandF / totalDemand * seatsTotal)));
-    let result_demandF = Math.round((demandF / totalDemand * seatsTotal) * (seatsTotal / (demandY / totalDemand * seatsTotal + demandB / totalDemand * seatsTotal * 2 + demandF / totalDemand * seatsTotal * 3)));
-    for (let index = 0; index < e_result.length; index++) {
-        switch (e_result[index]) {
+    for (let index = 0; index < out_result.length; index++) {
+        switch (out_result[index]) {
             case document.getElementById('ySeats'):
-                e_result[index].innerHTML = result_demandY;
+                out_result[index].innerHTML = seatsForY();
                 break;
-            case document.getElementById('bSeats'):
-                e_result[index].innerHTML = result_demandB;
+            case document.getElementById('jSeats'):
+                out_result[index].innerHTML = seatsForJ();
                 break;
             case document.getElementById('fSeats'):
-                e_result[index].innerHTML = result_demandF;
+                out_result[index].innerHTML = seatsForF();
                 break;
         }
     }
 
-    if (document.getElementById('alterMode').innerText == "Basic") {
-        let result_travelDay = Math.trunc(demandF / result_demandF);
-        let result_maxAircraftRouteEasy = Math.trunc(result_travelDay / (24 / (distanceRoute / speedAirCraft)));
-        let result_maxAircraftRouteRealism = Math.trunc(result_travelDay / (24 / (distanceRoute / (speedAirCraft * 1.5))));
+    for (let index = 0; index < labels.length; index++) {
+        labels[index].classList.add('show');
+    }
+};
 
-        for (let index = 0; index < e_result.length; index++) {
-            switch (e_result[index]) {
-                case document.getElementById('travelDay'):
-                    e_result[index].innerHTML = result_travelDay;
+function calcProfit() {
+    let labels = document.getElementsByClassName('lb');
+    let out_result = document.getElementsByClassName('out');
+    for (let index = 0; index < labels.length; index++) {
+        labels[index].classList.remove('show');
+    }
+
+    seatsY = document.getElementById('seatsY').value;
+    seatsJ = document.getElementById('seatsJ').value;
+    seatsF = document.getElementById('seatsF').value;
+    flightRange = document.getElementById('flightRange').value;
+    airSpeed = document.getElementById('airSpeed').value;
+    fuel = document.getElementById('fuel').value;
+    co2 = document.getElementById('co2').value;
+    reput = document.getElementById('reput').value;
+
+    if (seatsY == "" || seatsJ == "" || seatsF == "" || flightRange == "" || airSpeed == "" || fuel == "" || co2 == "" || reput == "") {
+        alert('Please fill in all fields for the calculation to be done correctly! ;)');
+        return;
+    }
+    for (let index = 0; index < out_result.length; index++) {
+        if (out_result[index].classList.contains('Realism')) {
+            calcTicketPrice('Realism');
+            out_result[index].innerHTML = profitPerTrip().toLocaleString('en-us', { style: 'currency', currency: 'USD' });
+        } else if (out_result[index].classList.contains('Easy')) {
+            calcTicketPrice('Easy');
+            out_result[index].innerHTML = profitPerTrip().toLocaleString('en-us', { style: 'currency', currency: 'USD' });
+        }
+    }
+
+    for (let index = 0; index < labels.length; index++) {
+        labels[index].classList.add('show');
+    }
+};
+
+function calcTicket() {
+    let labels = document.getElementsByClassName('lb');
+    let out_result = document.getElementsByClassName('out');
+    for (let index = 0; index < labels.length; index++) {
+        labels[index].classList.remove('show');
+    }
+    flightRange = document.getElementById('flightRange').value;
+
+
+    if (flightRange == "") {
+        alert('Please fill in all fields for the calculation to be done correctly! ;)');
+        return;
+    }
+
+    for (let index = 0; index < out_result.length; index++) {
+        if (out_result[index].classList.contains('Realism')) {
+            calcTicketPrice('Realism');
+            switch (out_result[index]) {
+                case document.getElementById('ySeatsR'):
+                    out_result[index].innerHTML = ticketPriceY.toLocaleString('en-us', { style: 'currency', currency: 'USD' });
                     break;
-                case document.getElementById('emAircraftRoute'):
-                    e_result[index].innerHTML = result_maxAircraftRouteEasy;
+                case document.getElementById('jSeatsR'):
+                    out_result[index].innerHTML = ticketPriceJ.toLocaleString('en-us', { style: 'currency', currency: 'USD' });
                     break;
-                case document.getElementById('rmAircraftRoute'):
-                    e_result[index].innerHTML = result_maxAircraftRouteRealism;
+                case document.getElementById('fSeatsR'):
+                    out_result[index].innerHTML = ticketPriceF.toLocaleString('en-us', { style: 'currency', currency: 'USD' });
                     break;
             }
-        }
-
-        for (let index = 0; index < element.length; index++) {
-            if (element[index].classList.contains('lb')) {
-                element[index].classList.add('show');
-            }
-        }
-    } else {
-        for (let index = 0; index < element.length; index++) {
-            if (element[index].classList.contains('basic')) {
-                element[index].classList.add('show');
+        } else if (out_result[index].classList.contains('Easy')) {
+            calcTicketPrice('Easy');
+            switch (out_result[index]) {
+                case document.getElementById('ySeatsE'):
+                    out_result[index].innerHTML = ticketPriceY.toLocaleString('en-us', { style: 'currency', currency: 'USD' });
+                    break;
+                case document.getElementById('jSeatsE'):
+                    out_result[index].innerHTML = ticketPriceJ.toLocaleString('en-us', { style: 'currency', currency: 'USD' });
+                    break;
+                case document.getElementById('fSeatsE'):
+                    out_result[index].innerHTML = ticketPriceF.toLocaleString('en-us', { style: 'currency', currency: 'USD' });
+                    break;
             }
         }
     }
-});
+
+    for (let index = 0; index < labels.length; index++) {
+        labels[index].classList.add('show');
+    }
+}
