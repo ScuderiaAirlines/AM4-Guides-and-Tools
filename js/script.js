@@ -13,10 +13,15 @@ let seatsForF = function() {
     return Math.round((demandF / totalDemand * seatsTotal) * (seatsTotal / (demandY / totalDemand * seatsTotal + demandJ / totalDemand * seatsTotal * 2 + demandF / totalDemand * seatsTotal * 3)));
 };
 let profitPerTrip = function() {
-    return Math.round((((seatsY * ticketPriceY) + (seatsJ * ticketPriceJ) + (seatsF * ticketPriceF)) * (reput / 100) - fuel - co2Cost()));
+    return Math.round((((seatsY * ticketPriceY) + (seatsJ * ticketPriceJ) + (seatsF * ticketPriceF)) * (reput / 100) - fuelCost() - co2Cost()));
 };
+
 let co2Cost = function() {
-    return Math.round((co2 * 0.14);
+    return Math.round((co2 / 1000) * 0.20);
+};
+
+let fuelCost = function() {
+    return Math.round((fuel * flightRange * 0.85));
 };
 
 function calcTicketPrice(mode) {
@@ -113,7 +118,7 @@ function calcTicket() {
 
 
     if (flightRange == "") {
-        alert('Please fill value for Range (in km).');
+        alert('Please fill in all fields for the calculation to be done correctly! ;)');
         return;
     }
 
