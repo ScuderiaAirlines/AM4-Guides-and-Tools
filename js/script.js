@@ -16,8 +16,12 @@ let profitPerTrip = function() {
     return Math.round(((((seatsY * ticketPriceY) + (seatsJ * ticketPriceJ) + (seatsF * ticketPriceF)) * (reput / 100) - fuelCost() - co2Cost())/1.2));
 };
 
+let nPax = function() {
+    return Math.round((+seatsY + +seatsJ + +seatsF));
+};
+
 let co2Cost = function() {
-    return Math.round((co2 / 1000) * 0.20);
+    return Math.round(co2 * nPax() * flightRange * 0.14 * (reput/100));
 };
 
 let fuelCost = function() {
@@ -97,10 +101,13 @@ function calcProfit() {
         if (out_result[index].classList.contains('Realism')) {
             calcTicketPrice('Realism');
             out_result[index].innerHTML = profitPerTrip().toLocaleString('en-us', { style: 'currency', currency: 'USD' });
-        } else if (out_result[index].classList.contains('Easy')) {
+        } 
+
+        else if (out_result[index].classList.contains('Easy')) {
             calcTicketPrice('Easy');
             out_result[index].innerHTML = profitPerTrip().toLocaleString('en-us', { style: 'currency', currency: 'USD' });
         }
+
     }
 
     for (let index = 0; index < labels.length; index++) {
