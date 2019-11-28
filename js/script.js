@@ -13,7 +13,7 @@ let seatsForF = function() {
     return Math.round((demandF / totalDemand * seatsTotal) * (seatsTotal / (demandY / totalDemand * seatsTotal + demandJ / totalDemand * seatsTotal * 2 + demandF / totalDemand * seatsTotal * 3)));
 };
 let profitPerTrip = function() {
-    return Math.round((((seatsY * ticketPriceY) + (seatsJ * ticketPriceJ) + (seatsF * ticketPriceF)) * (reput / 100) - fuelCost() - co2Cost()));
+    return Math.round(((((seatsY * ticketPriceY) + (seatsJ * ticketPriceJ) + (seatsF * ticketPriceF)) * (reput / 100) - fuelCost() - co2Cost())/1.2));
 };
 
 let co2Cost = function() {
