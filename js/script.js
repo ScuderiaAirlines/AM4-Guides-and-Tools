@@ -13,21 +13,21 @@ let seatsForF = function() {
     return Math.round((demandF / totalDemand * seatsTotal) * (seatsTotal / (demandY / totalDemand * seatsTotal + demandJ / totalDemand * seatsTotal * 2 + demandF / totalDemand * seatsTotal * 3)));
 };
 let profitPerTrip = function() {
-    return Math.round((((seatsY * ticketPriceY) + (seatsY * ticketPriceY) + (seatsY * ticketPriceY)) * (reput / 100) - fuel - co2Cost()));
+    return Math.round((((seatsY * ticketPriceY) + (seatsJ * ticketPriceJ) + (seatsF * ticketPriceF)) * (reput / 100) - fuel - co2Cost()));
 };
 let co2Cost = function() {
-    return Math.round((co2 / 1000) * 0.20);
+    return Math.round((co2 * 0.14);
 };
 
 function calcTicketPrice(mode) {
     if (mode == "Realism") {
         ticketPriceY = Math.round(((299 / 998) * flightRange + (75377 / 499)) * 1.10);
-        ticketPriceJ = Math.round(((599 / 998) * flightRange + (249486 / 499)) * 1.8);
-        ticketPriceF = Math.round(((449 / 499) * flightRange + (499513 / 499)) * 1.6);
+        ticketPriceJ = Math.round(((599 / 998) * flightRange + (249486 / 499)) * 1.08);
+        ticketPriceF = Math.round(((449 / 499) * flightRange + (499513 / 499)) * 1.06);
     } else if (mode == "Easy") {
         ticketPriceY = Math.round(((97 / 243) * flightRange + (41410 / 243)) * 1.10);
-        ticketPriceJ = Math.round(((194 / 243) * flightRange + (136280 / 243)) * 1.8);
-        ticketPriceF = Math.round(((97 / 81) * flightRange + (97300 / 81)) * 1.6);
+        ticketPriceJ = Math.round(((194 / 243) * flightRange + (136280 / 243)) * 1.08);
+        ticketPriceF = Math.round(((97 / 81) * flightRange + (97300 / 81)) * 1.06);
     }
 };
 
@@ -113,7 +113,7 @@ function calcTicket() {
 
 
     if (flightRange == "") {
-        alert('Please fill in all fields for the calculation to be done correctly! ;)');
+        alert('Please fill value for Range (in km).');
         return;
     }
 
