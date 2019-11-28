@@ -19,21 +19,46 @@
                 <div class="content-box" id="blur">
                     <h2>Tickets Calculator</h2>
                     <div class="form-box" id="sc-form">
-                        <input type="text" class="sc-input show" id="flightRange" placeholder="Flight Range" required>
+                        <input type="text" class="sc-input show" id="flightRange" placeholder="Route (km)" required>
                         <button id="btnCalcTC" class="default-button" onclick="calcTicket()">Calculate!</button>
                     </div>
+
                     <div class="results-box" id="results">
-                        <label class="lb">RM - Price(Y): <output class="out Realism" id="ySeatsR"></output></label>
-                        <label class="lb">RM - Price(J): <output class="out Realism" id="jSeatsR"></output></label>
-                        <label class="lb">RM - Price(F): <output class="out Realism" id="fSeatsR"></output></label>
-                        <label class="lb">EM - Price(Y): <output class="out Easy" id="ySeatsE"></output></label>
-                        <label class="lb">EM - Price(J): <output class="out Easy" id="jSeatsE"></output></label>
-                        <label class="lb">EM - Price(F): <output class="out Easy" id="fSeatsE"></output></label>
+                        <label class="lb resultText">Realism - Price(Y): <output class="out Realism" id="ySeatsR"></output></label>
+                        <label class="lb resultText">Realism - Price(J): <output class="out Realism" id="jSeatsR"></output></label>
+                        <label class="lb resultText">Realism - Price(F): <output class="out Realism" id="fSeatsR"></output></label>
+                        <label class="lb resultText">Easy - Price(Y): <output class="out Easy" id="ySeatsE"></output></label>
+                        <label class="lb resultText">Easy - Price(J): <output class="out Easy" id="jSeatsE"></output></label>
+                        <label class="lb resultText">Easy - Price(F): <output class="out Easy" id="fSeatsE"></output></label>
                     </div>
                 </div>
             </div>
         </div>
+        <!--<div class="container" style="overflow-x: auto; justify-content: center;">
+                    <table style="justify-content: center;">
+                        <caption>Ticket Prices</caption>
+                        <tr>
+                            <th scope="col">Realism</th>
+                            <th scope="col">Easy</th>
+                        </tr>
+                        <tr>
+                            <th scope="row">Economy (Y)</th>
+                                <td><label class="lb resultText">RM - Price(Y): <output class="out Realism" id="ySeatsR"></output></label></output></td>
+                                <td><output class="out Realism" id="ySeatsE"></output></td>
+                        <tr>
+                            <th scope="row">Business (J)</th>
+                                <td><output class="out Realism" id="jSeatsR"></output></td>
+                                <td><output class="out Realism" id="jSeatsE"></output></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">First (F)</th>
+                                <td><output class="out Realism" id="fSeatsR"></output></td>
+                                <td><output class="out Realism" id="fSeatsE"></output></td>
+                        </tr>
+                    </table>
+                </div>-->
     </section>
+                    
     <script src="js/script.js "></script>
 </body>
 

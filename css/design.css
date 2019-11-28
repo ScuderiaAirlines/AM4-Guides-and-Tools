@@ -11,6 +11,7 @@ body {
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-attachment: fixed;
     background-size: contain;
+    color: white !important;
 }
 
 .default-button {
@@ -23,11 +24,14 @@ body {
     line-height: 25px;
     color: white;
     text-decoration: none;
+    transition: color 0.3s ease-in rgba(0, 93, 146, 0.5);
 }
 
+
 .default-button:hover {
-    transition: background 0.5s ease-out;
-    background: rgba(0, 93, 146, 0.8);
+    transition: background 0.3s ease-out;
+    
+    background: rgba(255,255,255, 0.5);
     cursor: pointer;
 }
 
@@ -66,6 +70,9 @@ body {
 
 .form-box {
     padding-top: 25px;
+    text-decoration-color: white;
+    color: white;
+    justify-content: center
 }
 
 .form-box button {
@@ -73,7 +80,7 @@ body {
     margin: 50px 0!important;
 }
 
-.form-box input {
+/*.form-box input {
     display: none;
     width: 70%;
     margin: 5px auto!important;
@@ -84,6 +91,7 @@ body {
     text-align: center;
     font-size: 25px;
     font-weight: 800;
+    color: white;
 }
 
 .form-box input:focus {
@@ -92,7 +100,29 @@ body {
 
 .form-box input::placeholder {
     font-size: 15px;
-    color: rgb(0, 93, 146);
+    color: rgb(255, 255, 255, 0.5);
+}*/
+
+.form-box input {
+  width: 100%;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid white;
+  color: #white;
+  font-size: 14px;
+  text-transform: uppercase;
+  outline: none;
+  transition: border-width .2s;
+  text-align: center;
+}
+
+.form-box input::placeholder {
+  color: white;
+}
+
+.form-box input:focus {
+  border-bottom: 3px solid white;
 }
 
 .results-box {
@@ -167,7 +197,9 @@ body {
 
 .profit-calculator .container .content-all h2 {
     font-size: 20px;
+    color: white;
 }
+
 
 
 /*  PROFIT CALCULATOR PAGE  */
@@ -202,6 +234,10 @@ body {
 
 .underDev .container .content-all p {
     padding: 15px 0;
+}
+
+.resultText {
+    font-size: 30px;
 }
 
 
