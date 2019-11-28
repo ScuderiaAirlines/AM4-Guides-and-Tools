@@ -1,0 +1,223 @@
+/*PAGE GENERAL BODY*/
+
+body {
+    width: 100%;
+    height: 100%;
+    background: #0575E6;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #021B79, #0575E6);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #021B79, #0575E6);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-attachment: fixed;
+    background-size: contain;
+}
+
+.default-button {
+    width: 100px;
+    height: 30px;
+    margin: 0 auto;
+    background: rgb(0, 93, 146);
+    border-radius: 20px;
+    text-align: center;
+    line-height: 25px;
+    color: white;
+    text-decoration: none;
+}
+
+.default-button:hover {
+    transition: background 0.5s ease-out;
+    background: rgba(0, 93, 146, 0.8);
+    cursor: pointer;
+}
+
+.content-box {
+    width: 100%;
+    padding: 15px 50px;
+    margin: 30px 0;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    color: white;
+    z-index: 200;
+}
+
+.back-button-position {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 70px;
+    z-index: 1000;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.flexible-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flexible-box a {
+    width: 90px;
+}
+
+.form-box {
+    padding-top: 25px;
+}
+
+.form-box button {
+    border: none;
+    margin: 50px 0!important;
+}
+
+.form-box input {
+    display: none;
+    width: 70%;
+    margin: 5px auto!important;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    border-bottom: white solid;
+    text-align: center;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.form-box input:focus {
+    border-bottom: rgb(0, 93, 146) solid;
+}
+
+.form-box input::placeholder {
+    font-size: 15px;
+    color: rgb(0, 93, 146);
+}
+
+.results-box {
+    font-size: 13px;
+    text-align: center;
+    display: block;
+}
+
+.results-box label {
+    display: none;
+    padding-top: 5px;
+}
+
+.results-box label output {
+    font-weight: 900;
+}
+
+
+/*  HOME PAGE  */
+
+.home-page header {
+    width: 100%;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.4);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.home-page header .container {
+    width: 100%;
+    height: 100%;
+}
+
+.home-page header .container .dashboard {
+    height: 100%;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 50px;
+}
+
+.home-page section .container .content-all h2 {
+    font-size: 20px;
+}
+
+.home-page section .container .content-all p {
+    padding: 20px 0;
+    font-size: 15px;
+}
+
+
+/*  SEAT CONFIGURATION PAGE  */
+
+.seat-configuration section {
+    height: 100vh;
+    padding-top: 18vh;
+    position: relative;
+}
+
+.seat-configuration .container .content-all h2 {
+    font-size: 20px;
+}
+
+
+/*  PROFIT CALCULATOR PAGE  */
+
+.profit-calculator section {
+    height: 100vh;
+    padding-top: 18vh;
+    position: relative;
+}
+
+.profit-calculator .container .content-all h2 {
+    font-size: 20px;
+}
+
+
+/*  PROFIT CALCULATOR PAGE  */
+
+.ticket-calculator section {
+    height: 100vh;
+    padding-top: 18vh;
+    position: relative;
+}
+
+.ticket-calculator .container .content-all h2 {
+    font-size: 20px;
+}
+
+
+/*  UNDER DEVELOPMENT PAGE  */
+
+.underDev section {
+    height: 100vh;
+    padding-top: 18vh;
+    position: relative;
+}
+
+.underDev .container img {
+    width: 50%;
+    padding-left: 10px;
+}
+
+.underDev .container .content-all h2 {
+    font-size: 20px;
+}
+
+.underDev .container .content-all p {
+    padding: 15px 0;
+}
+
+
+/*background: #6441A5;*/
+
+
+/* fallback for old browsers */
+
+
+/*background: -webkit-linear-gradient(to right, #2a0845, #6441A5);*/
+
+
+/* Chrome 10-25, Safari 5.1-6 */
+
+
+/*background: linear-gradient(to right, #2a0845, #6441A5);*/
+
+
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */

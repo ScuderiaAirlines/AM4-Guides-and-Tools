@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/design.css">
+    <link rel="stylesheet" href="css/action.css">
+    <title>AM4 Calculator - Profit Calculator</title>
+</head>
+
+<body class="profit-calculator">
+    <a href="index.html" class="back-button-position default-button">Back</a>
+    <section>
+        <div class="container">
+            <div class="content-all">
+                <div class="content-box">
+                    <h2>Profit Calculator</h2>
+                    <div class="form-box" id="pc-form">
+                        <input type="text" class="pc-input show" id="seatsY" placeholder="Seats(Y)" required>
+                        <input type="text" class="pc-input show" id="seatsJ" placeholder="Seats(J)" required>
+                        <input type="text" class="pc-input show" id="seatsF" placeholder="Seats(F)" required>
+                        <input type="text" class="pc-input show" id="flightRange" placeholder="Flight Range" required>
+                        <input type="text" class="pc-input show" id="airSpeed" placeholder="Airplane speed" required>
+                        <input type="text" class="pc-input show" id="fuel" placeholder="Fuel" required>
+                        <input type="text" class="pc-input show" id="co2" placeholder="Co2" required>
+                        <input type="text" class="pc-input show" id="reput" placeholder="Reputation" required>
+                        <button id="btnCalcPC" class="default-button" onclick="calcProfit()">Calculate!</button>
+                    </div>
+                    <div class="results-box" id="results">
+                        <label class="lb">RM - Profit: <output class="out Realism" id="profitTrip"></output></label>
+                        <label class="lb">EM - Profit: <output class="out Easy" id="profitTrip"></output></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/design.css">
+    <link rel="stylesheet" href="css/action.css">
+    <title>AM4 Calculator - Seats Configuration</title>
+</head>
+
+<body class="ticket-calculator">
+    <a href="index.html" class="back-button-position default-button">Back</a>
+    <section>
+        <div class="container">
+            <div class="content-all">
+                <div class="content-box" id="blur">
+                    <h2>Tickets Calculator</h2>
+                    <div class="form-box" id="sc-form">
+                        <input type="text" class="sc-input show" id="flightRange" placeholder="Flight Range" required>
+                        <button id="btnCalcTC" class="default-button" onclick="calcTicket()">Calculate!</button>
+                    </div>
+                    <div class="results-box" id="results">
+                        <label class="lb">RM - Price(Y): <output class="out Realism" id="ySeatsR"></output></label>
+                        <label class="lb">RM - Price(J): <output class="out Realism" id="jSeatsR"></output></label>
+                        <label class="lb">RM - Price(F): <output class="out Realism" id="fSeatsR"></output></label>
+                        <label class="lb">EM - Price(Y): <output class="out Easy" id="ySeatsE"></output></label>
+                        <label class="lb">EM - Price(J): <output class="out Easy" id="jSeatsE"></output></label>
+                        <label class="lb">EM - Price(F): <output class="out Easy" id="fSeatsE"></output></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/script.js "></script>
+</body>
+
+</html>
