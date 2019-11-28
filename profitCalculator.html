@@ -2,6 +2,14 @@
 <html lang="en">
 
 <head>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514321-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-153514321-1');
+	</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -30,8 +38,8 @@
                         <button id="btnCalcPC" class="default-button" onclick="calcProfit()">Calculate!</button>
                     </div>
                     <div class="results-box" id="results">
-                        <label class="lb">RM - Profit: <output class="out Realism" id="profitTrip"></output></label>
-                        <label class="lb">EM - Profit: <output class="out Easy" id="profitTrip"></output></label>
+                        <label class="lb">Realism - Profit per Flight: <output class="out Realism" id="profitTrip"></output></label>
+                        <label class="lb">Easy - Profit per Flight: <output class="out Easy" id="profitTrip"></output></label>
                     </div>
                 </div>
             </div>
