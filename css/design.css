@@ -144,14 +144,13 @@ body {
 
 .results-boxR {
     width: 100%
-
     text-align: center;
     display: inline-block;
 }
 
 .results-boxR label {
     display: none;
-    font-size: 10px;
+    font-size: 12px;
     padding-top: 5px;
 }
 
@@ -160,15 +159,32 @@ body {
     display: inline-block;
 }
 
+.results-box {
+    width: 100%
+    text-align: center;
+    display: inline-block;
+}
+
+.results-box label {
+    display: none;
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.results-box label output {
+    font-weight: 900;
+    display: inline-block;
+}
+
 .results-boxE {
     width: 100%
-    font-size: 10px;
+    font-size: 12px;
     text-align: center;
     display: inline-block;
 }
 
 .results-boxE label {
-    font-size: 10px;
+    font-size: 12px;
     display: none;
     padding-top: 5px;
 }
