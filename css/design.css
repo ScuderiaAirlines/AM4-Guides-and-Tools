@@ -15,7 +15,7 @@ body {
 }
 
 .default-button {
-    box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2);
+    /*box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2);*/
     border-radius: 6px;
     padding-top: 1px;
     width: 100px;
@@ -63,6 +63,7 @@ body {
 .container {
     width: 80%;
     margin: 0 auto;
+    margin-top: -60px;
 }
 
 .flexible-box {
@@ -127,23 +128,49 @@ body {
   color: white;
 }
 
+.container2 {
+    width: 60%
+    margin: auto;
+}
+
 .form-box input:focus {
   border-bottom: 3px solid white;
 }
 
-.results-box {
-    font-size: 13px;
+.results-boxR {
+    width: 100%
+
     text-align: center;
-    display: block;
+    display: inline-block;
 }
 
-.results-box label {
+.results-boxR label {
+    display: none;
+    font-size: 10px;
+    padding-top: 5px;
+}
+
+.results-boxR label output {
+    font-weight: 900;
+    display: inline-block;
+}
+
+.results-boxE {
+    width: 100%
+    font-size: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+.results-boxE label {
+    font-size: 10px;
     display: none;
     padding-top: 5px;
 }
 
-.results-box label output {
+.results-boxE label output {
     font-weight: 900;
+    display: inline-block;
 }
 
 

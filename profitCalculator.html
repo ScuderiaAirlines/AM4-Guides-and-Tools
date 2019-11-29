@@ -35,13 +35,23 @@
                         <input type="text" class="pc-input show" id="fuel" placeholder="Fuel (lbs/km)" required>
                         <input type="text" class="pc-input show" id="co2" placeholder="C02 (kg/pax/km)" required>
                         <input type="text" class="pc-input show" id="reput" placeholder="Reputation (%)" required>
-                        <button id="btnCalcPC" class="default-button" onclick="calcProfit()">Calculate!</button>
+                        <button id="btnCalcPC" class="default-button" onclick="calcProfit()">Calculate</button>
                     </div>
-                    <div class="results-box" id="results">
+                <div class="container2">
+                    <div class="results-boxR" id="results">
                         <label class="lb">Realism - Profit per Flight: <output class="out Realism" id="profitTrip"></output></label>
-                        <label class="lb">Easy - Profit per Flight: <output class="out Easy" id="profitTrip"></output></label>
-                    </div>
+                        <label class="lb">Realism - Profit per Day: <output class="out RealismD" id="profitTrip"></output></label>
                 </div>
+                    <div class="results-boxE">
+                        <label class="lb">Easy - Profit per Flight: <output class="out Easy" id="profitTrip"></output></label>
+                        <label class="lb">Easy - Profit per Day: <output class="out EasyD" id="profitTrip"></output></label>
+                    </div> 
+                </div>                  
+                <br>
+                <div>
+                    <a href="help.html" class="default-button">Help</a>
+                </div>
+
             </div>
         </div>
     </section>

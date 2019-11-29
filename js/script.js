@@ -28,6 +28,22 @@ let fuelCost = function() {
     return Math.round((fuel * flightRange * 0.85));
 };
 
+let flightsDayR = function() {
+    return Math.floor(24/(flightRange / airSpeed));
+};
+
+let flightsDayE = function() {
+    return Math.floor(24/(flightRange / (airSpeed * 1.5)));
+};
+
+let profitDayR = function() {
+    return Math.round(profitPerTrip() * flightsDayR());
+};
+
+let profitDayE = function() {
+    return Math.round(profitPerTrip() * flightsDayE());
+};
+
 function calcTicketPrice(mode) {
     if (mode == "Realism") {
         ticketPriceY = Math.round(((299 / 998) * flightRange + (75377 / 499)) * 1.10);
@@ -108,12 +124,24 @@ function calcProfit() {
             out_result[index].innerHTML = profitPerTrip().toLocaleString('en-us', { style: 'currency', currency: 'USD' });
         }
 
+        else if (out_result[index].classList.contains('EasyD')) {
+            calcTicketPrice('Easy');
+            out_result[index].innerHTML = profitDayE().toLocaleString('en-us', { style: 'currency', currency: 'USD' });
+        }
+
+        else if (out_result[index].classList.contains('RealismD')) {
+            calcTicketPrice('Realism');
+            out_result[index].innerHTML = profitDayR().toLocaleString('en-us', { style: 'currency', currency: 'USD' });
+        }
+
     }
 
     for (let index = 0; index < labels.length; index++) {
         labels[index].classList.add('show');
     }
 };
+
+
 
 function calcTicket() {
     let labels = document.getElementsByClassName('lb');
