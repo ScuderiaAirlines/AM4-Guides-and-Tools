@@ -1,5 +1,19 @@
 /*PAGE GENERAL BODY*/
 
+table {
+    align-items: center;
+    padding: 15px;
+    text-align: center;
+    margin: auto;
+}
+
+th, td {
+    border: 1px solid white;
+    padding: 15px;
+    text-align: center;
+}
+
+
 body {
     width: 100%;
     height: 100%;
@@ -84,7 +98,8 @@ body {
     padding-top: 25px;
     text-decoration-color: white;
     color: white;
-    justify-content: center
+    justify-content: center;
+    overflow-x: auto;
 }
 
 .form-box button {
@@ -293,6 +308,8 @@ body {
 .resultText {
     font-size: 30px;
 }
+
+
 
 
 /*background: #6441A5;*/
