@@ -29,11 +29,11 @@ let fuelCost = function() {
 };
 
 let flightsDayR = function() {
-    return Math.floor(24/(flightRange / airSpeed));
+    return Math.abs(24/(flightRange / airSpeed));
 };
 
 let flightsDayE = function() {
-    return Math.floor(24/(flightRange / (airSpeed * 1.5)));
+    return Math.abs(24/(flightRange / (airSpeed * 1.5)));
 };
 
 let profitDayR = function() {
