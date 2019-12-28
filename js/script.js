@@ -46,13 +46,13 @@ let profitDayE = function() {
 
 function calcTicketPrice(mode) {
     if (mode == "Easy") {
-        ticketPriceY = Math.floor((((0.4 * flightRange) + 170) * 1.10) - 5);
-        ticketPriceJ = Math.floor((((0.8 * flightRange) + 560) * 1.08) - 5);
-        ticketPriceF = Math.floor((((1.2 * flightRange) + 1200) * 1.06) - 5);
+        ticketPriceY = (Math.floor((((0.4 * flightRange) + 170) * 1.10) - 5) / 10) * 10;
+        ticketPriceJ = Math.floor((((0.8 * flightRange) + 560) * 1.08) - 5) / 10) * 10;
+        ticketPriceF = Math.floor((((1.2 * flightRange) + 1200) * 1.06) - 5) / 10) * 10;
     } else if (mode == "Realism") {
-        ticketPriceY = Math.floor((((0.3 * flightRange) + 150) * 1.10) - 5);
-        ticketPriceJ = Math.floor((((0.6 * flightRange) + 500) * 1.08) - 5);
-        ticketPriceF = Math.floor((((0.9 * flightRange) + 1000) * 1.06) - 5);
+        ticketPriceY = Math.floor((((0.3 * flightRange) + 150) * 1.10) - 5) / 10) * 10;
+        ticketPriceJ = Math.floor((((0.6 * flightRange) + 500) * 1.08) - 5) / 10) * 10;
+        ticketPriceF = Math.floor((((0.9 * flightRange) + 1000) * 1.06) - 5) / 10) * 10;
     }
 };
 
