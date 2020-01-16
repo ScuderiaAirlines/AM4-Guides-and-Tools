@@ -49,13 +49,13 @@ function roundTicketPrice(price){
 }
 function calcTicketPrice(mode) {
     if (mode == "Easy") {
-        ticketPriceY = (roundTicketPrice((Math.floor((((0.4 * flightRange) + 170) * 1.10) - 5) / 10) * 10));
-        ticketPriceJ = (roundTicketPrice((Math.floor((((0.8 * flightRange) + 560) * 1.08) - 5) / 10) * 10));
-        ticketPriceF = (roundTicketPrice((Math.floor((((1.2 * flightRange) + 1200) * 1.06) - 5) / 10) * 10));
+        ticketPriceY = (roundTicketPrice((Math.floor((((0.4 * flightRange) + 170) * 1.10)) / 10) * 10));
+        ticketPriceJ = (roundTicketPrice((Math.floor((((0.8 * flightRange) + 560) * 1.08)) / 10) * 10));
+        ticketPriceF = (roundTicketPrice((Math.floor((((1.2 * flightRange) + 1200) * 1.06)) / 10) * 10));
     } else if (mode == "Realism") {
-        ticketPriceY = (roundTicketPrice((Math.floor((((0.3 * flightRange) + 150) * 1.10) - 5) / 10) * 10));
-        ticketPriceJ = (roundTicketPrice((Math.floor((((0.6 * flightRange) + 500) * 1.08) - 5) / 10) * 10));
-        ticketPriceF = (roundTicketPrice((Math.floor((((0.9 * flightRange) + 1000) * 1.06) - 5) / 10) * 10));
+        ticketPriceY = (roundTicketPrice((Math.floor((((0.3 * flightRange) + 150) * 1.10)) / 10) * 10));
+        ticketPriceJ = (roundTicketPrice((Math.floor((((0.6 * flightRange) + 500) * 1.08)) / 10) * 10));
+        ticketPriceF = (roundTicketPrice((Math.floor((((0.9 * flightRange) + 1000) * 1.06)) / 10) * 10));
     }
 };
 
