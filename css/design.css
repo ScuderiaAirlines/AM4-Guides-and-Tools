@@ -1,4 +1,33 @@
-/*PAGE GENERAL BODY*/
+/*###########   RESET   ###########*/
+
+@font-face {
+    font-family: AirlineFont;
+    src: url('../assets/fonts/am4-font.woff2');
+}
+
+body {
+    font-family: 'AirlineFont';
+    font-size: 100%;
+    background: #0575E6;
+    background: -webkit-linear-gradient(to top, #021B79, #0575E6);
+    background: linear-gradient(to top, #021B79, #0575E6);
+    background-attachment: fixed;
+}
+
+button {
+    border: none;
+    outline: none!important;
+    background-color: transparent;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0!important;
+}
 
 table {
     align-items: center;
@@ -7,85 +36,266 @@ table {
     margin: auto;
 }
 
-th, td {
+th,
+td {
     border: 1px solid white;
     padding: 15px;
     text-align: center;
 }
 
 
-body {
-    width: 100%;
-    height: 100%;
-    background: #0575E6;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #021B79, #0575E6);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #021B79, #0575E6);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background-attachment: fixed;
-    background-size: contain;
-    color: white !important;
-}
+/*###########   DOCUMENT   ###########*/
 
-.default-button {
-    /*box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2);*/
-    border-radius: 6px;
-    padding-top: 1px;
-    width: 100px;
-    height: 30px;
-    margin: 0 auto;
-    background: rgb(0, 93, 146);
-    /*border: 2px solid rgba(255, 255, 255, 0.5);*/
-    line-height: 25px;
+
+/*  Home Page  */
+
+.home-page header .middle {
     text-align: center;
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease-in rgba(0, 93, 146, 0.5);
-}
-
-
-.default-button:hover {
-    transition: background 0.3s ease-out;
-    
-    background: rgba(255,255,255, 0.5);
-    cursor: pointer;
-}
-
-.content-box {
-
-    border-radius: 10px;
-    /*border: 2px solid rgba(255, 255, 255, 0.5);*/
-    width: 100%;
-    padding: 15px 50px;
-    margin: 30px 0;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    z-index: 200;
+    color: var(--primary-font-color);
+    background: rgba(255, 255, 255, 0.3);
     box-shadow: 8px 8px 6px rgba(0, 0, 0, 0.2);
 }
 
-.back-button-position {
+.home-page header .middle h1 {
+    font-size: 2.5rem;
+}
+
+.home-page section .content-side .container-post-side>div {
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.home-page section .content-side .container-post-side>div:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.home-page section .content-side .container-post-side>div h3 {
+    padding: 10px;
+    font-size: 1.3rem;
+    color: var(--primary-font-color);
+}
+
+
+/*  Seats Page  */
+
+.seats-page .content-box h2 {
+    padding: 15px 0 35px 0;
+}
+
+.seats-page .content-box form {
+    text-decoration-color: white;
+    color: white;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+.seats-page .content-box form button {
+    margin: 50px 0;
+}
+
+.seats-page .content-box form input {
+    width: 100%;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    outline: none;
+    transition: border-width .2s;
+    text-align: center;
+}
+
+.seats-page .content-box form input::placeholder {
+    color: white;
+}
+
+.seats-page .content-box form input:focus {
+    border-bottom: 3px solid white;
+}
+
+
+/*  Profit Page  */
+
+.profit-page .content-box h2 {
+    padding: 15px 0 35px 0;
+}
+
+.profit-page .content-box form {
+    text-decoration-color: white;
+    color: white;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+.profit-page .content-box form button {
+    margin: 50px 0;
+}
+
+.profit-page .content-box form input {
+    width: 100%;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    outline: none;
+    transition: border-width .2s;
+    text-align: center;
+}
+
+.profit-page .content-box form input::placeholder {
+    color: white;
+}
+
+.profit-page .content-box form input:focus {
+    border-bottom: 3px solid white;
+}
+
+
+/*###########   OBJECTS   ###########*/
+
+.content-box {
+    margin: 25px 0;
+    padding: 15px 40px;
+    border-radius: 10px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 8px 8px 6px rgba(0, 0, 0, 0.2);
+}
+
+.content-box h2 {
+    padding: 10px 0;
+    font-size: 2rem;
+    color: var(--primary-font-color);
+}
+
+.content-box p {
+    padding: 5px 0;
+    color: var(--primary-font-color);
+}
+
+#backover {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 99;
+    transition: all .5s, z-index 0ms;
+}
+
+#backover.show {
+    opacity: .7;
+    visibility: visible;
+}
+
+.result-box {
+    position: absolute;
+    width: 350px;
+    height: 450px;
+    top: calc((100% - 450px)/2);
+    left: calc((100% - 350px)/2);
+    border-radius: 10px;
+    color: var(--primary-font-color);
+    background-color: var(--background-dark);
+    opacity: 0;
+    visibility: hidden;
+    z-index: 100;
+    transition: all .5s, z-index 0ms;
+}
+
+.result-box.show {
+    opacity: .9;
+    visibility: visible;
+}
+
+.result-box>.result-close {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 5px;
+    right: 5px;
+    background-image: url('../assets/img/close.svg');
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: center;
+    transition: transform .3s ease-in-out;
+}
+
+.result-box>.result-close:hover {
+    transform: rotate(90deg);
+}
+
+.result-box>.result-content {
+    width: 100%;
+    height: 100%;
+    padding: 20px 15px;
+    text-align: center;
+}
+
+.result-box>.result-content hr {
+    background-color: var(--background-light);
+}
+
+.result-box>.result-content h5 {
+    text-align: center;
+    padding: 15px 0;
+}
+
+.result-box>.result-content .label-item {
+    margin: 10px 0;
+}
+
+.result-box>.result-content .label-item .label-result {
+    color: var(--secondary-color);
+    font-weight: bolder;
+}
+
+.model-button {
+    min-width: 70px;
+    padding: .5px 5px;
+    border-radius: 10px;
+    line-height: 30px;
+    background-color: var(--tertiary-button-color);
+    color: var(--primary-font-color);
+}
+
+.model-button:hover {
+    transition: background-color .3s ease-in-out;
+    background-color: #83AAD7;
+}
+
+.model-button:active {
+    background-color: #a5f7b6;
+}
+
+.back-button {
     position: absolute;
     top: 10px;
     left: 10px;
-    width: 70px;
-    z-index: 1000;
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
+.hide {
+    display: none;
 }
 
-.container3 {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: -80px;
+.show {
+    display: block;
 }
 
-.flexible-box {
+
+/*########################################################################*/
+
+
+/* .flexible-box {
     display: flex;
     justify-content: space-between;
 }
@@ -94,72 +304,8 @@ body {
     width: 90px;
 }
 
-.form-box {
-    padding-top: 25px;
-    text-decoration-color: white;
-    color: white;
-    justify-content: center;
-    overflow-x: auto;
-}
-
-.form-box button {
-    border: none;
-    margin: 50px 0!important;
-}
-
-/*.form-box input {
-    display: none;
-    width: 70%;
-    margin: 5px auto!important;
-    border: none;
-    background-color: transparent;
-    outline: none;
-    border-bottom: white solid;
-    text-align: center;
-    font-size: 25px;
-    font-weight: 800;
-    color: white;
-}
-
-.form-box input:focus {
-    border-bottom: rgb(0, 93, 146) solid;
-}
-
-.form-box input::placeholder {
-    font-size: 15px;
-    color: rgb(255, 255, 255, 0.5);
-}*/
-
-.form-box input {
-  width: 100%;
-  padding: 10px 0;
-  background: none;
-  border: none;
-  border-bottom: 1px solid white;
-  color: #white;
-  font-size: 14px;
-  text-transform: uppercase;
-  outline: none;
-  transition: border-width .2s;
-  text-align: center;
-}
-
-.form-box input::placeholder {
-  color: white;
-}
-
-.container2 {
-    width: 60%
-    margin: auto;
-}
-
-.form-box input:focus {
-  border-bottom: 3px solid white;
-}
-
 .results-boxR {
-    width: 100%
-    text-align: center;
+    width: 100% text-align: center;
     display: inline-block;
 }
 
@@ -175,8 +321,7 @@ body {
 }
 
 .results-box {
-    width: 100%
-    text-align: center;
+    width: 100% text-align: center;
     display: inline-block;
 }
 
@@ -192,8 +337,7 @@ body {
 }
 
 .results-boxE {
-    width: 100%
-    font-size: 12px;
+    width: 100% font-size: 12px;
     text-align: center;
     display: inline-block;
 }
@@ -209,70 +353,6 @@ body {
     display: inline-block;
 }
 
-
-/*  HOME PAGE  */
-
-.home-page header {
-    width: 100%;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.4);
-    box-shadow: 8px 8px 6px rgba(0, 0, 0, 0.2);
-
-}
-
-.home-page header .container {
-    width: 100%;
-    height: 100%;
-}
-
-.home-page header .container .dashboard {
-    height: 100%;
-    text-align: center;
-    font-size: 30px;
-    font-weight: 900;
-    line-height: 50px;
-}
-
-.home-page section .container .content-all h2 {
-    font-size: 20px;
-}
-
-.home-page section .container .content-all p {
-    padding: 20px 0;
-    font-size: 15px;
-}
-
-
-/*  SEAT CONFIGURATION PAGE  */
-
-.seat-configuration section {
-    height: 100vh;
-    padding-top: 18vh;
-    position: relative;
-}
-
-.seat-configuration .container .content-all h2 {
-    font-size: 20px;
-}
-
-
-/*  PROFIT CALCULATOR PAGE  */
-
-.profit-calculator section {
-    height: 100vh;
-    padding-top: 18vh;
-    position: relative;
-}
-
-.profit-calculator .container .content-all h2 {
-    font-size: 20px;
-    color: white;
-}
-
-
-
-/*  PROFIT CALCULATOR PAGE  */
-
 .ticket-calculator section {
     height: 100vh;
     padding-top: 18vh;
@@ -283,48 +363,45 @@ body {
     font-size: 20px;
 }
 
-
-/*  UNDER DEVELOPMENT PAGE  */
-
-.underDev section {
-    height: 100vh;
-    padding-top: 18vh;
-    position: relative;
-}
-
-.underDev .container img {
-    width: 50%;
-    padding-left: 10px;
-}
-
-.underDev .container .content-all h2 {
-    font-size: 20px;
-}
-
-.underDev .container .content-all p {
-    padding: 15px 0;
-}
-
 .resultText {
     font-size: 30px;
+} */
+
+
+/*###########   RESPONSIVE   ###########*/
+
+@media (max-width: 575px) {
+    .home-page header .middle h1 {
+        font-size: 1.7rem;
+        line-height: 50px;
+    }
+    .content-box h2 {
+        font-size: 1.7rem;
+    }
+    .home-page section .content-side .container-post-side>div h3 {
+        padding: 5px;
+    }
+    .result-box {
+        width: 320px;
+        height: 450px;
+        top: calc((100% - 450px)/2);
+        left: calc((100% - 320px)/2);
+    }
 }
 
 
+/*###########   VARIABLES   ###########*/
 
-
-/*background: #6441A5;*/
-
-
-/* fallback for old browsers */
-
-
-/*background: -webkit-linear-gradient(to right, #2a0845, #6441A5);*/
-
-
-/* Chrome 10-25, Safari 5.1-6 */
-
-
-/*background: linear-gradient(to right, #2a0845, #6441A5);*/
-
-
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+:root {
+    --primary-color: #24659A;
+    --secondary-color: #007BFF;
+    --primary-font-color: #F2F2F2;
+    --secondary-font-color: #C2C2C2;
+    --tertiary-font-color: #202020;
+    --primary-button-color: #8B0000;
+    --secondary-button-color: #28A745;
+    --tertiary-button-color: #005D92;
+    --secondary-button-color-hover: #218838;
+    --background-light: #F2F2F2;
+    --background-dark: #111111;
+}
