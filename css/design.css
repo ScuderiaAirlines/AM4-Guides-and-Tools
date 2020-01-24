@@ -386,9 +386,6 @@ td {
     }
     .result-box {
         width: 320px;
-        height: 450px;
-        top: calc((100% - 450px)/2);
-        left: calc((100% - 320px)/2);
     }
 }
 
