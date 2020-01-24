@@ -32,6 +32,9 @@
             <div class="label-item">Seats Y: <span class="label-result result-seats-y"></span></div>
             <div class="label-item">Seats J: <span class="label-result result-seats-j"></span></div>
             <div class="label-item">Seats F: <span class="label-result result-seats-f"></span></div>
+            <hr>
+            <span>Trips per day</span>
+            <div class="label-item"><span class="label-result result-trips-day"></span></div>
         </div>
     </div>
     <a href="index.html"><button class="model-button back-button">Back</button></a>
@@ -41,10 +44,12 @@
                 <div class="content-box">
                     <h2>Seats Configuration</h2>
                     <form id="seats-configuration-form" method="POST" autocomplete="off">
-                        <input type="text" name="input-demand-y" placeholder="Economy (Y) Demand" required>
+                        <!-- <input type="text" name="input-demand-y" placeholder="Economy (Y) Demand" required> -->
                         <input type="text" name="input-demand-j" placeholder="Business (J) Demand" required>
                         <input type="text" name="input-demand-f" placeholder="First Class (F) Demand" required>
-                        <input type="text" name="input-total-demand" placeholder="Maximum seats" required>
+                        <input type="text" name="input-total-seats" placeholder="Maximum seats" required>
+                        <input type="text" name="input-flight-range" placeholder="Route Distance (km)" required>
+                        <input type="text" name="input-air-speed" placeholder="Speed (km/h)" required>
                         <button class="model-button">Calculate</button>
                     </form>
                 </div>
@@ -68,29 +73,39 @@
             let views = document.querySelectorAll('.result-box .result-content .label-item .label-result');
             let isValid = true;
             let values = {
-                demandY: 0,
                 demandJ: 0,
                 demandF: 0,
-                totalDemand: 0
+                flightRange: 0,
+                airSpeed: 0,
+                totalSeats: 0
             };
             [...input].forEach((element) => {
                 if (!isValid) return;
                 if (!element.value) {
                     isValid = false;
                     return;
+                } else if (element.value < 0) {
+                    isValid = false;
+                    return;
                 }
                 switch (element.name) {
-                    case 'input-demand-y':
-                        values.demandY = element.value;
-                        break;
+                    // case 'input-demand-y':
+                    //     values.demandY = element.value;
+                    //     break;
                     case 'input-demand-j':
                         values.demandJ = element.value;
                         break;
                     case 'input-demand-f':
                         values.demandF = element.value;
                         break;
-                    case 'input-total-demand':
-                        values.totalDemand = element.value;
+                    case 'input-flight-range':
+                        values.flightRange = element.value;
+                        break;
+                    case 'input-air-speed':
+                        values.airSpeed = element.value;
+                        break;
+                    case 'input-total-seats':
+                        values.totalSeats = element.value;
                         break;
                 }
             });
@@ -98,12 +113,13 @@
                 alert('Please fill in all fields for the calculation to be done correctly! ;)');
                 return;
             };
-            let result = app.seats(values.demandY, values.demandJ, values.demandF, values.totalDemand);
+            let result = app.seats(values.demandJ, values.demandF, values.totalSeats, values.flightRange, values.airSpeed);
 
             [...views].forEach((label) => {
                 if (label.classList.contains('result-seats-y')) label.innerText = result.seatsY;
                 if (label.classList.contains('result-seats-j')) label.innerText = result.seatsJ;
                 if (label.classList.contains('result-seats-f')) label.innerText = result.seatsF;
+                if (label.classList.contains('result-trips-day')) label.innerText = result.tripsPerDay;
             });
 
             toggleOver([document.querySelector('.seats-page .result-box')], ['click']);

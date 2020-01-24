@@ -20,16 +20,40 @@ class AMToolsGuides {
         return Math.max(document.documentElement.clientHeight, this._windowHeight || 0);
     }
     calculator() {
-        this.seats = (_demandY, _demandJ, _demandF, _totalSeats) => {
-            let _totalDemand = _demandY + _demandJ + _demandF;
+        this.seats = (_demandJ, _demandF, _totalSeats, _flightRange, _airSpeed) => {
 
-            let _result = {
-                seatsY: Math.round((_demandY / _totalDemand * _totalSeats) * (_totalSeats / (_demandY / _totalDemand * _totalSeats + 2 * _demandJ / _totalDemand * _totalSeats + 3 * _demandF / _totalDemand * _totalSeats))),
-                seatsJ: Math.round((_demandJ / _totalDemand * _totalSeats) * (_totalSeats / (_demandY / _totalDemand * _totalSeats + 2 * _demandJ / _totalDemand * _totalSeats + 3 * _demandF / _totalDemand * _totalSeats))),
-                seatsF: Math.round((_demandF / _totalDemand * _totalSeats) * (_totalSeats / (_demandY / _totalDemand * _totalSeats + _demandJ / _totalDemand * _totalSeats * 2 + _demandF / _totalDemand * _totalSeats * 3)))
-            }
+            let _tripsPerDay = this.tripsPerDay(_flightRange, _airSpeed).realismTripsPerDay;
 
-            return _result;
+            let calc = {
+                seatsF() {
+                    let result = Math.round(_demandF / _tripsPerDay);
+                    let valid = _totalSeats - (result * 3);
+                    if (valid < 0) { result = _totalSeats / 3; } { _totalSeats -= result * 3; }
+                    return Math.round(result);
+                },
+                seatsJ() {
+                    let result = Math.round(_demandJ / _tripsPerDay);
+                    console.log(result);
+                    let valid = _totalSeats - (result * 2);
+                    if (valid < 0) { result = _totalSeats / 2; } { _totalSeats -= result * 2; }
+                    return Math.round(result);
+                }
+            };
+            let result = {
+                seatsF: calc.seatsF(),
+                seatsJ: calc.seatsJ(),
+                seatsY: _totalSeats,
+                tripsPerDay: Math.round(_tripsPerDay)
+            };
+
+            // let _totalDemand = _demandY + _demandJ + _demandF;
+
+            // let _result = {
+            //     seatsY: Math.round((_demandY / _totalDemand * _totalSeats) * (_totalSeats / (_demandF / _totalDemand * _totalSeats + 2 * _demandJ / _totalDemand * _totalSeats + 3 * _demandY / _totalDemand * _totalSeats))),
+            //     seatsJ: Math.round((_demandJ / _totalDemand * _totalSeats) * (_totalSeats / (_demandF / _totalDemand * _totalSeats + 2 * _demandJ / _totalDemand * _totalSeats + 3 * _demandY / _totalDemand * _totalSeats))),
+            //     seatsF: Math.round((_demandF / _totalDemand * _totalSeats) * (_totalSeats / (_demandF / _totalDemand * _totalSeats + _demandJ / _totalDemand * _totalSeats * 2 + _demandY / _totalDemand * _totalSeats * 3)))
+            // }
+            return result;
         };
 
         this.profit = (_seatsY, _seatsJ, _seatsF, _flightRange, _airSpeed, _fuelConsumption, _co2Consumption, _reputPercentage) => {
@@ -85,6 +109,10 @@ class AMToolsGuides {
         };
         this.co2CostFlight = (_co2Consumption, _flightRange, _reputPercentage, _paxFlight) => {
             return Math.round(_co2Consumption * _paxFlight * _flightRange * 0.14 * (_reputPercentage / 100));
+        };
+
+        this.averageTime = (_distance, _speed) => {
+            return (_distance / _speed);
         };
     }
     organizeElements() {
