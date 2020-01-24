@@ -1,6 +1,5 @@
 class AMToolsGuides {
     constructor() {
-        console.log('Rodou!');
         this.calculator();
         this.loadElements();
         this.organizeElements();
@@ -22,27 +21,40 @@ class AMToolsGuides {
     calculator() {
         this.seats = (_demandJ, _demandF, _totalSeats, _flightRange, _airSpeed) => {
 
-            let _tripsPerDay = this.tripsPerDay(_flightRange, _airSpeed).realismTripsPerDay;
+            let _tripsPerDay = this.tripsPerDay(_flightRange, _airSpeed);
+            _tripsPerDay.realismTripsPerDay = Math.round(_tripsPerDay.realismTripsPerDay);
+            _tripsPerDay.easyTripsPerDay = Math.round(_tripsPerDay.easyTripsPerDay);
+
+            let restTS = _totalSeats;
 
             let calc = {
-                seatsF() {
-                    let result = Math.round(_demandF / _tripsPerDay);
+                seatsF(_tpd) {
+                    let result = Math.round(_demandF / _tpd);
                     let valid = _totalSeats - (result * 3);
-                    if (valid < 0) { result = _totalSeats / 3; } { _totalSeats -= result * 3; }
+                    if (valid < 0) { result = _totalSeats / 3 } { _totalSeats -= result * 3 };
                     return Math.round(result);
                 },
-                seatsJ() {
-                    let result = Math.round(_demandJ / _tripsPerDay);
+                seatsJ(_tpd) {
+                    let result = Math.round(_demandJ / _tpd);
                     let valid = _totalSeats - (result * 2);
-                    if (valid < 0) { result = _totalSeats / 2; } { _totalSeats -= result * 2; }
+                    if (valid < 0) { result = _totalSeats / 2 } { _totalSeats -= result * 2 };
                     return Math.round(result);
+                },
+                seatsY(_tpd) {
+                    let result = (_totalSeats < 0) ? 0 : _totalSeats;
+                    _totalSeats = restTS;
+                    return result;
                 }
             };
             let result = {
-                seatsF: calc.seatsF(),
-                seatsJ: calc.seatsJ(),
-                seatsY: _totalSeats,
-                tripsPerDay: Math.round(_tripsPerDay)
+                reaslimSeatsF: calc.seatsF(_tripsPerDay.realismTripsPerDay),
+                reaslimSeatsJ: calc.seatsJ(_tripsPerDay.realismTripsPerDay),
+                reaslimSeatsY: calc.seatsY(_tripsPerDay.realismTripsPerDay),
+                reaslimTripsPerDay: _tripsPerDay.realismTripsPerDay,
+                easySeatsF: calc.seatsF(_tripsPerDay.easyTripsPerDay),
+                easySeatsJ: calc.seatsJ(_tripsPerDay.easyTripsPerDay),
+                easySeatsY: calc.seatsY(_tripsPerDay.easyTripsPerDay),
+                easyTripsPerDay: _tripsPerDay.easyTripsPerDay
             };
 
             // let _totalDemand = _demandY + _demandJ + _demandF;
@@ -116,8 +128,15 @@ class AMToolsGuides {
     }
     organizeElements() {
         this.centralize = (element) => {
-            element.style.marginTop = ((this.viewportH - element.offsetHeight) / 2) + 'px';
-            element.style.marginLeft = ((this.viewportW - element.offsetWidth) / 2) + 'px';
+            switch (element.style.position) {
+                case 'absolute':
+                    element.style.top = ((this.viewportH - element.offsetHeight) / 2) + 'px';
+                    element.style.left = ((this.viewportW - element.offsetWidth) / 2) + 'px';
+                    break;
+                default:
+                    element.style.marginTop = ((this.viewportH - element.offsetHeight) / 2) + 'px';
+                    element.style.marginLeft = ((this.viewportW - element.offsetWidth) / 2) + 'px';
+            }
             return element
         };
     }

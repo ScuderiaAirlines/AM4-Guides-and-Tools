@@ -200,9 +200,8 @@ td {
 .result-box {
     position: absolute;
     width: 350px;
-    height: 450px;
-    top: calc((100% - 450px)/2);
-    left: calc((100% - 350px)/2);
+    min-height: 450px;
+    padding: 10px 5px;
     border-radius: 10px;
     color: var(--primary-font-color);
     background-color: var(--background-dark);
@@ -248,6 +247,10 @@ td {
 .result-box>.result-content h5 {
     text-align: center;
     padding: 15px 0;
+}
+
+.result-box>.result-content>span {
+    display: block;
 }
 
 .result-box>.result-content .label-item {

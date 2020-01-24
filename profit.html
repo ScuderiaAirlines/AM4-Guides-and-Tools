@@ -126,6 +126,7 @@
                 if (label.classList.contains('result-easy-profit-day')) label.innerText = Format.toCurrency(result.easyProfitDay);
             });
 
+            app.centralize(document.querySelector('.result-box'));
             toggleOver([document.querySelector('.profit-page .result-box')], ['click']);
 
             document.querySelector('.profit-page .result-box .result-close').on('click', (e) => {

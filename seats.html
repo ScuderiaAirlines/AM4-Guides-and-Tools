@@ -23,18 +23,24 @@
 
 <body class="seats-page">
     <div id="backover"></div>
-    <div class="result-box">
+    <div class="result-box" style="position: absolute;">
         <button class="result-close"></button>
         <div class="result-content">
             <h5>Results</h5>
+            <span>Recommended settings</span>
             <hr>
-            <span>Recommended settings:</span>
-            <div class="label-item">Seats Y: <span class="label-result result-seats-y"></span></div>
-            <div class="label-item">Seats J: <span class="label-result result-seats-j"></span></div>
-            <div class="label-item">Seats F: <span class="label-result result-seats-f"></span></div>
+            <span>Realism:</span>
+            <div class="label-item">Seats Y: <span class="label-result result-realism-seats-y"></span></div>
+            <div class="label-item">Seats J: <span class="label-result result-realism-seats-j"></span></div>
+            <div class="label-item">Seats F: <span class="label-result result-realism-seats-f"></span></div>
+            <div class="label-item">Trips per day: <span class="label-result result-realism-trips-day"></span></div>
             <hr>
-            <span>Trips per day</span>
-            <div class="label-item"><span class="label-result result-trips-day"></span></div>
+            <span>Easy:</span>
+            <div class="label-item">Seats Y: <span class="label-result result-easy-seats-y"></span></div>
+            <div class="label-item">Seats J: <span class="label-result result-easy-seats-j"></span></div>
+            <div class="label-item">Seats F: <span class="label-result result-easy-seats-f"></span></div>
+            <div class="label-item">Trips per day: <span class="label-result result-easy-trips-day"></span></div>
+
         </div>
     </div>
     <a href="index.html"><button class="model-button back-button">Back</button></a>
@@ -116,12 +122,16 @@
             let result = app.seats(values.demandJ, values.demandF, values.totalSeats, values.flightRange, values.airSpeed);
 
             [...views].forEach((label) => {
-                if (label.classList.contains('result-seats-y')) label.innerText = result.seatsY;
-                if (label.classList.contains('result-seats-j')) label.innerText = result.seatsJ;
-                if (label.classList.contains('result-seats-f')) label.innerText = result.seatsF;
-                if (label.classList.contains('result-trips-day')) label.innerText = result.tripsPerDay;
+                if (label.classList.contains('result-realism-seats-y')) label.innerText = result.reaslimSeatsY;
+                if (label.classList.contains('result-realism-seats-j')) label.innerText = result.reaslimSeatsJ;
+                if (label.classList.contains('result-realism-seats-f')) label.innerText = result.reaslimSeatsF;
+                if (label.classList.contains('result-realism-trips-day')) label.innerText = result.reaslimTripsPerDay;
+                if (label.classList.contains('result-easy-seats-y')) label.innerText = result.easySeatsY;
+                if (label.classList.contains('result-easy-seats-j')) label.innerText = result.easySeatsJ;
+                if (label.classList.contains('result-easy-seats-f')) label.innerText = result.easySeatsF;
+                if (label.classList.contains('result-easy-trips-day')) label.innerText = result.easyTripsPerDay;
             });
-
+            app.centralize(document.querySelector('.seats-page .result-box'));
             toggleOver([document.querySelector('.seats-page .result-box')], ['click']);
         });
 
