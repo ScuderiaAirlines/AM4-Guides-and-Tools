@@ -33,7 +33,6 @@ class AMToolsGuides {
                 },
                 seatsJ() {
                     let result = Math.round(_demandJ / _tripsPerDay);
-                    console.log(result);
                     let valid = _totalSeats - (result * 2);
                     if (valid < 0) { result = _totalSeats / 2; } { _totalSeats -= result * 2; }
                     return Math.round(result);
