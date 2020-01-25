@@ -1,0 +1,33 @@
+@font-face {
+    font-family: AirlineFont;
+    src: url('../assets/fonts/am4-font.woff2');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'AirlineFont';
+    color: white !important;
+}
+
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body,
+header,
+nav,
+div,
+ul,
+li,
+span,
+a {
+    display: block;
+}
+
+button {
+    border: none;
+    outline: none;
+}
