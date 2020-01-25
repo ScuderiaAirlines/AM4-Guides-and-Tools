@@ -266,6 +266,7 @@ td {
     min-width: 70px;
     padding: .5px 5px;
     border-radius: 10px;
+    margin-bottom: 8px;
     line-height: 30px;
     background-color: var(--tertiary-button-color);
     color: var(--primary-font-color);
