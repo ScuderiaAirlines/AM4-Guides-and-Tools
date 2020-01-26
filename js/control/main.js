@@ -22,6 +22,8 @@ class AMToolsGuides {
         this.seats = (_demandJ, _demandF, _totalSeats, _flightRange, _airSpeed) => {
 
             let _tripsPerDay = this.tripsPerDay(_flightRange, _airSpeed);
+            _tripsPerDay.realismTripsPerDay = Math.floor(_tripsPerDay.realismTripsPerDay);
+            _tripsPerDay.easyTripsPerDay = Math.floor(_tripsPerDay.easyTripsPerDay);
 
             let restTS = _totalSeats;
 
@@ -105,8 +107,8 @@ class AMToolsGuides {
         this.tripsPerDay = (_flightRange, _airSpeed) => {
 
             let _result = {
-                realismTripsPerDay: Math.floor((24 * _airSpeed) / _flightRange),
-                easyTripsPerDay: Math.floor((36 * _airSpeed) / _flightRange) //airspeed_easy = 1.5 * airspeed_realism
+                realismTripsPerDay: (24 * _airSpeed) / _flightRange,
+                easyTripsPerDay: (36 * _airSpeed) / _flightRange //airspeed_easy = 1.5 * airspeed_realism
             };
             return _result;
         };
