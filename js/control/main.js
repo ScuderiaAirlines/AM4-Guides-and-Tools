@@ -22,26 +22,24 @@ class AMToolsGuides {
         this.seats = (_demandJ, _demandF, _totalSeats, _flightRange, _airSpeed) => {
 
             let _tripsPerDay = this.tripsPerDay(_flightRange, _airSpeed);
-            _tripsPerDay.realismTripsPerDay = Math.round(_tripsPerDay.realismTripsPerDay);
-            _tripsPerDay.easyTripsPerDay = Math.round(_tripsPerDay.easyTripsPerDay);
 
             let restTS = _totalSeats;
 
             let calc = {
                 seatsF(_tpd) {
-                    let result = Math.round(_demandF / _tpd);
-                    let valid = _totalSeats - (result * 3);
-                    if (valid < 0) { result = _totalSeats / 3 } { _totalSeats -= result * 3 };
-                    return Math.round(result);
+                    let result = Math.floor(_demandF / _tpd);
+                    if (_totalSeats < (result * 3)) { result = Math.floor(_totalSeats / 3) }
+                    _totalSeats -= result * 3;
+                    return result;
                 },
                 seatsJ(_tpd) {
-                    let result = Math.round(_demandJ / _tpd);
-                    let valid = _totalSeats - (result * 2);
-                    if (valid < 0) { result = _totalSeats / 2 } { _totalSeats -= result * 2 };
-                    return Math.round(result);
+                    let result = Math.floor(_demandJ / _tpd);
+                    if (_totalSeats < (result * 2)) { result = Math.floor(_totalSeats / 2) }
+                    _totalSeats -= result * 2;
+                    return result;
                 },
                 seatsY(_tpd) {
-                    let result = (_totalSeats < 0) ? 0 : _totalSeats;
+                    let result = Math.max(0, _totalSeats);
                     _totalSeats = restTS;
                     return result;
                 }
@@ -107,8 +105,8 @@ class AMToolsGuides {
         this.tripsPerDay = (_flightRange, _airSpeed) => {
 
             let _result = {
-                realismTripsPerDay: Math.abs(24 / (_flightRange / _airSpeed)),
-                easyTripsPerDay: Math.abs(24 / (_flightRange / (_airSpeed * 1.5)))
+                realismTripsPerDay: Math.abs(Math.floor(24 * _airspeed / _flightRange)),
+                easyTripsPerDay: Math.floor(1.5 * realismTripsPerDay) //airspeed_easy = 1.5 * airspeed_realism
             };
             return _result;
         };
