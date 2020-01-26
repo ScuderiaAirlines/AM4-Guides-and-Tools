@@ -29,12 +29,14 @@ class AMToolsGuides {
 
             let calc = {
                 seatsF(_tpd) {
+                    _tpd = Math.max(_tpd, 1);
                     let result = Math.floor(_demandF / _tpd);
                     if (_totalSeats < (result * 3)) { result = Math.floor(_totalSeats / 3) }
                     _totalSeats -= result * 3;
                     return result;
                 },
                 seatsJ(_tpd) {
+                    _tpd = Math.max(_tpd, 1);
                     let result = Math.floor(_demandJ / _tpd);
                     if (_totalSeats < (result * 2)) { result = Math.floor(_totalSeats / 2) }
                     _totalSeats -= result * 2;
