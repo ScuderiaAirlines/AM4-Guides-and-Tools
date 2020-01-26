@@ -83,6 +83,9 @@
                 if (!element.value) {
                     isValid = false;
                     return;
+                } else if (element.value < 0) {
+                    isValid = false;
+                    return;
                 }
                 switch (element.name) {
                     case 'input-seats-y':
