@@ -90,7 +90,7 @@
                 if (!element.value) {
                     isValid = false;
                     return;
-                } else if (element.value < 0) {
+                } else if (element.value <= 0) {
                     isValid = false;
                     return;
                 }
@@ -115,7 +115,7 @@
                         break;
                 }
             });
-            if (!isValid) {
+            if (values.airSpeed == 0 || values.flightRange == 0 || values.totalSeats == 0 || !isValid) {
                 alert('Please fill in all fields for the calculation to be done correctly! ;)');
                 return;
             };
