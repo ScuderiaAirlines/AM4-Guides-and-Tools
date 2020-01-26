@@ -105,8 +105,8 @@ class AMToolsGuides {
         this.tripsPerDay = (_flightRange, _airSpeed) => {
 
             let _result = {
-                realismTripsPerDay: Math.abs(Math.floor(24 * _airspeed / _flightRange)),
-                easyTripsPerDay: Math.floor(1.5 * realismTripsPerDay) //airspeed_easy = 1.5 * airspeed_realism
+                realismTripsPerDay: Math.floor((24 * _airSpeed) / _flightRange),
+                easyTripsPerDay: Math.floor((36 * _airSpeed) / _flightRange) //airspeed_easy = 1.5 * airspeed_realism
             };
             return _result;
         };
