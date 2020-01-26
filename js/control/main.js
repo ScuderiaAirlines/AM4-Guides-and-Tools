@@ -76,14 +76,14 @@ class AMToolsGuides {
             let _fuelCostFlight = this.fuelCostFlight(_fuelConsumption, _flightRange);
 
             let _result = {
-                realismProfitFlight: Math.round(((((_seatsY * _ticket.realismPriceY) + (_seatsJ * _ticket.realismPriceJ) + (_seatsF * _ticket.realismPriceF)) * (_reputPercentage / 100) - _fuelCostFlight - _co2CostFlight) / 1.2)),
+                realismProfitFlight: Math.round(((((_seatsY * _ticket.realismPriceY) + (_seatsJ * _ticket.realismPriceJ) + (_seatsF * _ticket.realismPriceF)) * (_reputPercentage / 100) - _fuelCostFlight - _co2CostFlight) / 1.2) * 100) / 100,
                 realismProfitDay: 0,
-                easyProfitFlight: Math.round(((((_seatsY * _ticket.easyPriceY) + (_seatsJ * _ticket.easyPriceJ) + (_seatsF * _ticket.easyPriceF)) * (_reputPercentage / 100) - _fuelCostFlight - _co2CostFlight) / 1.2)),
+                easyProfitFlight: Math.round(((((_seatsY * _ticket.easyPriceY) + (_seatsJ * _ticket.easyPriceJ) + (_seatsF * _ticket.easyPriceF)) * (_reputPercentage / 100) - _fuelCostFlight - _co2CostFlight) / 1.2) * 100) / 100,
                 easyProfitDay: 0
             };
 
-            _result.realismProfitDay = Math.round(_result.realismProfitFlight * _tripsPerDay.realismTripsPerDay);
-            _result.easyProfitDay = Math.round(_result.easyProfitFlight * _tripsPerDay.easyTripsPerDay);
+            _result.realismProfitDay = Math.round(_result.realismProfitFlight * _tripsPerDay.realismTripsPerDay * 100) / 100;
+            _result.easyProfitDay = Math.round(_result.easyProfitFlight * _tripsPerDay.easyTripsPerDay * 100) / 100;
 
             return _result;
         };
