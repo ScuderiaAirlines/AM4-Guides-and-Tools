@@ -1,0 +1,174 @@
+<!-- Does not work in Chromium, tested: Firefox, Chrome, Edge works. -->
+<!-- security.fileuri.strict_origin_policy -->
+<!DOCTYPE HTML>
+<html style="height:100%">
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <title>AM4 Tools</title>
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+        <script type="text/javascript" src="autoForm.js"></script>
+        <link rel="stylesheet" href="autoForm.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="radio.css">
+        <link rel="stylesheet" href="switch.css">
+        
+        <script src="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Cesium.js"></script>
+        <link href="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+        <!-- <script src="http://www.webglearth.com/v2/api.js"></script> -->
+        <script type="text/javascript" src="mapControl.js"></script>
+        <script type="text/javascript" src="js/bootstrap.js"></script>
+    </head>
+
+    <body onload="cesiumInit();" style="height:100%">
+        <div id="loader">
+            Globe Loading...
+        </div>
+        <div class="container">
+        <div id="cesiumContainer" style="width: 100%; height:80%"></div>
+        <br>
+        <div class="all">
+        	<div class="container">
+            <div>
+                <div id="apMode">
+                    <label class="radio" id="icaoC">
+                        <input type="radio" name="apMode" value="icao" autocomplete="off" checked>
+                        <span>ICAO</span>
+                    </label>
+                    <label class="radio" id="iataC">
+                        <input type="radio" name="apMode" value="iata" autocomplete="off">
+                        <span>IATA</span>
+                    </label>
+                    <label class="radio" id="cityRC">
+                        <input type="radio" name="apMode" value="cityRegion" autocomplete="off">
+                        <span>Name (City, Region)</span>
+                    </label>
+                </div>
+                <br>
+                <br>
+                <div class="container">
+                    <span style="display:inline-block;width:40px;height:20px;text-align:right;vertical-align:middle;">Easy</span>
+                    <label class="switch-wrap">
+                        <input type="checkbox" id="isRealism" autocomplete="off"/>
+                        <div class="switch"></div>
+                    </label>
+                    <span style="padding-left:50px;width:150px;height:20px;text-align:left;vertical-align:middle;">Realism</span>
+             
+            	</div>
+            </div>
+        	</div>
+        	<br>
+        	<form>
+        	<div class="container">
+            <div style="max-width: 90%">
+            	<div class="container">
+                <table>
+                    <tr>
+                        <td id="acInputGroup">
+                            <div class="autocomplete">
+                                <input id="acInput" type="text" name="inputAC" onblur="result()" placeholder="Input Aircraft">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="inputRow">
+                        <td style="height: 100%">
+                            <div class="autocomplete">
+                                <input id="orig" type="text" name="inputAP" onblur="result()" placeholder="Input Origin">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="inputRow">
+                        <td style="height: 100%" id="stopoverDisplay">
+                            <div style="padding: 5px;">Input Data!</div>
+                        </td>
+                    </tr>
+                    <tr class="inputRow">
+                        <td style="height: 100%">
+                            <div class="autocomplete">
+                                <input id="dest" type="text" name="inputAP" onblur="result()" placeholder="Input Destination">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            	</div>
+                <button type="button" onclick="result()">Search</button>
+            </div>
+            </div>
+        	</form>
+        </div>
+    	</div>
+        <style>
+            body { 
+                background-color: black;
+                font-family: 'Roboto', sans-serif;
+                color: white;
+            }
+
+            .toggles, .inputs {
+                top: 80%;
+                position: absolute;
+                display: block;
+                font-family: 'Roboto', sans-serif;
+                float: left;
+                color: white;
+            }
+
+            .inputs { right: 0; }
+
+            .inputRow { height: 35px; }
+
+            #stopover {
+                margin: 26px 10px 0px 10px;
+                color: white;
+            }
+
+            .error, .success {
+                display: table;
+                height: 100%;
+                background-color: #990000;
+            }
+
+            .success { background-color: #2d862d; }
+
+            table, td {
+                border-collapse: collapse;
+                border: 1px solid white;
+            }
+
+            /* LOADER */
+            #loader {
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                position: fixed;
+                display: block;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 99;
+                text-align: center;
+            }
+
+            #cesiumContainer {
+                cursor: move; /* fallback if grab cursor is unsupported */
+                cursor: grab;
+                cursor: -moz-grab;
+                cursor: -webkit-grab;
+            }
+
+             /* (Optional) Apply a "closed-hand" cursor during drag operation. */
+            #cesiumContainer:active {
+                cursor: grabbing;
+                cursor: -moz-grabbing;
+                cursor: -webkit-grabbing;
+            }
+        </style>
+    </body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
+</html>

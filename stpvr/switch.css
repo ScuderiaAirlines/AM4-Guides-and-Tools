@@ -1,0 +1,42 @@
+/*  modified from: https://codepen.io/liamj/pen/QYyBzz  */
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+.switch-wrap {
+  position: absolute;
+  background: #383838;
+  padding: 2px;
+  width: 40px;
+  height: 20px;
+  border-radius: 10px;
+}
+.switch-wrap input {
+  position: absolute;
+  opacity: 0;
+  width: 0; height: 0;
+}
+
+.switch {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0fr 1fr 1fr;
+  -webkit-transition: .2s;
+  transition: .2s;
+}
+.switch::after {
+  content: '';
+  border-radius: 50%;
+  background: #55acee;
+  grid-column: 2;
+  -webkit-transition: background .2s;
+  transition: background .2s;
+}
+
+input:checked + .switch {
+  grid-template-columns: 1fr 1fr 0fr;
+}
+input:checked + .switch::after {
+  background-color: #78b159;
+}
