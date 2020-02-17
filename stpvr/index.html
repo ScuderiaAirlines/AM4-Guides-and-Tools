@@ -18,6 +18,8 @@
         <script src="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Cesium.js"></script>
         <link href="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
         <!-- <script src="http://www.webglearth.com/v2/api.js"></script> -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <script type="text/javascript" src="mapControl.js"></script>
         <script type="text/javascript" src="js/bootstrap.js"></script>
     </head>
@@ -28,7 +30,6 @@
         </div>
         <div class="container">
         <div id="cesiumContainer" style="width: 100%; height:80%"></div>
-        <br>
         <div class="all">
         	<div class="container">
             <div>
@@ -48,15 +49,22 @@
                 </div>
                 <br>
                 <br>
-                <div class="container">
+                <div style="padding-bottom: 10px;">
                     <span style="display:inline-block;width:40px;height:20px;text-align:right;vertical-align:middle;">Easy</span>
                     <label class="switch-wrap">
                         <input type="checkbox" id="isRealism" autocomplete="off"/>
                         <div class="switch"></div>
                     </label>
                     <span style="padding-left:50px;width:150px;height:20px;text-align:left;vertical-align:middle;">Realism</span>
-             
-            	</div>
+                </div>
+                <div class="invisible">
+                    <span style="display:inline-block;width:40px;height:20px;text-align:right;vertical-align:middle;">Auto</span>
+                    <label class="switch-wrap">
+                        <input type="checkbox" id="isManual" autocomplete="off"/>
+                        <div class="switch"></div>
+                    </label>
+                    <span style="padding-left:50px;width:150px;height:20px;text-align:left;vertical-align:middle;">Manual</span>
+                </div>
             </div>
         	</div>
         	<br>
@@ -68,14 +76,14 @@
                     <tr>
                         <td id="acInputGroup">
                             <div class="autocomplete">
-                                <input id="acInput" type="text" name="inputAC" onblur="result()" placeholder="Input Aircraft">
+                                <input id="acInput" type="text" placeholder="Input Aircraft">
                             </div>
                         </td>
                     </tr>
                     <tr class="inputRow">
                         <td style="height: 100%">
                             <div class="autocomplete">
-                                <input id="orig" type="text" name="inputAP" onblur="result()" placeholder="Input Origin">
+                                <input id="orig" type="text" name="inputAP" placeholder="Input Origin">
                             </div>
                         </td>
                     </tr>
@@ -87,13 +95,13 @@
                     <tr class="inputRow">
                         <td style="height: 100%">
                             <div class="autocomplete">
-                                <input id="dest" type="text" name="inputAP" onblur="result()" placeholder="Input Destination">
+                                <input id="dest" type="text" name="inputAP" placeholder="Input Destination">
                             </div>
                         </td>
                     </tr>
                 </table>
             	</div>
-                <button type="button" onclick="result()">Search</button>
+             
             </div>
             </div>
         	</form>
@@ -101,6 +109,7 @@
     	</div>
         <style>
             body { 
+                padding: 0; margin: 0;
                 background-color: black;
                 font-family: 'Roboto', sans-serif;
                 color: white;
@@ -166,9 +175,13 @@
         </style>
     </body>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script>
+$(document).on('click', '#searchbtn', function(){
+   $("#searchbtn").trigger({
+        type: "keypress", 
+        which: 13, 
+        keyCode: 13});
+});
+</script>
 
 </html>

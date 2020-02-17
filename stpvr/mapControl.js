@@ -61,7 +61,7 @@ function editPointById(lat, lon, name, id) {
 
 var viewer;
 function cesiumInit() {
-    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5NmRiM2E4Ny0zNmFkLTQxZDUtYWM1ZC0wYTIyNjUzNTBkYzAiLCJpZCI6MjE1NzksInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODAwMDA1Mzd9.5LCVhzDxI1znrSID-a5mnkUlXOGmYCc_2PKJl6axAVA';
+    Cesium.Ion.defaultAccessToken = 'pk.eyJ1Ijoic2hyZXlhc20zNCIsImEiOiJjazZxNGtoMTgxdGY3M2VucW91dDhoaGJiIn0.cLPvJ9ypv8-Xq8K_f4pIZw';
     viewer = new Cesium.Viewer('cesiumContainer', {
         animation: false,
         fullscreenButton: false,
@@ -223,11 +223,9 @@ function getACdetail(acString) {
     return null
 }
 
-function result {
-
 var mstrCalc = [], bestStop = "";
 
-document.addEventListener("keyup", function(event) {
+document.addEventListener("keyup", function res(event) {
     if (event.keyCode === 13) {//enter
         var apMode = document.querySelector('input[name=apMode]:checked').value
         var isRealism = document.getElementById('isRealism').checked
@@ -312,7 +310,5 @@ document.addEventListener("keyup", function(event) {
             viewer.entities.removeAll()
             document.getElementById('stopoverDisplay').innerHTML = '<div class="error"><div style="display: table-cell; vertical-align: middle; padding: 5px">'+e+'</div></div>';
         }
-
     }
-}
 });
