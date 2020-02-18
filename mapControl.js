@@ -61,7 +61,7 @@ function editPointById(lat, lon, name, id) {
 
 var viewer;
 function cesiumInit() {
-    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI5NmRiM2E4Ny0zNmFkLTQxZDUtYWM1ZC0wYTIyNjUzNTBkYzAiLCJpZCI6MjE1NzksInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODAwMDA1Mzd9.5LCVhzDxI1znrSID-a5mnkUlXOGmYCc_2PKJl6axAVA';
+    Cesium.Ion.defaultAccessToken = 'pk.eyJ1Ijoic2hyZXlhc20zNCIsImEiOiJjazZxNGtoMTgxdGY3M2VucW91dDhoaGJiIn0.cLPvJ9ypv8-Xq8K_f4pIZw';
     viewer = new Cesium.Viewer('cesiumContainer', {
         animation: false,
         fullscreenButton: false,
@@ -225,100 +225,90 @@ function getACdetail(acString) {
 
 var mstrCalc = [], bestStop = "";
 
-function run() {
-    var apMode = document.querySelector('input[name=apMode]:checked').value
-    var isRealism = document.getElementById('isRealism').checked
-    var isManual = document.getElementById('isManual').checked
-    var acInput = document.getElementById('acInput').value
+document.addEventListener("keyup", function res(event) {
+    if (event.keyCode === 13) {//enter
+        var apMode = document.querySelector('input[name=apMode]:checked').value
+        var isRealism = document.getElementById('isRealism').checked
+        var isManual = document.getElementById('isManual').checked
+        var acInput = document.getElementById('acInput').value
 
-    var origDet = stringToCoor(document.getElementById('orig').value, apMode)
-    var destDet = stringToCoor(document.getElementById('dest').value, apMode)
-    
-    var acDet = getACdetail(acInput);
-    try {
-        if (acDet === null) throw "No such aircraft."
-        if (origDet === null) throw "No such origin airport."
-        if (destDet === null) throw "No such destination airport."
+        var origDet = stringToCoor(document.getElementById('orig').value, apMode)
+        var destDet = stringToCoor(document.getElementById('dest').value, apMode)
+        
+        var acDet = getACdetail(acInput);
+        try {
+            if (acDet === null) throw "No such aircraft."
+            if (origDet === null) throw "No such origin airport."
+            if (destDet === null) throw "No such destination airport."
 
-        var acRwyReq = (isRealism ? acDet[0] : 0);
-        var acRange = acDet[1]
+            var acRwyReq = (isRealism ? acDet[0] : 0);
+            var acRange = acDet[1]
 
-        mstrCalc = []
-        for (let ap of mstrAP) {
-            var toO = calcDistance(ap[5], ap[6], origDet[5], origDet[6])
-            var toD = calcDistance(ap[5], ap[6], destDet[5], destDet[6])
-            var error = ""
-            if ((isRealism) && (acRwyReq > Number(ap[4]))) { toO = Infinity; toD = Infinity; error += "RWY too short. "}
+            mstrCalc = []
+            for (let ap of mstrAP) {
+                var toO = calcDistance(ap[5], ap[6], origDet[5], origDet[6])
+                var toD = calcDistance(ap[5], ap[6], destDet[5], destDet[6])
+                var error = ""
+                if ((isRealism) && (acRwyReq > Number(ap[4]))) { toO = Infinity; toD = Infinity; error += "RWY too short. "}
 
-            if ((toO < 100) && (toO > 0)) { toO = Infinity; error += "Distance to origin is <100km. "}
-            if ((toD < 100) && (toD > 0)) { toD = Infinity; error += "Distance to destination is <100km. "}
+                if ((toO < 100) && (toO > 0)) { toO = Infinity; error += "Distance to origin is <100km. "}
+                if ((toD < 100) && (toD > 0)) { toD = Infinity; error += "Distance to destination is <100km. "}
 
-            if (toO > acRange) { toO = Infinity; error += "Distance to origin is greater than A/C range. "}
-            if (toD > acRange) { toD = Infinity; error += "Distance to destination is greater than A/C range. "}
-            
-            if (toO === null) { toO = Infinity };
-            if (toD === null) { toD = Infinity };
+                if (toO > acRange) { toO = Infinity; error += "Distance to origin is greater than A/C range. "}
+                if (toD > acRange) { toD = Infinity; error += "Distance to destination is greater than A/C range. "}
+                
+                if (toO === null) { toO = Infinity };
+                if (toD === null) { toD = Infinity };
 
-            mstrCalc.push(ap.concat([toO, toD, toO+toD, error]))
-        }
-        mstrCalc.filter(function (e){
-            if ((e[9] > 0) && (e[9] !== Infinity)) {
-                return true
-            } else {
-                return false
+                mstrCalc.push(ap.concat([toO, toD, toO+toD, error]))
             }
-        })
-        mstrCalc.sort(function(a,b) {
-            return a[9] - b[9]
-        })
+            mstrCalc.filter(function (e){
+                if ((e[9] > 0) && (e[9] !== Infinity)) {
+                    return true
+                } else {
+                    return false
+                }
+            })
+            mstrCalc.sort(function(a,b) {
+                return a[9] - b[9]
+            })
 
-        bestStop = mstrCalc[0]
-        var stopDisplay = "", origDisplay = "", destDisplay = "";
+            console.log(mstrCalc)
 
-        if ((bestStop[7] == Infinity) || (bestStop[8] == Infinity)) throw "Unreachable!"
+            bestStop = mstrCalc[0]
+            var stopDisplay = "", origDisplay = "", destDisplay = "";
 
-        // at this stage, all unwanted points are removed.
+            if ((bestStop[7] == Infinity) || (bestStop[8] == Infinity)) throw "Unreachable!"
 
-        origDisplay = apMode == 'icao' ? origDet[3] : apMode == 'iata' ? origDet[2] : (origDet[0] + ", " + origDet[1])
-        destDisplay = apMode == 'icao' ? destDet[3] : apMode == 'iata' ? destDet[2] : (destDet[0] + ", " + destDet[1])
-        viewer.entities.removeAll()
+            // at this stage, all unwanted points are removed.
 
-        if ((bestStop[7] == 0) || (bestStop[8] == 0)) {
-            addLine(origDet[6], origDet[5], destDet[6], destDet[5], 'originDestination', 'originDestination')
-            stopDisplay = '<div class="success"><div style="display: table-cell; vertical-align: middle;" class="padLR">✈ DIRECT ✈</div></div>'
-        } else {
-            stopDisplay = apMode == 'icao' ? bestStop[3] : apMode == 'iata' ? bestStop[2] : bestStop[0] + ", " + bestStop[1]
-            addPoint(bestStop[6], bestStop[5], stopDisplay, 'stopover')
-            addLine(origDet[6], origDet[5], bestStop[6], bestStop[5], 'originStopover', 'originStopover')
-            addLine(bestStop[6], bestStop[5], destDet[6], destDet[5], 'stopoverDestination', 'stopoverDestination')
-            stopDisplay = '<div class="padLR">'+stopDisplay+'</div>'
+            origDisplay = apMode == 'icao' ? origDet[3] : apMode == 'iata' ? origDet[2] : (origDet[0] + ", " + origDet[1])
+            destDisplay = apMode == 'icao' ? destDet[3] : apMode == 'iata' ? destDet[2] : (destDet[0] + ", " + destDet[1])
+            viewer.entities.removeAll()
+
+            if ((bestStop[7] == 0) || (bestStop[8] == 0)) {
+                addLine(origDet[6], origDet[5], destDet[6], destDet[5], 'originDestination', 'originDestination')
+                stopDisplay = '<div class="success"><div style="display: table-cell; vertical-align: middle; padding: 5px">✈ DIRECT ✈</div></div>'
+            } else {
+                stopDisplay = apMode == 'icao' ? bestStop[3] : apMode == 'iata' ? bestStop[2] : bestStop[0] + ", " + bestStop[1]
+                addPoint(bestStop[6], bestStop[5], stopDisplay, 'stopover')
+                addLine(origDet[6], origDet[5], bestStop[6], bestStop[5], 'originStopover', 'originStopover')
+                addLine(bestStop[6], bestStop[5], destDet[6], destDet[5], 'stopoverDestination', 'stopoverDestination')
+                stopDisplay = '<div style="padding: 5px;">'+stopDisplay+'</div>'
+            }
+
+            addPoint(origDet[6], origDet[5], origDisplay, 'origin')
+            addPoint(destDet[6], destDet[5], destDisplay, 'destination')
+
+            // addRadius(origDet[6], origDet[5], acRange*1000, 'originRange', 'originRange')
+            // addRadius(destDet[6], destDet[5], acRange*1000, 'destinationRange', 'destinationRange')
+
+            viewer.flyTo(viewer.entities)
+
+            document.getElementById('stopoverDisplay').innerHTML = stopDisplay;
+        } catch (e) {
+            viewer.entities.removeAll()
+            document.getElementById('stopoverDisplay').innerHTML = '<div class="error"><div style="display: table-cell; vertical-align: middle; padding: 5px">'+e+'</div></div>';
         }
-
-        addPoint(origDet[6], origDet[5], origDisplay, 'origin')
-        addPoint(destDet[6], destDet[5], destDisplay, 'destination')
-
-        console.log(bestStop);
-        console.log(origDet);
-        console.log(destDet);
-
-        document.getElementById('origName').innerHTML = origDet[0]+", "+origDet[1]
-        document.getElementById('stopName').innerHTML = bestStop[0]+", "+bestStop[1]
-        document.getElementById('destName').innerHTML = destDet[0]+", "+destDet[1]
-
-        // addRadius(origDet[6], origDet[5], acRange*1000, 'originRange', 'originRange')
-        // addRadius(destDet[6], destDet[5], acRange*1000, 'destinationRange', 'destinationRange')
-
-        viewer.flyTo(viewer.entities)
-
-        document.getElementById('stopoverDisplay').innerHTML = stopDisplay;
-    } catch (e) {
-        viewer.entities.removeAll()
-        document.getElementById('stopoverDisplay').innerHTML = '<div class="error"><div style="display: table-cell; vertical-align: middle;" class="padLR">'+e+'</div></div>';
     }
-} //main code
-
-document.addEventListener("keyup", function(event) {
-    if (event.keyCode === 13) {
-        run();
-    }
-}); //onEnter
+});

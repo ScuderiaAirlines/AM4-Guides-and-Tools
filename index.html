@@ -1,189 +1,128 @@
-<!-- Does not work in Chromium, tested: Firefox, Chrome, Edge works. -->
-<!-- security.fileuri.strict_origin_policy -->
-<!DOCTYPE HTML>
-<html style="height:100%">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-        <meta content="utf-8" http-equiv="encoding">
-        <title>AM4 Stopover Finder</title>
+<html lang="en">
 
-        <script type="text/javascript" src="autoForm.js"></script>
-        <link rel="stylesheet" href="autoForm.css">
-        <link rel="stylesheet" href="radio.css">
-        <link rel="stylesheet" href="switch.css">
-        <link rel="stylesheet" href="button.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
-        
-        <script src="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Cesium.js"></script>
-        <link href="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-        <!-- <script src="http://www.webglearth.com/v2/api.js"></script> -->
-        <script type="text/javascript" src="mapControl.js"></script>
-    </head>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514321-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    <body onload="cesiumInit();" style="height:100%">
-        <div id="loader">
-            Loading Globe, Please Wait...
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-153514321-1');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/design.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>AM4 Guides and Tools</title>
+</head>
+
+<body class="home-page">
+    <div id="backover"></div>
+    <div class="result-box">
+        <button class="result-close"></button>
+        <div class="result-content">
+            <h5>Results</h5>
+            <hr>
+            <span>Recommended settings:</span>
+            <div class="label-item"><span class="label-result"></span></div>
         </div>
-        <div id="cesiumContainer" class="container"></div>
-        <div class="all">
-            <div class="container">
-                <div id="apMode">
-                    <label class="radio" id="icaoC">
-                        <input type="radio" name="apMode" value="icao" autocomplete="off">
-                        <span>ICAO</span>
-                    </label>
-                    <label class="radio" id="iataC">
-                        <input type="radio" name="apMode" value="iata" autocomplete="off" checked>
-                        <span>IATA</span>
-                    </label>
-                    <label class="radio" id="cityRC">
-                        <input type="radio" name="apMode" value="cityRegion" autocomplete="off">
-                        <span>Name (City, Region)</span>
-                    </label>
-                </div>
-                <br>
-                <br>
-                <div style="padding-bottom: 10px;">
-                    <span style="display:inline-block;width:40px;height:20px;text-align:right;vertical-align:middle;">Easy</span>
-                    <label class="switch-wrap">
-                        <input type="checkbox" id="isRealism" autocomplete="off"/>
-                        <div class="switch"></div>
-                    </label>
-                    <span style="padding-left:50px;width:150px;height:20px;text-align:left;vertical-align:middle;">Realism</span>
-                </div>
-                <div class="invisible">
-                    <span style="display:inline-block;width:40px;height:20px;text-align:right;vertical-align:middle;">Auto</span>
-                    <label class="switch-wrap">
-                        <input type="checkbox" id="isManual" autocomplete="off"/>
-                        <div class="switch"></div>
-                    </label>
-                    <span style="padding-left:50px;width:150px;height:20px;text-align:left;vertical-align:middle;">Manual</span>
-                </div>
-            </div>
-
-            <div class="container">
-                <table>
-                    <tr>
-                        <td id="acInputGroup" colspan="8">
-                            <div class="autocomplete">
-                                <input id="acInput" type="text" name="inputAC" placeholder="Input Aircraft">
-                            </div>
-                        </td>
-                    </tr>
-                    <br>
-                    <tr class="inputRow">
-                        <td style="height: 100%">
-                            <div class="autocomplete">
-                                <input id="orig" type="text" name="inputAP" placeholder="Input Origin">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="padLR" id="origName">---</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="height: 100%" class="stp" id="stopoverDisplay">
-                            <div class="padLR">---</div>
-                        </td>
-                        <td>
-                            <div class="padLR stp" id="stopName">---</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="height: 100%">
-                            <div class="autocomplete">
-                                <input id="dest" type="text" name="inputAP" placeholder="Input Destination">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="padLR" id="destName">---</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="height: 100%">
-                            <!--<button id="submitBtn" onclick="run()" class="btn">run()</button>-->
-                            <button type="button" id="submitBtn" onclick="run()" class="btn btn-success">Search</button>
-                        </td>
-                    </tr>
-                </table>
+    </div>
+    <header>
+        <div class="container-fluid">
+            <div class="middle">
+                <h1>AM4 GUIDES AND TOOLS</h1>
             </div>
         </div>
-        <style>
-            @font-face {
-                    font-family: AirlineFont;
-                    src: url('../assets/fonts/am4-font.woff2');
-                }
+    </header>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="content-main col-12 col-sm-12 col-md-7 col-lg-8 col-xl-8">
+                    <div class="content-box">
+                        <h2>CARGO AC LEAK</h2>
+                        <p>All possible information for upcoming 18 Cargo AC.</p>
+                        <a href="cleak.html"><button class="model-button">Go</button></a>
+                       
+                    </div>
+                    <div class="content-box">
+                        <h2>Stopover Tool</h2>
+                        <p>Find the ideal stopover airport for your aircraft, origin, and destination airport. To search, use ENTER KEY on phone keypad and PC keyboard.</p>
+                        <a href="https://scuderiaairlines.github.io/AM4-Guides-and-Tools/stpvr/"><button class="model-button">Go</button></a>
+                    </div>
+                    <div class="content-box">
+                        <h2>Aircraft Search</h2>
+                        <p>Search for aircraft according to your interest. By entering the minimum and maximum values, you will see a list of aircraft within your specified price range, and you will be able to compare them more easily.</p>
+                        <a href="http://scuderiaam4tools.epizy.com/searchRange.php"><button class="model-button">Go</button></a>
+                    </div>
+                    <div class="content-box hide">
+                        <h2>Complete Calculator</h2>
+                        <p>Now you can enter information about a certain route and receive a more complete suggestion, such as: seat configuration, flight time according to the cost index, profit, price and more...</p>
+                        <a href="underdev.html"><button class="model-button">Go</button></a>
+                    </div>
+                    <div class="content-box hide">
+                        <h2>Trips/day</h2>
+                        <p>Find out how many flights per day it is possible to make on a given route and with a certain number of planes. In addition to giving you the result, the calculator will inform the ideal number of planes that will be able to operate
+                            on that route, just so you don't have problems with daily demand.</p>
+                        <a href="underdev.html"><button class="model-button">Go</button></a>
+                    </div>
+                    <div class="content-box">
+                        <h2>Seats Configuration</h2>
+                        <p>Plug in First Class and Business demands to get the highest profit seat configuration - priority given to First Class, then Business, remaining seats go to Economy (no need to enter Economy demand).</p>
+                        <a href="seatsConfiguration.html"><button class="model-button">Basic (Old) Formula</button></a>
+                        <a href="seats.html"><button class="model-button">First Class Priority (New) Formula</button></a>
+                    </div>
+                    <div class="content-box">
+                        <h2>Ticket Calculator</h2>
+                        <p>Calculate the ideal ticket price for your route!</p>
+                        <a href="http://scuderiaam4tools.epizy.com/ticketCalculator.php"><button class="model-button">Go</button></a>
+                    </div>
+                    <div class="content-box">
+                        <h2>Profit Calculator</h2>
+                        <p>Plug in all the required values to get an accurate per day profit estimate for your route!</p>
+                        <a href="profit.html"><button class="model-button">Go</button></a>
+                    </div>
+                </div>
+                <div class="content-side col-12 col-sm-12 col-md-5 col-lg-4 col-xl-4">
+                    <div class="content-box">
+                        <h2>Update notes</h2>
+                        <div class="container-post-side">
+                            <div class="content-updates-notes">
+                                <h3>Update v1.1.0</h3>
+                                <p>• restructuring the entire structure of the website and the source code. <br> • 100% responsive website for screens with width equal to or greater than 360px. <br> • Calculation of seat configuration has a new formula based on the
+                                    number of trips per day and the demands F and J - more F and J seats mean more profit.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-box hide">
+                        <h2>Post guides</h2>
+                        <div class="container-post-side">
+                            <div class="content-guides-post">
+                                <h3>Guide title</h3>
+                                <p>• Major UI and UX update improves aesthetics and experience. • 100% responsive website for screens with width equal to or greater than 360px. • Calculation of seat configuration has a new formula based on the
+                                    number of trips per day and the demands FC and J, avoiding that the user has to worry about reaching the limit of daily demand.
+                                </p>
+                                <a href="javascript:void(0)"><button class="model-button">Go</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/library/popper.js"></script>
+    <script src="js/library/jquery.js"></script>
+    <script src="js/library/bootstrap.js"></script>
+    <script src="js/utils/Format.js "></script>
+    <script src="js/control/main.js "></script>
+    <script src="js/app.js "></script>
+</body>
 
-            body {
-                font-family: 'AirlineFont';
-                font-size: 100%;
-                color: white;
-                background: #0575E6;
-                background: black;
-            }
-
-         
-            .inputs { right: 0; }
-
-            .inputRow { height: 40px !important; 
-                        width: 100px !important; 
-            }
-
-            #stopover {
-                margin: 26px 10px 0px 10px;
-                color: white;
-            }
-
-            .error, .success {
-                display: table;
-                height: 100%;
-                background-color: #990000;
-            }
-
-            .success { background-color: #2d862d; }
-
-            .padLR { padding-left: 5px; padding-right: 5px; }
-
-            table, td {
-                border-collapse: collapse;
-            }
-
-            /* LOADER */
-            #loader {
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                position: fixed;
-                display: block;
-                background-color: rgba(0,0,0,0.5);
-                z-index: 99;
-                text-align: center;
-            }
-
-            .stp {
-                background-color: green;
-            }
-
-            #cesiumContainer {
-                cursor: move; /* fallback if grab cursor is unsupported */
-                cursor: grab;
-                cursor: -moz-grab;
-                cursor: -webkit-grab;
-                font-family: 'AirlineFont';
-            }
-
-             /* (Optional) Apply a "closed-hand" cursor during drag operation. */
-            #cesiumContainer:active {
-                cursor: grabbing;
-                cursor: -moz-grabbing;
-                cursor: -webkit-grabbing;
-            }
-        </style>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </body>
 </html>
+
