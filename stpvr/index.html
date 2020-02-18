@@ -3,55 +3,38 @@
 <!DOCTYPE HTML>
 <html style="height:100%">
     <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514321-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-153514321-1');
-    </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <title>AM4 Tools</title>
-        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <title>AM4 Stopover Finder</title>
 
         <script type="text/javascript" src="autoForm.js"></script>
         <link rel="stylesheet" href="autoForm.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="radio.css">
         <link rel="stylesheet" href="switch.css">
+        <link rel="stylesheet" href="button.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         
         <script src="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Cesium.js"></script>
         <link href="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
         <!-- <script src="http://www.webglearth.com/v2/api.js"></script> -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <script type="text/javascript" src="mapControl.js"></script>
-        <script type="text/javascript" src="js/bootstrap.js"></script>
     </head>
 
     <body onload="cesiumInit();" style="height:100%">
         <div id="loader">
-            Globe Loading...
+            Loading Globe, Please Wait...
         </div>
-        <div class="container">
-        <div id="cesiumContainer" style="width: 100%; height:80%"></div>
+        <div id="cesiumContainer" class="container"></div>
         <div class="all">
-        	<div class="container">
-            <div>
+            <div class="container">
                 <div id="apMode">
                     <label class="radio" id="icaoC">
-                        <input type="radio" name="apMode" value="icao" autocomplete="off" checked>
+                        <input type="radio" name="apMode" value="icao" autocomplete="off">
                         <span>ICAO</span>
                     </label>
                     <label class="radio" id="iataC">
-                        <input type="radio" name="apMode" value="iata" autocomplete="off">
+                        <input type="radio" name="apMode" value="iata" autocomplete="off" checked>
                         <span>IATA</span>
                     </label>
                     <label class="radio" id="cityRC">
@@ -78,67 +61,74 @@
                     <span style="padding-left:50px;width:150px;height:20px;text-align:left;vertical-align:middle;">Manual</span>
                 </div>
             </div>
-        	</div>
-        	<br>
-        	<form>
-        	<div class="container">
-            <div style="max-width: 90%">
-            	<div class="container">
+
+            <div class="container">
                 <table>
                     <tr>
-                        <td id="acInputGroup">
+                        <td id="acInputGroup" colspan="8">
                             <div class="autocomplete">
-                                <input id="acInput" type="text" placeholder="Input Aircraft">
+                                <input id="acInput" type="text" name="inputAC" placeholder="Input Aircraft">
                             </div>
                         </td>
                     </tr>
+                    <br>
                     <tr class="inputRow">
                         <td style="height: 100%">
                             <div class="autocomplete">
                                 <input id="orig" type="text" name="inputAP" placeholder="Input Origin">
                             </div>
                         </td>
-                    </tr>
-                    <tr class="inputRow">
-                        <td style="height: 100%" id="stopoverDisplay">
-                            <div style="padding: 5px;">Input Data!</div>
+                        <td>
+                            <div class="padLR" id="origName">---</div>
                         </td>
                     </tr>
-                    <tr class="inputRow">
+                    <tr>
+                        <td style="height: 100%" class="stp" id="stopoverDisplay">
+                            <div class="padLR">---</div>
+                        </td>
+                        <td>
+                            <div class="padLR stp" id="stopName">---</div>
+                        </td>
+                    </tr>
+                    <tr>
                         <td style="height: 100%">
                             <div class="autocomplete">
                                 <input id="dest" type="text" name="inputAP" placeholder="Input Destination">
                             </div>
                         </td>
+                        <td>
+                            <div class="padLR" id="destName">---</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="height: 100%">
+                            <!--<button id="submitBtn" onclick="run()" class="btn">run()</button>-->
+                            <button type="button" id="submitBtn" onclick="run()" class="btn btn-success">Search</button>
+                        </td>
                     </tr>
                 </table>
-            	</div>
-             
             </div>
-            </div>
-        	</form>
         </div>
-    	</div>
         <style>
-            body { 
-                padding: 0; margin: 0;
-                background-color: black;
-                font-family: 'Roboto', sans-serif;
+            @font-face {
+                    font-family: AirlineFont;
+                    src: url('../assets/fonts/am4-font.woff2');
+                }
+
+            body {
+                font-family: 'AirlineFont';
+                font-size: 100%;
                 color: white;
+                background: #0575E6;
+                background: black;
             }
 
-            .toggles, .inputs {
-                top: 80%;
-                position: absolute;
-                display: block;
-                font-family: 'Roboto', sans-serif;
-                float: left;
-                color: white;
-            }
-
+         
             .inputs { right: 0; }
 
-            .inputRow { height: 35px; }
+            .inputRow { height: 40px !important; 
+                        width: 100px !important; 
+            }
 
             #stopover {
                 margin: 26px 10px 0px 10px;
@@ -153,9 +143,10 @@
 
             .success { background-color: #2d862d; }
 
+            .padLR { padding-left: 5px; padding-right: 5px; }
+
             table, td {
                 border-collapse: collapse;
-                border: 1px solid white;
             }
 
             /* LOADER */
@@ -171,11 +162,16 @@
                 text-align: center;
             }
 
+            .stp {
+                background-color: green;
+            }
+
             #cesiumContainer {
                 cursor: move; /* fallback if grab cursor is unsupported */
                 cursor: grab;
                 cursor: -moz-grab;
                 cursor: -webkit-grab;
+                font-family: 'AirlineFont';
             }
 
              /* (Optional) Apply a "closed-hand" cursor during drag operation. */
@@ -185,15 +181,9 @@
                 cursor: -webkit-grabbing;
             }
         </style>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>
-
-<script>
-$(document).on('click', '#searchbtn', function(){
-   $("#searchbtn").trigger({
-        type: "keypress", 
-        which: 13, 
-        keyCode: 13});
-});
-</script>
-
 </html>
