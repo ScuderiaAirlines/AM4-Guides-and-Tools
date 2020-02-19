@@ -4,13 +4,24 @@
   box-sizing: inherit;
 }
 
+.switch-table, .switch-table > td {
+  border: 0;
+}
+
+.switch-text {
+  font-size: 16px;
+  vertical-align: top;
+  padding-left: 2px; padding-right: 2px;
+}
+
 .switch-wrap {
-  position: absolute;
+  display: inline-block;
+  vertical-align: top;
   background: #383838;
-  padding: 2px;
-  width: 40px;
-  height: 20px;
+  padding: 2px 4px;
+  height: 20px; width: 40px;
   border-radius: 10px;
+  margin-bottom: 0;
 }
 .switch-wrap input {
   position: absolute;
