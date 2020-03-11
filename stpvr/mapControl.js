@@ -230,7 +230,7 @@ function stringToCoor(apRaw, method) { //bear with me: I know this much is unnec
 function getACdetail(acString) {
     for (let ac of mstrAC) {
         if (ac[0] == acString) {
-            return [Number(ac[1]), Number(ac[2])]
+            return [Number(ac[1]), Number(ac[2]), Number(ac[3])]
         }
     }
     return null
@@ -282,6 +282,14 @@ function run() {
 
         let act = calcDistance(origDet[5], origDet[6], destDet[5], destDet[6]);
         gId('diff').innerHTML = dp(act,2)+' km';
+
+        // Temporary error for prices while it is still under beta testing
+        if (acDet[2] == 1) {
+        	gId('yP').style.backgroundColor = errColor;
+	        gId('jP').style.backgroundColor = errColor;
+	        gId('fP').style.backgroundColor = errColor;
+        }
+
         let prices = calcPaxTicketPrice(act, isRealism);
         gId('yP').innerHTML = prices[0];
         gId('jP').innerHTML = prices[1];
