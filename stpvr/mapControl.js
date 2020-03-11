@@ -287,7 +287,7 @@ function run() {
         gId('jP').innerHTML = prices[1];
         gId('fP').innerHTML = prices[2];
 
-        //let acRwyReq = (isRealism ? acDet[0] : 0);  /*stopover rwy length does not count in Realism*/
+        let acRwyReq = (isRealism ? acDet[0] : 0);
         let acRange = acDet[1]
 
         mstrCalc = []
@@ -295,7 +295,7 @@ function run() {
             var toO = calcDistance(ap[5], ap[6], origDet[5], origDet[6]);
             var toD = calcDistance(ap[5], ap[6], destDet[5], destDet[6]);
 
-            // if ((isRealism) && (acRwyReq > Number(ap[4]))) { toO = Infinity; toD = Infinity; }  /*stopover rwy length does not count in Realism*/
+            if ((isRealism) && (acRwyReq > Number(ap[4]))) { toO = Infinity; toD = Infinity; }
             if (toO > acRange) { toO = Infinity; }
             if (toD > acRange) { toD = Infinity; }
 
