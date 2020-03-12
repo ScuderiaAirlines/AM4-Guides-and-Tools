@@ -1,4 +1,4 @@
-let demandY, demandJ, seatsTotal;
+var demandY, demandJ, seatsTotal, rat, rat1;
 let seatsY, seatsJ, seatsF, flightRange, airSpeed, fuel, co2, reput;
 let ticketPriceY, ticketPriceJ, ticketPriceF;
 
@@ -7,10 +7,15 @@ let ticketPriceY, ticketPriceJ, ticketPriceF;
 var rat = demandY/demandJ;       
 
 var rat1 = rat + 1; 
-let seatsForY = 100/rat1; 
-let seatsForJ = 100 - seatsForY;
 
 
+let seatsForY = function() {
+    return Math.round(100/rat1);
+};
+
+let seatsForJ = function() {
+    return Math.round(100 - seatsForY());
+};
 
 let profitPerTrip = function() {
     return Math.round(((((nPaxY() * ticketPriceY) + (nPaxJ() * ticketPriceJ) + (nPaxF() * ticketPriceF)) * (reput / 100)) - fuelCost() - co2Cost())/1.1);
