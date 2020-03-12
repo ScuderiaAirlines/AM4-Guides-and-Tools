@@ -79,22 +79,22 @@ td {
 
 /*  Seats Page  */
 
-#seats-page .content-box h2 {
+.seats-page .content-box h2 {
     padding: 15px 0 35px 0;
 }
 
-#seats-page .content-box form {
+.seats-page .content-box form {
     text-decoration-color: white;
     color: white;
     justify-content: center;
     overflow-x: auto;
 }
 
-#seats-page .content-box form button {
+.seats-page .content-box form button {
     margin: 50px 0;
 }
 
-#seats-page .content-box form input {
+.seats-page .content-box form input {
     width: 100%;
     padding: 10px 0;
     background: none;
@@ -108,33 +108,33 @@ td {
     text-align: center;
 }
 
-#seats-page .content-box form input::placeholder {
+.seats-page .content-box form input::placeholder {
     color: white;
 }
 
-#seats-page .content-box form input:focus {
+.seats-page .content-box form input:focus {
     border-bottom: 3px solid white;
 }
 
 
 /*  Profit Page  */
 
-#profit-page .content-box h2 {
+.profit-page .content-box h2 {
     padding: 15px 0 35px 0;
 }
 
-#profit-page .content-box form {
+.profit-page .content-box form {
     text-decoration-color: white;
     color: white;
     justify-content: center;
     overflow-x: auto;
 }
 
-#profit-page .content-box form button {
+.profit-page .content-box form button {
     margin: 50px 0;
 }
 
-#profit-page .content-box form input {
+.profit-page .content-box form input {
     width: 100%;
     padding: 10px 0;
     background: none;
@@ -148,33 +148,33 @@ td {
     text-align: center;
 }
 
-#profit-page .content-box form input::placeholder {
+.profit-page .content-box form input::placeholder {
     color: white;
 }
 
-#profit-page .content-box form input:focus {
+.profit-page .content-box form input:focus {
     border-bottom: 3px solid white;
 }
 
 
 /*  Ticket Page  */
 
-#ticket-page .content-box h2 {
+.ticket-page .content-box h2 {
     padding: 15px 0 35px 0;
 }
 
-#ticket-page .content-box form {
+.ticket-page .content-box form {
     text-decoration-color: white;
     color: white;
     justify-content: center;
     overflow-x: auto;
 }
 
-#ticket-page .content-box form button {
+.ticket-page .content-box form button {
     margin: 50px 0;
 }
 
-#ticket-page .content-box form input {
+.ticket-page .content-box form input {
     width: 100%;
     padding: 10px 0;
     background: none;
@@ -188,11 +188,11 @@ td {
     text-align: center;
 }
 
-#ticket-page .content-box form input::placeholder {
+.ticket-page .content-box form input::placeholder {
     color: white;
 }
 
-#ticket-page .content-box form input:focus {
+.ticket-page .content-box form input:focus {
     border-bottom: 3px solid white;
 }
 
