@@ -1,4 +1,4 @@
-let demandY, demandJ, seatsTotal, totalDemand, dailyFlights;
+let demandY, demandJ, seatsTotal;
 let seatsY, seatsJ, seatsF, flightRange, airSpeed, fuel, co2, reput;
 let ticketPriceY, ticketPriceJ, ticketPriceF;
 
@@ -7,8 +7,8 @@ let ticketPriceY, ticketPriceJ, ticketPriceF;
 var rat = demandY/demandJ;       
 
 var rat1 = rat + 1; 
-var seatsForY = 100/rat1; 
-var seatsForJ = 100 - seatsForY;
+let seatsForY = 100/rat1; 
+let seatsForJ = 100 - seatsForY;
 
 
 
@@ -71,7 +71,6 @@ function calcSeats() {
     demandY = eval(document.getElementById('demandY').value);
     demandJ = eval(document.getElementById('demandJ').value);
     seatsTotal = document.getElementById('totalSeats').value;
-    dailyFlights = document.getElementById('dailyFlights').value;
     totalDemand = demandY + demandJ + demandF;
 
     if (demandY == "" || demandJ == "" || || seatsTotal == "") {
