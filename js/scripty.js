@@ -4,9 +4,9 @@ let ticketPriceY, ticketPriceJ, ticketPriceF;
 
 
     
-var rat = demandY/demandJ;       
+rat = demandY/demandJ;       
 
-var rat1 = rat + 1; 
+rat1 = rat + 1; 
 
 
 let seatsForY = function() {
