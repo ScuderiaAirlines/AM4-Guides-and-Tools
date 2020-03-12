@@ -1,5 +1,12 @@
 /*PAGE GENERAL BODY*/
 
+
+button {
+    border: none;
+    outline: none;
+}
+
+
 body {
     width: 100%;
     height: 100%;
@@ -11,35 +18,68 @@ body {
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-attachment: fixed;
     background-size: contain;
+    color: white !important;
 }
 
 .default-button {
+    /*box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.2);*/
+    border-radius: 6px;
+    padding-top: 1px;
     width: 100px;
     height: 30px;
     margin: 0 auto;
+    margin-top: 10px;
     background: rgb(0, 93, 146);
-    border-radius: 20px;
-    text-align: center;
+    /*border: 2px solid rgba(255, 255, 255, 0.5);*/
     line-height: 25px;
+    text-align: center;
     color: white;
     text-decoration: none;
+    transition: color 0.3s ease-in rgba(0, 93, 146, 0.5);
 }
 
+.fright {
+    float: right;
+}
+
+.fleft {
+    float: left;
+}
+
+
 .default-button:hover {
-    transition: background 0.5s ease-out;
-    background: rgba(0, 93, 146, 0.8);
+    transition: background 0.3s ease-out;
+
+    background: rgba(255,255,255, 0.5);
     cursor: pointer;
 }
 
+.content-box1 {
+
+    border-radius: 10px;
+    /*border: 2px solid rgba(255, 255, 255, 0.5);*/
+    width: 40%;
+    padding: 15px 50px;
+    margin: 30px 0;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    z-index: 200;
+    box-shadow: 8px 8px 6px rgba(0, 0, 0, 0.2);
+}
+
 .content-box {
+
+    border-radius: 10px;
+    /*border: 2px solid rgba(255, 255, 255, 0.5);*/
     width: 100%;
     padding: 15px 50px;
     margin: 30px 0;
     text-align: center;
     background: rgba(255, 255, 255, 0.2);
-    border-radius: 30px;
     color: white;
     z-index: 200;
+    box-shadow: 8px 8px 6px rgba(0, 0, 0, 0.2);
 }
 
 .back-button-position {
@@ -55,6 +95,12 @@ body {
     margin: 0 auto;
 }
 
+.container3 {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: -80px;
+}
+
 .flexible-box {
     display: flex;
     justify-content: space-between;
@@ -64,8 +110,71 @@ body {
     width: 90px;
 }
 
+@media
+    only screen 
+    and (max-width: 768px), (min-device-width: 768px) 
+    and (max-device-width: 1440px)  {
+
+        /* Force table to not be like tables anymore */
+        table, thead, tbody, th, td, tr {
+            display: block;
+            width: 100%;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    tr {
+      margin: 0 0 1rem 0;
+    }
+
+    tr:nth-child(odd) {
+      background: rgba(255,255,255,0.2);
+    }
+
+        td {
+            /* Behave  like a "row" */
+            border: none;
+            border: 1px solid #eee;
+            position: relative;
+            padding-left: 50%;
+        }
+
+        td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 0;
+            left: 6px;
+            width: 100%;
+            padding-right: 10px;
+            white-space: nowrap;
+        }
+
+        /*
+        Label the data
+    You could also use a data-* attribute and content for this. That way "bloats" the HTML, this way means you need to keep HTML and CSS in sync. Lea Verou has a clever way to handle with text-shadow.
+        */
+        td:nth-of-type(1):before { content: "Aircraft"; }
+        td:nth-of-type(2):before { content: "Cost ($M)"; }
+        td:nth-of-type(3):before { content: "Range (km)"; }
+        td:nth-of-type(4):before { content: "Fuel (lbs/km)"; }
+        td:nth-of-type(5):before { content: "CO2 (kg/pax/km"; }
+        td:nth-of-type(6):before { content: "Speed"; }
+        td:nth-of-type(7):before { content: "Capacity"; }
+    }
+
+
 .form-box {
     padding-top: 25px;
+    text-decoration-color: white;
+    color: white;
+    justify-content: center;
+    overflow-x: auto;
 }
 
 .form-box button {
@@ -73,7 +182,7 @@ body {
     margin: 50px 0!important;
 }
 
-.form-box input {
+/*.form-box input {
     display: none;
     width: 70%;
     margin: 5px auto!important;
@@ -84,30 +193,93 @@ body {
     text-align: center;
     font-size: 25px;
     font-weight: 800;
+    color: white;
 }
-
 .form-box input:focus {
     border-bottom: rgb(0, 93, 146) solid;
 }
-
 .form-box input::placeholder {
     font-size: 15px;
-    color: rgb(0, 93, 146);
+    color: rgb(255, 255, 255, 0.5);
+}*/
+
+.form-box input {
+  width: 100%;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid white;
+  color: #white;
+  font-size: 14px;
+  text-transform: uppercase;
+  outline: none;
+  transition: border-width .2s;
+  text-align: center;
+}
+
+.form-box input::placeholder {
+  color: white;
+}
+
+.container2 {
+    width: 60%
+    margin: auto;
+}
+
+.form-box input:focus {
+  border-bottom: 3px solid white;
+}
+
+.results-boxR {
+    width: 100%
+    text-align: center;
+    display: inline-block;
+}
+
+.results-boxR label {
+    display: none;
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.results-boxR label output {
+    font-weight: 900;
+    display: inline-block;
 }
 
 .results-box {
-    font-size: 13px;
+    width: 100%
     text-align: center;
-    display: block;
+    display: inline-block;
 }
 
 .results-box label {
     display: none;
+    font-size: 12px;
     padding-top: 5px;
 }
 
 .results-box label output {
     font-weight: 900;
+    display: inline-block;
+}
+
+.results-boxE {
+    width: 100%
+    font-size: 12px;
+    text-align: center;
+    display: inline-block;
+}
+
+.results-boxE label {
+    font-size: 12px;
+    display: none;
+    padding-top: 5px;
+}
+
+.results-boxE label output {
+    font-weight: 900;
+    display: inline-block;
 }
 
 
@@ -117,8 +289,8 @@ body {
     width: 100%;
     height: 50px;
     background: rgba(255, 255, 255, 0.4);
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
+    box-shadow: 8px 8px 6px rgba(0, 0, 0, 0.2);
+
 }
 
 .home-page header .container {
@@ -167,7 +339,9 @@ body {
 
 .profit-calculator .container .content-all h2 {
     font-size: 20px;
+    color: white;
 }
+
 
 
 /*  PROFIT CALCULATOR PAGE  */
@@ -204,6 +378,12 @@ body {
     padding: 15px 0;
 }
 
+.resultText {
+    font-size: 30px;
+}
+
+
+
 
 /*background: #6441A5;*/
 
@@ -220,4 +400,4 @@ body {
 /*background: linear-gradient(to right, #2a0845, #6441A5);*/
 
 
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ 
