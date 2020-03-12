@@ -21,10 +21,17 @@ class AMToolsGuides {
     calculator() {
         this.cargoSeats = (_demandA, _demandB, _capacity) => {
 
-            let rat = _demandA / _demandB;
+            let rat, _demandLarge, _demandHeavy;
 
-            let _demandLarge = Math.round(100 / rat + 1);
-            let _demandHeavy = Math.round(100 - _demandLarge);
+            if (_demandA > _demandB) {
+                rat = (10 / 7) * _demandA / _demandB;
+                _demandLarge = Math.round(100 / rat + 1);
+                _demandHeavy = Math.round(100 - _demandLarge);
+            } else if (_demandA < _demandB) {
+                rat = (10 / 7) * _demandB / _demandA;
+                _demandHeavy = Math.round(100 / rat + 1);
+                _demandLarge = Math.round(100 - _demandHeavy);
+            }
 
             return {
                 _resultLarge: _demandLarge + '%',
