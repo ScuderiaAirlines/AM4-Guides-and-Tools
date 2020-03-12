@@ -78,7 +78,7 @@ function calcSeats() {
     seatsTotal = document.getElementById('totalSeats').value;
     totalDemand = demandY + demandJ + demandF;
 
-    if (demandY == "" || demandJ == "" || || seatsTotal == "") {
+    if (demandY == "" || demandJ == "" || seatsTotal == "") {
         alert('Please fill in all fields for the calculation to be done correctly! ;)');
         return;
     }
