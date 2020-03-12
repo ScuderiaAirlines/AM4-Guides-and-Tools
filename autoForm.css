@@ -1,0 +1,58 @@
+::placeholder {
+  color: #d3d3d3;
+  opacity: 1;
+  font-family: 'Roboto', sans-serif;
+}
+
+:-ms-input-placeholder { color: #d3d3d3; font-family: 'Roboto', sans-serif; } /* IE */
+
+::-ms-input-placeholder { color: #d3d3d3; font-family: 'Roboto', sans-serif; } /* Edge */
+
+.masterTable {
+    font-family: 'Roboto', sans-serif;
+}
+
+.autocomplete {
+    height: 100%;
+    position: relative; /* to the input */
+}
+
+input {
+    display: inline-block;
+    border: 0;
+    background-color: #0068b7;
+    color: white;
+    padding: 6px 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #404040;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.autocomplete-items > div {
+    padding: 5px;
+    cursor: pointer;
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #404040;
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+    background-color: #0068b7;
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
