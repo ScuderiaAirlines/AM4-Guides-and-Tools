@@ -197,6 +197,46 @@ td {
 }
 
 
+/*  Ticket Page  */
+
+.cargo-page .content-box h2 {
+    padding: 15px 0 35px 0;
+}
+
+.cargo-page .content-box form {
+    text-decoration-color: white;
+    color: white;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+.cargo-page .content-box form button {
+    margin: 50px 0;
+}
+
+.cargo-page .content-box form input {
+    width: 100%;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    outline: none;
+    transition: border-width .2s;
+    text-align: center;
+}
+
+.cargo-page .content-box form input::placeholder {
+    color: white;
+}
+
+.cargo-page .content-box form input:focus {
+    border-bottom: 3px solid white;
+}
+
+
 /*  Aircraft Page  */
 
 #aircraft-page .content-box h2 {

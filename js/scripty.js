@@ -3,26 +3,12 @@ let seatsY, seatsJ, seatsF, flightRange, airSpeed, fuel, co2, reput;
 let ticketPriceY, ticketPriceJ, ticketPriceF;
 
 
-    
-rat = demandY/demandJ;       
-
-rat1 = rat + 1; 
-
-
-let seatsForY = function() {
-    return Math.round(100/rat1);
-};
-
-let seatsForJ = function() {
-    return Math.round(100 - seatsForY());
-};
-
 let profitPerTrip = function() {
-    return Math.round(((((nPaxY() * ticketPriceY) + (nPaxJ() * ticketPriceJ) + (nPaxF() * ticketPriceF)) * (reput / 100)) - fuelCost() - co2Cost())/1.1);
+    return Math.round(((((nPaxY() * ticketPriceY) + (nPaxJ() * ticketPriceJ) + (nPaxF() * ticketPriceF)) * (reput / 100)) - fuelCost() - co2Cost()) / 1.1);
 };
 
 let posAC = function() {
-    return Math.floor(((demandY/dailyFlights) + (demandJ/dailyFlights*2) + (demandF/dailyFlights*3))/seatsTotal);
+    return Math.floor(((demandY / dailyFlights) + (demandJ / dailyFlights * 2) + (demandF / dailyFlights * 3)) / seatsTotal);
 };
 
 let nPax = function() {
@@ -38,11 +24,11 @@ let fuelCost = function() {
 };
 
 let flightsDayR = function() {
-    return Math.abs(24/(flightRange / airSpeed));
+    return Math.abs(24 / (flightRange / airSpeed));
 };
 
 let flightsDayE = function() {
-    return Math.abs(24/(flightRange / (airSpeed * 1.5)));
+    return Math.abs(24 / (flightRange / (airSpeed * 1.5)));
 };
 
 let profitDayR = function() {
@@ -66,38 +52,26 @@ function calcTicketPrice(mode) {
     }
 };
 
-function calcSeats() {
-    let labels = document.getElementsByClassName('lb');
-    let out_result = document.getElementsByClassName('out');
-    for (let index = 0; index < labels.length; index++) {
-        labels[index].classList.remove('show');
-    }
+// function calcSeats() {
+//     let resultView = document.querySelectorAll('.cargo-page .result-box .result-content .label-result');
+//     let fields = document.querySelectorAll('.cargo-page #cargo-configuration-form input');
 
-    demandY = eval(document.getElementById('demandY').value);
-    demandJ = eval(document.getElementById('demandJ').value);
-    seatsTotal = document.getElementById('totalSeats').value;
-    totalDemand = demandY + demandJ;
+//     console.log(fields);
+//     fields.forEach((field) => {
+//         if (field.name === "input-demand-a") demandY = field.value;
+//         if (field.name === "input-demand-b") demandJ = field.value;
+//         if (field.name === "input-capacity") seatsTotal = field.value;
+//     });
 
-    if (demandY == "" || demandJ == "" || seatsTotal == "") {
-        alert('Please fill in all fields for the calculation to be done correctly! ;)');
-        return;
-    }
+//     totalDemand = demandY + demandJ;
 
-    for (let index = 0; index < out_result.length; index++) {
-        switch (out_result[index]) {
-            case document.getElementById('ySeats'):
-                out_result[index].innerHTML = seatsForY();
-                break;
-            case document.getElementById('jSeats'):
-                out_result[index].innerHTML = seatsForJ();
-                break;
-        }
-    }
+//     if (demandY == "" || demandJ == "" || seatsTotal == "") {
+//         alert('Please fill in all fields for the calculation to be done correctly! ;)');
+//         return;
+//     }
 
-    for (let index = 0; index < labels.length; index++) {
-        labels[index].classList.add('show');
-    }
-};
+//     alert(`Resultado A: ${seatsForY((demandY/demandJ))}\nResultado B: ${seatsForJ((demandY/demandJ))}`);
+// };
 
 function calcProfit() {
     let ticketPriceY, ticketPriceJ, ticketPriceF;
@@ -123,19 +97,13 @@ function calcProfit() {
         if (out_result[index].classList.contains('Realism')) {
             calcTicketPrice('Realism');
             out_result[index].innerHTML = profitPerTrip().toLocaleString('en-us', { style: 'currency', currency: 'USD' });
-        } 
-
-        else if (out_result[index].classList.contains('Easy')) {
+        } else if (out_result[index].classList.contains('Easy')) {
             calcTicketPrice('Easy');
             out_result[index].innerHTML = profitPerTrip().toLocaleString('en-us', { style: 'currency', currency: 'USD' });
-        }
-
-        else if (out_result[index].classList.contains('EasyD')) {
+        } else if (out_result[index].classList.contains('EasyD')) {
             calcTicketPrice('Easy');
             out_result[index].innerHTML = profitDayE().toLocaleString('en-us', { style: 'currency', currency: 'USD' });
-        }
-
-        else if (out_result[index].classList.contains('RealismD')) {
+        } else if (out_result[index].classList.contains('RealismD')) {
             calcTicketPrice('Realism');
             out_result[index].innerHTML = profitDayR().toLocaleString('en-us', { style: 'currency', currency: 'USD' });
         }
@@ -197,4 +165,3 @@ function calcTicket() {
         labels[index].classList.add('show');
     }
 };
-
