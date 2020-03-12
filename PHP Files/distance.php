@@ -14,12 +14,12 @@ if (mysqli_connect_errno()) {
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-if(isset($_POST['dep'])) {
-    $dep = $_POST['dep'];
+if(isset($_POST['input-departure'])) {
+    $dep = $_POST['input-departure'];
 }
 
-if(isset($_POST['arr'])) {
-    $arr = $_POST['arr'];
+if(isset($_POST['input-arrival'])) {
+    $arr = $_POST['input-arrival'];
 }
 
 
@@ -47,13 +47,6 @@ $result4 = $con->query("SELECT `lng` FROM airportx WHERE '$arr' IN (`icao`,`iata
 $row = $result4->fetch_assoc();
 $lng2 = $row['lng'];
 
-
-
-
-
-
-echo "<br>";
-
 function distance ($lat1, $lng1, $lat2, $lng2) {
     
     $earth_radius = 6371;
@@ -67,15 +60,11 @@ function distance ($lat1, $lng1, $lat2, $lng2) {
 
     $e = number_format($d);
 
-    return $e;
-
-    echo "Distance: <strong>$f KM</strong> <br> Input this value below.";
+    echo $e;
  
-}
+};
 
-    $f = distance($lat1, $lng1, $lat2, $lng2);
-
-    echo "Distance: <strong>$f KM</strong> <br> Input this value below.";
+echo distance($lat1, $lng1, $lat2, $lng2);
 
 
 

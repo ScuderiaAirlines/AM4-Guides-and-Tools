@@ -19,51 +19,56 @@ class AMToolsGuides {
         return Math.max(document.documentElement.clientHeight, this._windowHeight || 0);
     }
     calculator() {
-        this.seats = (_demandJ, _demandF, _totalSeats, _flightRange, _airSpeed) => {
+        this.seats = (_demandY, _demandJ, _demandF, _totalSeats, _flightRange, _airSpeed) => {
 
-            let _tripsPerDay = this.tripsPerDay(_flightRange, _airSpeed);
-            _tripsPerDay.realismTripsPerDay = Math.round(_tripsPerDay.realismTripsPerDay);
-            _tripsPerDay.easyTripsPerDay = Math.round(_tripsPerDay.easyTripsPerDay);
+            let result = {};
+            if (_demandY != null || _demandY != undefined) {
 
-            let restTS = _totalSeats;
+                let _totalDemand = _demandY + _demandJ + _demandF;
 
-            let calc = {
-                seatsF(_tpd) {
-                    let result = Math.round(_demandF / _tpd);
-                    let valid = _totalSeats - (result * 3);
-                    if (valid < 0) { result = _totalSeats / 3 } { _totalSeats -= result * 3 };
-                    return Math.round(result);
-                },
-                seatsJ(_tpd) {
-                    let result = Math.round(_demandJ / _tpd);
-                    let valid = _totalSeats - (result * 2);
-                    if (valid < 0) { result = _totalSeats / 2 } { _totalSeats -= result * 2 };
-                    return Math.round(result);
-                },
-                seatsY(_tpd) {
-                    let result = (_totalSeats < 0) ? 0 : _totalSeats;
-                    _totalSeats = restTS;
-                    return result;
-                }
-            };
-            let result = {
-                reaslimSeatsF: calc.seatsF(_tripsPerDay.realismTripsPerDay),
-                reaslimSeatsJ: calc.seatsJ(_tripsPerDay.realismTripsPerDay),
-                reaslimSeatsY: calc.seatsY(_tripsPerDay.realismTripsPerDay),
-                reaslimTripsPerDay: _tripsPerDay.realismTripsPerDay,
-                easySeatsF: calc.seatsF(_tripsPerDay.easyTripsPerDay),
-                easySeatsJ: calc.seatsJ(_tripsPerDay.easyTripsPerDay),
-                easySeatsY: calc.seatsY(_tripsPerDay.easyTripsPerDay),
-                easyTripsPerDay: _tripsPerDay.easyTripsPerDay
-            };
+                result = {
+                    seatsY: Math.round((_demandY / _totalDemand * _totalSeats) * (_totalSeats / (_demandF / _totalDemand * _totalSeats + 2 * _demandJ / _totalDemand * _totalSeats + 3 * _demandY / _totalDemand * _totalSeats))),
+                    seatsJ: Math.round((_demandJ / _totalDemand * _totalSeats) * (_totalSeats / (_demandF / _totalDemand * _totalSeats + 2 * _demandJ / _totalDemand * _totalSeats + 3 * _demandY / _totalDemand * _totalSeats))),
+                    seatsF: Math.round((_demandF / _totalDemand * _totalSeats) * (_totalSeats / (_demandF / _totalDemand * _totalSeats + _demandJ / _totalDemand * _totalSeats * 2 + _demandY / _totalDemand * _totalSeats * 3)))
+                };
+            } else {
+                let _tripsPerDay = this.tripsPerDay(_flightRange, _airSpeed);
+                _tripsPerDay.realismTripsPerDay = Math.round(_tripsPerDay.realismTripsPerDay);
+                _tripsPerDay.easyTripsPerDay = Math.round(_tripsPerDay.easyTripsPerDay);
 
-            // let _totalDemand = _demandY + _demandJ + _demandF;
+                let restTS = _totalSeats;
 
-            // let _result = {
-            //     seatsY: Math.round((_demandY / _totalDemand * _totalSeats) * (_totalSeats / (_demandF / _totalDemand * _totalSeats + 2 * _demandJ / _totalDemand * _totalSeats + 3 * _demandY / _totalDemand * _totalSeats))),
-            //     seatsJ: Math.round((_demandJ / _totalDemand * _totalSeats) * (_totalSeats / (_demandF / _totalDemand * _totalSeats + 2 * _demandJ / _totalDemand * _totalSeats + 3 * _demandY / _totalDemand * _totalSeats))),
-            //     seatsF: Math.round((_demandF / _totalDemand * _totalSeats) * (_totalSeats / (_demandF / _totalDemand * _totalSeats + _demandJ / _totalDemand * _totalSeats * 2 + _demandY / _totalDemand * _totalSeats * 3)))
-            // }
+                let calc = {
+                    seatsF(_tpd) {
+                        let result = Math.round(_demandF / _tpd);
+                        let valid = _totalSeats - (result * 3);
+                        if (valid < 0) { result = _totalSeats / 3 } { _totalSeats -= result * 3 };
+                        return Math.round(result);
+                    },
+                    seatsJ(_tpd) {
+                        let result = Math.round(_demandJ / _tpd);
+                        let valid = _totalSeats - (result * 2);
+                        if (valid < 0) { result = _totalSeats / 2 } { _totalSeats -= result * 2 };
+                        return Math.round(result);
+                    },
+                    seatsY(_tpd) {
+                        let result = (_totalSeats < 0) ? 0 : _totalSeats;
+                        _totalSeats = restTS;
+                        return result;
+                    }
+                };
+                result = {
+                    reaslimSeatsF: calc.seatsF(_tripsPerDay.realismTripsPerDay),
+                    reaslimSeatsJ: calc.seatsJ(_tripsPerDay.realismTripsPerDay),
+                    reaslimSeatsY: calc.seatsY(_tripsPerDay.realismTripsPerDay),
+                    reaslimTripsPerDay: _tripsPerDay.realismTripsPerDay,
+                    easySeatsF: calc.seatsF(_tripsPerDay.easyTripsPerDay),
+                    easySeatsJ: calc.seatsJ(_tripsPerDay.easyTripsPerDay),
+                    easySeatsY: calc.seatsY(_tripsPerDay.easyTripsPerDay),
+                    easyTripsPerDay: _tripsPerDay.easyTripsPerDay
+                };
+            }
+
             return result;
         };
 
@@ -156,6 +161,62 @@ class AMToolsGuides {
         };
         Element.prototype.toggleClass = function(name) {
             this.classList.toggle(name);
+            return this;
+        };
+        Element.prototype.toggle = function() {
+            this.style.display = (this.style.display == 'none') ? 'block' : 'none';
+            return this;
+        }
+        Element.prototype.modeForm = function(form, page) {
+            if (this.classList.contains('active')) return;
+            switch (page) {
+                case 'seats-page':
+                    let _inputSP = form.querySelectorAll('input[name]');
+
+                    if (this.classList.contains('btn-seats-new-mode')) {
+                        [..._inputSP].forEach((input) => {
+                            if (['input-demand-y', 'input-flight-range', 'input-air-speed'].includes(input.name)) {
+                                input.style.display = (input.style.display == 'none') ? 'block' : 'none';
+                            }
+                            input.value = null;
+                        });
+                        this.classList.add('active');
+                        this.parentElement.querySelector('.btn-seats-normal-mode').classList.remove('active');
+                    } else if (this.classList.contains('btn-seats-normal-mode')) {
+                        [..._inputSP].forEach((input) => {
+                            if (['input-demand-y', 'input-flight-range', 'input-air-speed'].includes(input.name)) {
+                                input.style.display = (input.style.display == 'none') ? 'block' : 'none';
+                            }
+                            input.value = null;
+                        });
+                        this.classList.add('active');
+                        this.parentElement.querySelector('.btn-seats-new-mode').classList.remove('active');
+                    }
+                    break;
+                case 'ticket-page':
+                    let _inputTP = form.querySelectorAll('input[name]');
+
+                    if (this.classList.contains('btn-simple-mode')) {
+                        [..._inputTP].forEach((input) => {
+                            if (['input-departure', 'input-arrival', 'input-flight-range'].includes(input.name)) {
+                                input.style.display = (input.style.display == 'none') ? 'block' : 'none';
+                            }
+                            input.value = null;
+                        });
+                        this.classList.add('active');
+                        this.parentElement.querySelector('.btn-find-mode').classList.remove('active');
+                    } else if (this.classList.contains('btn-find-mode')) {
+                        [..._inputTP].forEach((input) => {
+                            if (['input-departure', 'input-arrival', 'input-flight-range'].includes(input.name)) {
+                                input.style.display = (input.style.display == 'none') ? 'block' : 'none';
+                            }
+                            input.value = null;
+                        });
+                        this.classList.add('active');
+                        this.parentElement.querySelector('.btn-simple-mode').classList.remove('active');
+                    }
+                    break;
+            }
         };
     }
     visual() {
