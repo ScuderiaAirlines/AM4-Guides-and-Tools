@@ -1,4 +1,4 @@
-var demandY, demandJ, seatsTotal, rat, rat1;
+let demandY, demandJ, seatsTotal, rat, rat1;
 let seatsY, seatsJ, seatsF, flightRange, airSpeed, fuel, co2, reput;
 let ticketPriceY, ticketPriceJ, ticketPriceF;
 
