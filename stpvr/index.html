@@ -62,46 +62,46 @@
 
             <div class="tableContainer padTop">
                 <table>
-                    <tr>
+                    <tr id="rhead">
                         <td id="acInputGroup">
                             <div class="autocomplete">
                                 <input id="acInput" type="text" name="inputAC" placeholder="Input Aircraft">
                             </div>
                         </td>
                         <td class="centre bold padLR">Name</td>
-                        <td class="centre bold padLR">Pax Ticket $</td>
+                        <td class="centre bold padLR" id="ticketPriceHeader">Ticket $</td>
                         <td class="centre bold padLR">Dist</td>
                         <td class="centre bold padLR">Actual</td>
                     </tr>
-                    <tr>
+                    <tr id="r1">
                         <td>
                             <div class="autocomplete">
                                 <input id="orig" type="text" name="inputAP" placeholder="Input Origin">
                             </div>
                         </td>
                         <td class="padLR" id="origName">---</td>
-                        <td class="padLR centre" id="yP">---</td>
+                        <td class="padLR right" id="yP">---</td>
                         <td class="padLR centre" id="leg1d" rowspan="2">---</td>
                         <td class="padLR centre line" id="diff" rowspan="4">---</td>
                     </tr>
-                    <tr>
+                    <tr id="r2">
                         <td class="padLR" id="stopoverDisplay" rowspan="2">---</td>
                         <td class="padLR" id="stopName" rowspan="2">---</td>
-                        <td class="padLR centre" id="jP" rowspan="2">---</td>
+                        <td class="padLR right" id="jP" rowspan="2">---</td>
                     </tr>
-                    <tr>
+                    <tr id="r3">
                         <td class="padLR centre" id="leg2d" rowspan="2">---</td>
                     </tr>
-                    <tr>
+                    <tr id="r4">
                         <td>
                             <div class="autocomplete">
                                 <input id="dest" type="text" name="inputAP" placeholder="Input Destination">
                             </div>
                         </td>
                         <td class="padLR" id="destName">---</td>
-                        <td class="padLR centre" id="fP">---</td>
+                        <td class="padLR right" id="fP">---</td>
                     </tr>
-                    <tr>
+                    <tr id="r5">
                         <td colspan="5">
                             <button type="button" id="submitBtn" onclick="run()" class="btn">Search</button>
                         </td>
@@ -153,6 +153,7 @@
             .padTop {padding-top: 10px;}
             .padLR { padding-left: 5px; padding-right: 5px; }
             .centre { text-align: center; }
+            .right { text-align: right; }
             .bold { font-weight: bold; }
             .grey { color: grey; font-size: 70%; }
             .line { line-height: 15px; }
@@ -194,6 +195,12 @@
                 cursor: grabbing;
                 cursor: -moz-grabbing;
                 cursor: -webkit-grabbing;
+            }
+
+            img {
+                max-height: 20px;
+                vertical-align: middle;
+                float: left;
             }
         </style>
     </body>
