@@ -19,7 +19,27 @@ class AMToolsGuides {
         return Math.max(document.documentElement.clientHeight, this._windowHeight || 0);
     }
     calculator() {
-        this.seats = (_demandJ, _demandF, _totalSeats, _flightRange, _airSpeed) => {
+        this.cargoSeats = (_demandA, _demandB, _capacity) => {
+
+            let rat, _demandLarge, _demandHeavy;
+
+            if (_demandA > _demandB) {
+                rat = (10 / 7) * _demandA / _demandB;
+                _demandLarge = Math.round(100 / rat + 1);
+                _demandHeavy = Math.round(100 - _demandLarge);
+            } else if (_demandA < _demandB) {
+                rat = (10 / 7) * _demandB / _demandA;
+                _demandHeavy = Math.round(100 / rat + 1);
+                _demandLarge = Math.round(100 - _demandHeavy);
+            }
+
+            return {
+                _resultLarge: _demandLarge + '%',
+                _resultHeavy: _demandHeavy + '%'
+            }
+
+        };
+        this.paxSeats = (_demandJ, _demandF, _totalSeats, _flightRange, _airSpeed) => {
 
             let _tripsPerDay = this.tripsPerDay(_flightRange, _airSpeed);
             _tripsPerDay.realismTripsPerDay = Math.round(_tripsPerDay.realismTripsPerDay);

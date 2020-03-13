@@ -49,28 +49,28 @@ td {
 
 /*  Home Page  */
 
-.home-page header .middle {
+#home-page header .middle {
     text-align: center;
     color: var(--primary-font-color);
     background: rgba(255, 255, 255, 0.3);
     box-shadow: 8px 8px 6px rgba(0, 0, 0, 0.2);
 }
 
-.home-page header .middle h1 {
+#home-page header .middle h1 {
     font-size: 2.5rem;
 }
 
-.home-page section .content-side .container-post-side>div {
+#home-page section .content-side .container-post-side>div {
     margin: 10px 0;
     padding: 15px;
     border-radius: 10px;
 }
 
-.home-page section .content-side .container-post-side>div:hover {
+#home-page section .content-side .container-post-side>div:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.home-page section .content-side .container-post-side>div h3 {
+#home-page section .content-side .container-post-side>div h3 {
     padding: 10px;
     font-size: 1.3rem;
     color: var(--primary-font-color);
@@ -157,6 +157,126 @@ td {
 }
 
 
+/*  Ticket Page  */
+
+.ticket-page .content-box h2 {
+    padding: 15px 0 35px 0;
+}
+
+.ticket-page .content-box form {
+    text-decoration-color: white;
+    color: white;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+.ticket-page .content-box form button {
+    margin: 50px 0;
+}
+
+.ticket-page .content-box form input {
+    width: 100%;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    outline: none;
+    transition: border-width .2s;
+    text-align: center;
+}
+
+.ticket-page .content-box form input::placeholder {
+    color: white;
+}
+
+.ticket-page .content-box form input:focus {
+    border-bottom: 3px solid white;
+}
+
+
+/*  Ticket Page  */
+
+.cargo-page .content-box h2 {
+    padding: 15px 0 35px 0;
+}
+
+.cargo-page .content-box form {
+    text-decoration-color: white;
+    color: white;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+.cargo-page .content-box form button {
+    margin: 50px 0;
+}
+
+.cargo-page .content-box form input {
+    width: 100%;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    outline: none;
+    transition: border-width .2s;
+    text-align: center;
+}
+
+.cargo-page .content-box form input::placeholder {
+    color: white;
+}
+
+.cargo-page .content-box form input:focus {
+    border-bottom: 3px solid white;
+}
+
+
+/*  Aircraft Page  */
+
+#aircraft-page .content-box h2 {
+    padding: 15px 0 35px 0;
+}
+
+#aircraft-page .content-box form {
+    text-decoration-color: white;
+    color: white;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+#aircraft-page .content-box form button {
+    margin: 50px 0;
+}
+
+#aircraft-page .content-box form input {
+    width: 100%;
+    padding: 10px 0;
+    background: none;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    outline: none;
+    transition: border-width .2s;
+    text-align: center;
+}
+
+#aircraft-page .content-box form input::placeholder {
+    color: white;
+}
+
+#aircraft-page .content-box form input:focus {
+    border-bottom: 3px solid white;
+}
+
+
 /*###########   OBJECTS   ###########*/
 
 .content-box {
@@ -201,6 +321,7 @@ td {
     position: absolute;
     width: 350px;
     min-height: 450px;
+    max-height: 550px;
     padding: 10px 5px;
     border-radius: 10px;
     color: var(--primary-font-color);
@@ -253,13 +374,41 @@ td {
     display: block;
 }
 
+.result-box>.result-content .label-scrool {
+    max-height: 399px;
+    overflow-y: scroll;
+}
+
+.result-box>.result-content .label-image {
+    max-height: 110px;
+    padding: 25px 0;
+}
+
 .result-box>.result-content .label-item {
     margin: 10px 0;
 }
 
 .result-box>.result-content .label-item .label-result {
+    display: inline;
     color: var(--secondary-color);
     font-weight: bolder;
+}
+
+.mode-form {
+    margin-bottom: 15px;
+}
+
+.mode-form button {
+    margin: 0 10px;
+    background-color: #83AAD7;
+}
+
+.mode-form button:hover {
+    background-color: var(--tertiary-button-color);
+}
+
+.mode-form button.active {
+    background-color: var(--tertiary-button-color);
 }
 
 .model-button {
@@ -296,93 +445,17 @@ td {
 }
 
 
-/*########################################################################*/
-
-
-/* .flexible-box {
-    display: flex;
-    justify-content: space-between;
-}
-
-.flexible-box a {
-    width: 90px;
-}
-
-.results-boxR {
-    width: 100% text-align: center;
-    display: inline-block;
-}
-
-.results-boxR label {
-    display: none;
-    font-size: 12px;
-    padding-top: 5px;
-}
-
-.results-boxR label output {
-    font-weight: 900;
-    display: inline-block;
-}
-
-.results-box {
-    width: 100% text-align: center;
-    display: inline-block;
-}
-
-.results-box label {
-    display: none;
-    font-size: 12px;
-    padding-top: 5px;
-}
-
-.results-box label output {
-    font-weight: 900;
-    display: inline-block;
-}
-
-.results-boxE {
-    width: 100% font-size: 12px;
-    text-align: center;
-    display: inline-block;
-}
-
-.results-boxE label {
-    font-size: 12px;
-    display: none;
-    padding-top: 5px;
-}
-
-.results-boxE label output {
-    font-weight: 900;
-    display: inline-block;
-}
-
-.ticket-calculator section {
-    height: 100vh;
-    padding-top: 18vh;
-    position: relative;
-}
-
-.ticket-calculator .container .content-all h2 {
-    font-size: 20px;
-}
-
-.resultText {
-    font-size: 30px;
-} */
-
-
 /*###########   RESPONSIVE   ###########*/
 
 @media (max-width: 575px) {
-    .home-page header .middle h1 {
+    #home-page header .middle h1 {
         font-size: 1.7rem;
         line-height: 50px;
     }
     .content-box h2 {
         font-size: 1.7rem;
     }
-    .home-page section .content-side .container-post-side>div h3 {
+    #home-page section .content-side .container-post-side>div h3 {
         padding: 5px;
     }
     .result-box {
