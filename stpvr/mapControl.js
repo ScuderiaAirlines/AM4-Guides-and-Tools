@@ -183,6 +183,12 @@ xhr.send();
 
 // process input data.
 
+function createDivFromStr(htmlString) {
+    var div = document.createElement('tr');
+    div.innerHTML = htmlString;
+    return div.firstChild;
+}
+
 function stringToCoor(apRaw, method) { //bear with me: I know this much is unnecessary.
     function parseICAO(apRaw) {
         for (let ap of mstrAP) {
@@ -230,7 +236,7 @@ function stringToCoor(apRaw, method) { //bear with me: I know this much is unnec
 function getACdetail(acString) {
     for (let ac of mstrAC) {
         if (ac[0] == acString) {
-            return [Number(ac[1]), Number(ac[2])]
+            return [Number(ac[1]), Number(ac[2]), Number(ac[3])]
         }
     }
     return null
@@ -240,23 +246,49 @@ function calcPaxTicketPrice(distance, isRealism) {
     let yP = 0, jP = 0, fP = 0;
     let d = Math.floor(distance)
     if (isRealism) {
-        yP = (Math.floor(((((0.3 * d) + 150) * 1.10)) / 10) * 10);
-        jP = (Math.floor(((((0.6 * d) + 500) * 1.08)) / 10) * 10);
-        fP = (Math.floor(((((0.9 * d) + 1000) * 1.06)) / 10) * 10);
+        yP = Math.floor(((((0.3 * d) + 150) * 1.10)) / 10) * 10;
+        jP = Math.floor(((((0.6 * d) + 500) * 1.08)) / 10) * 10;
+        fP = Math.floor(((((0.9 * d) + 1000) * 1.06)) / 10) * 10;
     } else {
-        yP = (Math.floor(((((0.4 * d) + 170) * 1.10)) / 10) * 10);
-        jP = (Math.floor(((((0.8 * d) + 560) * 1.08)) / 10) * 10);
-        fP = (Math.floor(((((1.2 * d) + 1200) * 1.06)) / 10) * 10);
+        yP = Math.floor(((((0.4 * d) + 170) * 1.10)) / 10) * 10;
+        jP = Math.floor(((((0.8 * d) + 560) * 1.08)) / 10) * 10;
+        fP = Math.floor(((((1.2 * d) + 1200) * 1.06)) / 10) * 10;
     }
     return [yP, jP, fP]
 }; //modified from Scuderia Airline's Ticket Price Calculator.
+
+function calcCargoTicketPrice(distance, isRealism) {
+    // beta!!!
+    let lP = 0, hP = 0
+    let d = Math.floor(distance)
+    if (isRealism) {
+        lP = Math.floor((Math.floor((((0.000948283724581252 * d) + 0.862045432642377) - 0.01) * 100) / 100) * 1.1 * 100) / 100
+        hP = Math.floor((Math.floor((((0.000689663577640275 * d) + 0.292981124272893) - 0.01) * 100) / 100) * 1.08 * 100) / 100
+    } else {
+        lP = Math.floor((Math.floor((((0.000776321822039374 * d) + 0.860567600367807) - 0.01) * 100) / 100) * 1.1 * 100) / 100
+        hP = Math.floor((Math.floor((((0.000517742799409248 * d) + 0.256369915396414) - 0.01) * 100) / 100) * 1.08 * 100) / 100
+    }
+    return [lP, hP]
+}
+
+function insertAfter(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
+
+function insertBefore(newNode, referenceNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode);
+}
 
 let mstrCalc, stopDet = ""; //it is here to be debuggable.
 
 function run() {
     let allOutputs = [gId('origName'), gId('stopName'), gId('destName'),
-    gId('yP'), gId('jP'), gId('fP'),
     gId('leg1d'), gId('leg2d'), gId('diff')]
+    try {
+        allOutputs.concat([gId('yP'), gId('jP'), gId('fP')])
+    } catch (e) {
+        allOutputs.concat([gId('lP'), gId('hP')])
+    }
 
     allOutputs.forEach(function(i){
         i.style.backgroundColor = null;
@@ -282,10 +314,55 @@ function run() {
 
         let act = calcDistance(origDet[5], origDet[6], destDet[5], destDet[6]);
         gId('diff').innerHTML = dp(act,2)+' km';
-        let prices = calcPaxTicketPrice(act, isRealism);
-        gId('yP').innerHTML = prices[0];
-        gId('jP').innerHTML = prices[1];
-        gId('fP').innerHTML = prices[2];
+
+        if (acDet[2] == 1) { // isCargo?
+            // selected aircraft is now cargo.
+            document.getElementById('ticketPriceHeader').innerHTML = 'Cargo Ticket $ (Beta)';
+            document.getElementById("ticketPriceHeader").style.color = '#fca9a9';
+            
+            try { // try removing the pax <td>s and change it to the cargo format
+                // the fields previously were pax prices, so change the format into cargo prices.
+                gId('yP').parentNode.removeChild(gId('yP')); //compatibility instead of .remove()
+                gId('jP').parentNode.removeChild(gId('jP'));
+                gId('fP').parentNode.removeChild(gId('fP'));
+
+                lPelem = createDivFromStr('<td class="padLR right" rowspan="2" id="lP">---</td>');
+                hPelem = createDivFromStr('<td class="padLR right" rowspan="2" id="hP">---</td>');
+
+                insertAfter(lPelem, document.getElementById('origName'));
+                insertBefore(hPelem, document.getElementById('leg2d'));
+            } catch(e) { // if not, 
+                // the previous format was already in cargo prices, so do nothing to the format.
+            } finally {
+                // regardless of the previous format, change the values.
+                let prices = calcCargoTicketPrice(act, isRealism);
+                gId('lP').innerHTML = '<img src="img/l.png">' + prices[0];
+                gId('hP').innerHTML = '<img src="img/h.png">' + prices[1];
+            }
+        } else {
+            // selected aircraft is now pax.
+            document.getElementById('ticketPriceHeader').innerHTML = 'Pax Ticket $';
+            document.getElementById("ticketPriceHeader").style.color = '#FFFFFF';
+            try { // try editing the cargo format into pax format
+                gId('lP').parentNode.removeChild(gId('lP'));
+                gId('hP').parentNode.removeChild(gId('hP'));
+
+                yPelem = createDivFromStr('<td class="padLR right" id="yP">---</td>');
+                jPelem = createDivFromStr('<td class="padLR right" id="jP" rowspan="2">---</td>');
+                fPelem = createDivFromStr('<td class="padLR right" id="fP">---</td>');
+
+                insertBefore(yPelem, document.getElementById('leg1d'));
+                insertAfter(jPelem, document.getElementById('stopName'));
+                insertAfter(fPelem, document.getElementById('destName'));
+            } catch(e) {
+                // if it is already pax, then do nothing to the format.
+            } finally {
+                let prices = calcPaxTicketPrice(act, isRealism);
+                gId('yP').innerHTML = '<img src="img/yS.png">' + prices[0];
+                gId('jP').innerHTML = '<img src="img/jS.png">' + prices[1];
+                gId('fP').innerHTML = '<img src="img/fS.png">' + prices[2];
+            }
+        }
 
         let acRwyReq = (isRealism ? acDet[0] : 0);
         let acRange = acDet[1]
@@ -352,9 +429,11 @@ function run() {
             viewer.flyTo(viewer.entities);
         }
     } catch (e) {
+        console.error(e)
         let message = "Unknown Error.";
         let color = errColor;
 
+        // reduce all error outputs until the desired areas.
         if (e == "noAC") {
             message = "No such aircraft."
             //do nothing: all outputs

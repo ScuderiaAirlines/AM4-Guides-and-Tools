@@ -20,16 +20,10 @@
         <link rel="stylesheet" href="autoForm.css">
         <link rel="stylesheet" href="radio.css">
         <link rel="stylesheet" href="switch.css">
-        <!-- <link rel="stylesheet" href="button.css"> -->
-        <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
         
         <script src="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Cesium.js"></script>
         <link href="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
         <script type="text/javascript" src="mapControl.js"></script>
-        <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
-        <!-- Bootstrap button is no longer needed. -->
     </head>
 
     <body onload="cesiumInit();" style="height:100%">
@@ -57,7 +51,7 @@
                         <td class="switch-text">Easy</td>
                         <td>
                             <label class="switch-wrap">
-                                <input type="checkbox" id="isRealism" autocomplete="off"/>
+                                <input type="checkbox" id="isRealism" autocomplete="off" />
                                 <div class="switch"></div>
                             </label>
                         </td>
@@ -68,46 +62,46 @@
 
             <div class="tableContainer padTop">
                 <table>
-                    <tr>
+                    <tr id="rhead">
                         <td id="acInputGroup">
                             <div class="autocomplete">
                                 <input id="acInput" type="text" name="inputAC" placeholder="Input Aircraft">
                             </div>
                         </td>
                         <td class="centre bold padLR">Name</td>
-                        <td class="centre bold padLR">Pax Ticket $</td>
+                        <td class="centre bold padLR" id="ticketPriceHeader">Ticket $</td>
                         <td class="centre bold padLR">Dist</td>
                         <td class="centre bold padLR">Actual</td>
                     </tr>
-                    <tr>
+                    <tr id="r1">
                         <td>
                             <div class="autocomplete">
                                 <input id="orig" type="text" name="inputAP" placeholder="Input Origin">
                             </div>
                         </td>
                         <td class="padLR" id="origName">---</td>
-                        <td class="padLR centre" id="yP">---</td>
+                        <td class="padLR right" id="yP">---</td>
                         <td class="padLR centre" id="leg1d" rowspan="2">---</td>
                         <td class="padLR centre line" id="diff" rowspan="4">---</td>
                     </tr>
-                    <tr>
+                    <tr id="r2">
                         <td class="padLR" id="stopoverDisplay" rowspan="2">---</td>
                         <td class="padLR" id="stopName" rowspan="2">---</td>
-                        <td class="padLR centre" id="jP" rowspan="2">---</td>
+                        <td class="padLR right" id="jP" rowspan="2">---</td>
                     </tr>
-                    <tr>
+                    <tr id="r3">
                         <td class="padLR centre" id="leg2d" rowspan="2">---</td>
                     </tr>
-                    <tr>
+                    <tr id="r4">
                         <td>
                             <div class="autocomplete">
                                 <input id="dest" type="text" name="inputAP" placeholder="Input Destination">
                             </div>
                         </td>
                         <td class="padLR" id="destName">---</td>
-                        <td class="padLR centre" id="fP">---</td>
+                        <td class="padLR right" id="fP">---</td>
                     </tr>
-                    <tr>
+                    <tr id="r5">
                         <td colspan="5">
                             <button type="button" id="submitBtn" onclick="run()" class="btn">Search</button>
                         </td>
@@ -159,6 +153,7 @@
             .padTop {padding-top: 10px;}
             .padLR { padding-left: 5px; padding-right: 5px; }
             .centre { text-align: center; }
+            .right { text-align: right; }
             .bold { font-weight: bold; }
             .grey { color: grey; font-size: 70%; }
             .line { line-height: 15px; }
@@ -192,7 +187,7 @@
                 cursor: -moz-grab;
                 cursor: -webkit-grab;
                 font-family: 'AirlineFont';
-                height: calc(100% - 205px);
+                height: calc(100% - 210px);
             }
 
              /* (Optional) Apply a "closed-hand" cursor during drag operation. */
@@ -200,6 +195,12 @@
                 cursor: grabbing;
                 cursor: -moz-grabbing;
                 cursor: -webkit-grabbing;
+            }
+
+            img {
+                max-height: 20px;
+                vertical-align: middle;
+                float: left;
             }
         </style>
     </body>
