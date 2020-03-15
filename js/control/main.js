@@ -44,7 +44,7 @@ class AMToolsGuides {
             if ((((result._realismResultSpaceH / 100) * _capacity) * _nFlights.realismTripsPerDay) > _demandH) {
                 result._realismResultOutput = 'Warning: Heavy Demand on route too low to complete ' + _nFlights.realismTripsPerDay + ' flights!';
             } else {
-                result._realismResultOutput = 'Demand OK for number of flight per day.';
+                result._realismResultOutput = 'Demand OK for ' +_nFlights.realismTripsPerDay+ ' flights per day.';
             }
 
             // EASY MODE
@@ -59,7 +59,7 @@ class AMToolsGuides {
             if ((((result._easyResultSpaceH / 100) * _capacity) * _nFlights.easyTripsPerDay) > _demandH) {
                 result._easyResultOutput = 'Warning: Heavy Demand on route too low to complete ' + _nFlights.easyTripsPerDay + ' flights!';
             } else {
-                result._easyResultOutput = 'Demand OK for number of flight per day.';
+                result._easyResultOutput = 'Demand OK for ' +_nFlights.easyTripsPerDay+ ' flights per day.';
             }
 
             return result;
@@ -173,8 +173,8 @@ class AMToolsGuides {
         this.tripsPerDay = (_flightRange, _airSpeed) => {
 
             let _result = {
-                realismTripsPerDay: Math.abs(18 / (_flightRange / _airSpeed)),
-                easyTripsPerDay: Math.abs(18 / (_flightRange / (_airSpeed * 1.5)))
+                realismTripsPerDay: Math.floor(18 / (_flightRange / _airSpeed)),
+                easyTripsPerDay: Math.floor(18 / (_flightRange / (_airSpeed * 1.5)))
             };
             return _result;
         };
