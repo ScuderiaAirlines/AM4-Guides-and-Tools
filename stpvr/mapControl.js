@@ -262,11 +262,11 @@ function calcCargoTicketPrice(distance, isRealism) {
     let lP = 0, hP = 0
     let d = Math.floor(distance)
     if (isRealism) {
-        lP = Math.floor((Math.floor((((0.000948283724581252 * d) + 0.862045432642377) - 0.01) * 100) / 100) * 1.1 * 100) / 100
-        hP = Math.floor((Math.floor((((0.000689663577640275 * d) + 0.292981124272893) - 0.01) * 100) / 100) * 1.08 * 100) / 100
-    } else {
         lP = Math.floor((Math.floor((((0.000776321822039374 * d) + 0.860567600367807) - 0.01) * 100) / 100) * 1.1 * 100) / 100
         hP = Math.floor((Math.floor((((0.000517742799409248 * d) + 0.256369915396414) - 0.01) * 100) / 100) * 1.08 * 100) / 100
+    } else {
+        lP = Math.floor((Math.floor((((0.000948283724581252 * d) + 0.862045432642377) - 0.01) * 100) / 100) * 1.1 * 100) / 100
+        hP = Math.floor((Math.floor((((0.000689663577640275 * d) + 0.292981124272893) - 0.01) * 100) / 100) * 1.08 * 100) / 100
     }
     return [lP, hP]
 }
