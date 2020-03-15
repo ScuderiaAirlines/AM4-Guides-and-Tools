@@ -31,10 +31,15 @@
             <h5>Results</h5>
             <span>Recommended settings</span>
             <hr>
-            <span>Seats:</span>
-            <div class="label-item">Demand Large: <span class="label-result result-demand-large"></span></div>
-            <div class="label-item">Demand Heavy: <span class="label-result result-demand-heavy"></span></div>
-
+            <span>Realism:</span>
+            <div class="label-item">Demand Large: <span class="label-result result-realism-demand-large"></span></div>
+            <div class="label-item">Demand Heavy: <span class="label-result result-realism-demand-heavy"></span></div>
+            <div class="label-item"><span class="label-result result-realism-output"></span></div>
+            <hr>
+            <span>Easy:</span>
+            <div class="label-item">Demand Large: <span class="label-result result-easy-demand-large"></span></div>
+            <div class="label-item">Demand Heavy: <span class="label-result result-easy-demand-heavy"></span></div>
+            <div class="label-item"><span class="label-result result-easy-output"></span></div>
         </div>
     </div>
     <a href="index.html"><button class="model-button back-button">Back</button></a>
@@ -44,9 +49,11 @@
                 <div class="content-box">
                     <h2>Cargo Configuration</h2>
                     <form id="cargo-configuration-form" method="POST" autocomplete="off">
-                        <input type="text" name="input-demand-large" placeholder="Demand(Large)" required>
-                        <input type="text" name="input-demand-heavy" placeholder="Demand(Heavy)" required>
-                        <!-- <input type="text" name="input-capacity" placeholder="Field C" required> -->
+                        <input type="text" name="input-demand-large" placeholder="Demand (Large)" required>
+                        <input type="text" name="input-demand-heavy" placeholder="Demand (Heavy)" required>
+                        <input type="text" name="input-capacity" placeholder="Capacity" required>
+                        <input type="text" name="input-distance" placeholder="Distance (KM)" required>
+                        <input type="text" name="input-speed" placeholder="Speed (KPH)" required>
                         <button class="model-button">Calculate</button>
                     </form>
                 </div>
@@ -71,7 +78,9 @@
             let values = {
                 demandLarge: 0,
                 demandHeavy: 0,
-                capacity: 0
+                capacity: 0,
+                distance: 0,
+                speed: 0
             };
 
             [...input].forEach((element) => {
@@ -90,9 +99,15 @@
                     case 'input-demand-heavy':
                         values.demandHeavy = element.value;
                         break;
-                        // case 'input-capacity':
-                        //     values.capacity = element.value;
-                        //     break;
+                    case 'input-capacity':
+                        values.capacity = element.value;
+                        break;
+                    case 'input-distance':
+                        values.distance = element.value;
+                        break;
+                    case 'input-speed':
+                        values.speed = element.value;
+                        break;
                 }
             });
             if (!isValid) {
@@ -100,11 +115,15 @@
                 return;
             };
 
-            let result = app.cargoSeats(values.demandLarge, values.demandHeavy, values.capacity);
+            let result = app.cargoSetup(values.demandLarge, values.demandHeavy, values.capacity, values.distance, values.speed);
 
             [...views].forEach((label) => {
-                if (label.classList.contains('result-demand-large')) label.innerText = result._resultLarge;
-                if (label.classList.contains('result-demand-heavy')) label.innerText = result._resultHeavy;
+                if (label.classList.contains('result-realism-demand-large')) label.innerText = result._realismResultSpaceL;
+                if (label.classList.contains('result-realism-demand-heavy')) label.innerText = result._realismResultSpaceH;
+                if (label.classList.contains('result-realism-output')) label.innerText = result._realismResultOutput;
+                if (label.classList.contains('result-easy-demand-large')) label.innerText = result._easyResultSpaceL;
+                if (label.classList.contains('result-easy-demand-heavy')) label.innerText = result._easyResultSpaceH;
+                if (label.classList.contains('result-easy-output')) label.innerText = result._easyResultOutput
             });
 
             app.centralize(document.querySelector('.cargo-page .result-box'));

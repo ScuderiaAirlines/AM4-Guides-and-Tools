@@ -19,24 +19,70 @@ class AMToolsGuides {
         return Math.max(document.documentElement.clientHeight, this._windowHeight || 0);
     }
     calculator() {
-        this.cargoSeats = (_demandA, _demandB, _capacity) => {
+        this.cargoSetup = (_demandL, _demandH, _capacity, _distance, _speed) => {
 
-            let rat, _demandLarge, _demandHeavy;
+            let _nFlights = this.tripsPerDay(_distance, _speed);
 
-            if (_demandA > _demandB) {
-                rat = (10 / 7) * _demandA / _demandB;
-                _demandLarge = Math.round(100 / rat + 1);
-                _demandHeavy = Math.round(100 - _demandLarge);
-            } else if (_demandA < _demandB) {
-                rat = (10 / 7) * _demandB / _demandA;
-                _demandHeavy = Math.round(100 / rat + 1);
-                _demandLarge = Math.round(100 - _demandHeavy);
+            let result = {
+                _realismResultSpaceL: 0,
+                _realismResultSpaceH: 0,
+                _realismResultOutput: "",
+                _easyResultSpaceL: 0,
+                _easyResultSpaceH: 0,
+                _easyResultOutput: ""
+            };
+
+            // REALISM MODE
+            if ((_demandL / _nFlights.realismTripsPerDay) > (_capacity * 0.7)) {
+                result._realismResultSpaceL = 100;
+            } else {
+                result._realismResultSpaceL = Math.floor((((_demandL / 3) / 0.7) / _capacity) * 100); // %
             }
 
-            return {
-                _resultLarge: _demandLarge + '%',
-                _resultHeavy: _demandHeavy + '%'
+            result._realismResultSpaceH = 100 - result._realismResultSpaceL;
+
+            if ((((result._realismResultSpaceH / 100) * _capacity) * _nFlights.realismTripsPerDay) > _demandH) {
+                result._realismResultOutput = 'Warning: Heavy Demand on route too low to complete ' + _nFlights.realismTripsPerDay + ' flights!';
+            } else {
+                result._realismResultOutput = 'Demand OK for number of flight per day.';
             }
+
+            // EASY MODE
+            if ((_demandL / _nFlights.easyTripsPerDay) > (_capacity * 0.7)) {
+                result._easyResultSpaceL = 100;
+            } else {
+                result._easyResultSpaceL = Math.floor((((_demandL / 3) / 0.7) / _capacity) * 100); // %
+            }
+
+            result._easyResultSpaceH = 100 - result._easyResultSpaceL;
+
+            if ((((result._easyResultSpaceH / 100) * _capacity) * _nFlights.easyTripsPerDay) > _demandH) {
+                result._easyResultOutput = 'Warning: Heavy Demand on route too low to complete ' + _nFlights.easyTripsPerDay + ' flights!';
+            } else {
+                result._easyResultOutput = 'Demand OK for number of flight per day.';
+            }
+
+            return result;
+
+
+            // let rat, _demandLarge, _demandHeavy;
+
+            // if (_demandA >= _demandB) { rat = (10 / 7) * (_demandA / _demandB); } else { rat = (10 / 7) * (_demandB / _demandA); }
+
+            // alert(`Resultado rat: ${rat}\nLarge: ${_demandA}\nHeavy: ${_demandB}\nLarge maior: ${(_demandA >= _demandB)}`);
+
+            // if (_demandA > _demandB) {
+            //     _demandLarge = Math.round(100 / rat + 1);
+            //     _demandHeavy = Math.round(100 - _demandLarge);
+            // } else if (_demandA < _demandB) {
+            //     _demandHeavy = Math.round(100 / rat + 1);
+            //     _demandLarge = Math.round(100 - _demandHeavy);
+            // }
+
+            // return {
+            //     _resultLarge: _demandLarge + '%',
+            //     _resultHeavy: _demandHeavy + '%'
+            // }
 
         };
         this.paxSeats = (_demandJ, _demandF, _totalSeats, _flightRange, _airSpeed) => {
