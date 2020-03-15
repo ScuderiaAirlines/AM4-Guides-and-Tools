@@ -32,13 +32,13 @@
             <span>Recommended settings</span>
             <hr>
             <span>Realism:</span>
-            <div class="label-item">Large Condig: <span class="label-result result-realism-demand-large"></span> %</div>
+            <div class="label-item">Large Config: <span class="label-result result-realism-demand-large"></span> %</div>
             <div class="label-item">Heavy Config: <span class="label-result result-realism-demand-heavy"></span> %</div>
             <div class="label-item"><span class="label-result result-realism-output"></span></div>
             <hr>
             <span>Easy:</span>
             <div class="label-item">Large Config: <span class="label-result result-easy-demand-large"></span> %</div>
-            <div class="label-item">HeavyConfig: <span class="label-result result-easy-demand-heavy"></span> %</div>
+            <div class="label-item">Heavy Config: <span class="label-result result-easy-demand-heavy"></span> %</div>
             <div class="label-item"><span class="label-result result-easy-output"></span></div>
         </div>
     </div>
@@ -49,12 +49,14 @@
                 <div class="content-box">
                     <h2>Cargo Configuration</h2>
                     <form id="cargo-configuration-form" method="POST" autocomplete="off">
-                        <input type="text" name="input-demand-large" placeholder="Demand (Large)" required>
-                        <input type="text" name="input-demand-heavy" placeholder="Demand (Heavy)" required>
-                        <input type="text" name="input-capacity" placeholder="Capacity" required>
+                        <input type="text" name="input-demand-large" placeholder="Demand (Large) (LBS)" required>
+                        <input type="text" name="input-demand-heavy" placeholder="Demand (Heavy) (LBS)" required>
+                        <input type="text" name="input-capacity" placeholder="Capacity (LBS)" required>
                         <input type="text" name="input-distance" placeholder="Distance (KM)" required>
                         <input type="text" name="input-speed" placeholder="Speed (KPH)" required>
                         <button class="model-button">Calculate</button>
+                        <br>
+                        <p>Output is in format for configuration in <strong>Modify menu. For configuration while <strong>Buying</strong>, divide the result by 2 to fill in the 4 boxes.
                     </form>
                 </div>
             </div>
