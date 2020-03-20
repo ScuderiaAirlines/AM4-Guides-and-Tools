@@ -33,10 +33,10 @@ class AMToolsGuides {
             };
 
             // REALISM MODE
-            if ((_demandL / _nFlights.realismTripsPerDay) > (_capacity * 0.7)) {
+            if (((_demandL/0.9) / _nFlights.realismTripsPerDay) > (_capacity * 0.7)) {
                 result._realismResultSpaceL = 100;
             } else {
-                result._realismResultSpaceL = Math.floor((((_demandL / 3) / 0.7) / _capacity) * 100); // %
+                result._realismResultSpaceL = Math.floor(((((_demandL/0.9) / 3) / 0.7) / _capacity) * 100); // %
             }
 
             result._realismResultSpaceH = 100 - result._realismResultSpaceL;
@@ -48,10 +48,10 @@ class AMToolsGuides {
             }
 
             // EASY MODE
-            if ((_demandL / _nFlights.easyTripsPerDay) > (_capacity * 0.7)) {
+            if (((_demandL/0.9) / _nFlights.easyTripsPerDay) > (_capacity * 0.7)) {
                 result._easyResultSpaceL = 100;
             } else {
-                result._easyResultSpaceL = Math.floor((((_demandL / 3) / 0.7) / _capacity) * 100); // %
+                result._easyResultSpaceL = Math.floor(((((_demandL/0.9) / 3) / 0.7) / _capacity) * 100); // %
             }
 
             result._easyResultSpaceH = 100 - result._easyResultSpaceL;
