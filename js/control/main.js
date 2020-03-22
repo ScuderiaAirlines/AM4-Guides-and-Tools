@@ -62,6 +62,16 @@ class AMToolsGuides {
                 result._easyResultOutput = 'Demand OK for ' +_nFlights.easyTripsPerDay+ ' flights per day.';
             }
 
+            if (result._easyResultSpaceL > 100) {
+            	result._easyResultSpaceL = 100;
+            	result._easyResultSpaceH = 0;
+            }
+
+            if (result._realismResultSpaceL > 100) {
+            	result._realismResultSpaceL = 100;
+            	result._realismResultSpaceH = 0;
+            }
+
             return result;
 
 
