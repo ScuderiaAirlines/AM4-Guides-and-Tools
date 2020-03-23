@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<!-- Latest compiled and minified CSS -->
+  <!--<link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">-->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+  <script src="js/main.js"></script>
+  <script src="https://kit.fontawesome.com/a7579c97e7.js" crossorigin="anonymous"></script>
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<div class="container">
+  <img class="img-fluid" src="logo.png">
+</div>
+<br>
+<div class="container">
+  <h3 class="text-center">Top 10 <span><i class="fas fa-trophy"></i></span></h3>
+</div>
+<br>
+<div class="container text-center">
+  <a href="index.html" class="btn btn-info" role="button"><span><i class="fas fa-backward" aria-role="true"></i></span> Back</a>
+  <button type="button" class="btn btn-success" onclick="allmemData()">Refresh Data <span><i class="fas fa-sync" aria-role="true"></i></span></button>
+</div>
+<br>
+<br>
+<div class="card text-center">
+    <div class="card-header">
+      <h5><strong id="name0"></strong> - <span id="sv0"></span></h5>
+    </div>
+    <div class="card-body text-left">
+      <ul>
+        <li><strong>Flights:</strong> <span id="flights0"></span></li>
+        <li><strong>Contributed:</strong> <span id="cont0"></span></li>
+        <li><strong>Cont/Flight:</strong> <span id="cpf0"></span></li>
+        <li><strong>Joined:</strong> <span id="join0"></span></li>
+      </ul>
+    </div>
+</div>
+<div class="card text-center">
+    <div class="card-header">
+      <h5><strong id="name1"></strong> - <span id="sv1"></span></h5>
+    </div>
+    <div class="card-body text-left">
+      <ul>
+        <li><strong>Flights:</strong> <span id="flights1"></span></li>
+        <li><strong>Contributed:</strong> <span id="cont1"></span></li>
+        <li><strong>Cont/Flight:</strong> <span id="cpf1"></span></li>
+        <li><strong>Joined:</strong> <span id="join1"></span></li>
+      </ul>
+    </div>
+</div>
+<div class="card text-center">
+    <div class="card-header">
+      <h5><strong id="name2"></strong> - <span id="sv2"></span></h5>
+    </div>
+    <div class="card-body text-left">
+      <ul>
+        <li><strong>Flights:</strong> <span id="flights2"></span></li>
+        <li><strong>Contributed:</strong> <span id="cont2"></span></li>
+        <li><strong>Cont/Flight:</strong> <span id="cpf2"></span></li>
+        <li><strong>Joined:</strong> <span id="join2"></span></li>
+      </ul>
+    </div>
+</div>
+<div class="card text-center">
+    <div class="card-header">
+      <h5><strong id="name3"></strong> - <span id="sv3"></span></h5>
+    </div>
+    <div class="card-body text-left">
+      <ul>
+        <li><strong>Flights:</strong> <span id="flights3"></span></li>
+        <li><strong>Contributed:</strong> <span id="cont3"></span></li>
+        <li><strong>Cont/Flight:</strong> <span id="cpf3"></span></li>
+        <li><strong>Joined:</strong> <span id="join3"></span></li>
+      </ul>
+    </div>
+</div>
+<div class="card text-center">
+    <div class="card-header">
+      <h5><strong id="name4"></strong> - <span id="sv4"></span></h5>
+    </div>
+    <div class="card-body text-left">
+      <ul>
+        <li><strong>Flights:</strong> <span id="flights4"></span></li>
+        <li><strong>Contributed:</strong> <span id="cont4"></span></li>
+        <li><strong>Cont/Flight:</strong> <span id="cpf4"></span></li>
+        <li><strong>Joined:</strong> <span id="join4"></span></li>
+      </ul>
+    </div>
+</div>
+<div class="card text-center">
+    <div class="card-header">
+      <h5><strong id="name5"></strong> - <span id="sv5"></span></h5>
+    </div>
+    <div class="card-body text-left">
+      <ul>
+        <li><strong>Flights:</strong> <span id="flights5"></span></li>
+        <li><strong>Contributed:</strong> <span id="cont5"></span></li>
+        <li><strong>Cont/Flight:</strong> <span id="cpf5"></span></li>
+        <li><strong>Joined:</strong> <span id="join5"></span></li>
+      </ul>
+    </div>
+</div>
+<div class="card text-center">
+    <div class="card-header">
+      <h5><strong id="name6"></strong> - <span id="sv6"></span></h5>
+    </div>
+    <div class="card-body text-left">
+      <ul>
+        <li><strong>Flights:</strong> <span id="flights6"></span></li>
+        <li><strong>Contributed:</strong> <span id="cont6"></span></li>
+        <li><strong>Cont/Flight:</strong> <span id="cpf6"></span></li>
+        <li><strong>Joined:</strong> <span id="join6"></span></li>
+      </ul>
+    </div>
+</div>
+<div class="card text-center">
+    <div class="card-header">
+      <h5><strong id="name7"></strong> - <span id="sv7"></span></h5>
+    </div>
+    <div class="card-body text-left">
+      <ul>
+        <li><strong>Flights:</strong> <span id="flights7"></span></li>
+        <li><strong>Contributed:</strong> <span id="cont7"></span></li>
+        <li><strong>Cont/Flight:</strong> <span id="cpf7"></span></li>
+        <li><strong>Joined:</strong> <span id="join7"></span></li>
+      </ul>
+    </div>
+</div>
+<div class="card text-center">
+    <div class="card-header">
+      <h5><strong id="name8"></strong> - <span id="sv8"></span></h5>
+    </div>
+    <div class="card-body text-left">
+      <ul>
+        <li><strong>Flights:</strong> <span id="flights8"></span></li>
+        <li><strong>Contributed:</strong> <span id="cont8"></span></li>
+        <li><strong>Cont/Flight:</strong> <span id="cpf8"></span></li>
+        <li><strong>Joined:</strong> <span id="join8"></span></li>
+      </ul>
+    </div>
+</div>
+<div class="card text-center">
+    <div class="card-header">
+      <h5><strong id="name9"></strong> - <span id="sv9"></span></h5>
+    </div>
+    <div class="card-body text-left">
+      <ul>
+        <li><strong>Flights:</strong> <span id="flights9"></span></li>
+        <li><strong>Contributed:</strong> <span id="cont9"></span></li>
+        <li><strong>Cont/Flight:</strong> <span id="cpf9"></span></li>
+        <li><strong>Joined:</strong> <span id="join9"></span></li>
+      </ul>
+    </div>
+</div>
+
+
+<!--<div class="container-fluid text-center">
+<div class="card text-center" style="width: 18rem;">
+<div class="card-header text-center">
+    Featured
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
+</div>
+</div>-->
+
+<script>
+  addEventListener("load", allmemData(), false);
+</script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>
