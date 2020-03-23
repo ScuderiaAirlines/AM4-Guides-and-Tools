@@ -1,6 +1,14 @@
-function basedata() {
+
+
+
+function spybasedata() {
+  var allname = document.getElementById('aname').value;
+  //console.log(allname);
+  var allnameP = allname;
+  sessionStorage.setItem("getallname", allnameP);
+
   var request = new XMLHttpRequest()
-  request.open('GET', 'https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token=JKJHkjhkSDHFGKSFDHKWerHGsbv.783KJhSLSKsdjfhskejfhskjjjhHHHllkihgHJKlSBmBNMVvxGAgdgh&search=Star Alliance', true)
+  request.open('GET', "https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token=JKJHkjhkSDHFGKSFDHKWerHGsbv.783KJhSLSKsdjfhskejfhskjjjhHHHllkihgHJKlSBmBNMVvxGAgdgh&search="+allname, true)
     request.onload = function() {
       // Begin accessing JSON data here
       var data = JSON.parse(this.response)
@@ -13,7 +21,7 @@ function basedata() {
       document.getElementById("mem").innerHTML = data.alliance[0].members+'/60';
       
       //document.getElementById("fleet").innerHTML = data.fleet.length;
-      console.log(data.members[0].contributed);
+      //console.log(data.members[0].contributed);
       
 
       let arrayCont = data.members.map(a => a.contributed);
@@ -41,9 +49,13 @@ function basedata() {
     
 }
 
-function allmemData() {
+function spytop10() {
+  var allnameP = sessionStorage.getItem("getallname");
+  //console.log(allnameP);
+  //var allname2 = allname;
+  //console.log(allname);
   var request = new XMLHttpRequest()
-  request.open('GET', 'https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token=JKJHkjhkSDHFGKSFDHKWerHGsbv.783KJhSLSKsdjfhskejfhskjjjhHHHllkihgHJKlSBmBNMVvxGAgdgh&search=Star Alliance', true)
+  request.open('GET', "https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token=JKJHkjhkSDHFGKSFDHKWerHGsbv.783KJhSLSKsdjfhskejfhskjjjhHHHllkihgHJKlSBmBNMVvxGAgdgh&search="+allnameP, true)
     request.onload = function() {
     // Begin accessing JSON data here
     var data = JSON.parse(this.response)
@@ -66,7 +78,7 @@ function allmemData() {
     var theDate9 = new Date(timerec[9]);
     var fdate = [theDate0, theDate1, theDate2, theDate3, theDate4, theDate5, theDate6, theDate7, theDate8, theDate9];
     //var dateString = fdate.toGMTString();
-    console.log(fdate);
+    //console.log(fdate);
 
 
 
@@ -143,9 +155,11 @@ function allmemData() {
   request.send() 
 }
 
-function bot10data() {
+function spybot10() {
+  var allnameP = sessionStorage.getItem("getallname");
+  //console.log(allname);
   var request = new XMLHttpRequest()
-  request.open('GET', 'https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token=JKJHkjhkSDHFGKSFDHKWerHGsbv.783KJhSLSKsdjfhskejfhskjjjhHHHllkihgHJKlSBmBNMVvxGAgdgh&search=Star Alliance', true)
+  request.open('GET', "https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token=JKJHkjhkSDHFGKSFDHKWerHGsbv.783KJhSLSKsdjfhskejfhskjjjhHHHllkihgHJKlSBmBNMVvxGAgdgh&search="+allnameP, true)
   request.onload = function() {
   // Begin accessing JSON data here
   var data = JSON.parse(this.response)
@@ -246,5 +260,4 @@ function bot10data() {
 } 
 request.send() 
 }
-
 

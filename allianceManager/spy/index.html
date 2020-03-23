@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<!-- Latest compiled and minified CSS -->
+  <!--<link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">-->
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link href="https://emoji-css.afeld.me/emoji.css" rel="stylesheet">
+  <script src="js/main.js"></script>
+  <script src="https://kit.fontawesome.com/a7579c97e7.js" crossorigin="anonymous"></script>
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+<div class="container">
+  <img class="img-fluid" src="logo.png">
+</div>
+<br>
+<div class="container">
+  <h3 class="text-center">Alliance Explorer <span><i class="fas fa-search" aria-role="true"></i></span></h3>
+</div>
+<br>
+<div class="container text-center">
+  <form>
+    <input type="text" id="aname" placeholder="Alliance Name"><br><br>
+    <button type="button" class="btn btn-dark" onclick="spybasedata()">Load Data <span><i class="fas fa-search" aria-role="true"></i></span></button>
+  </form>
+</div>
+<br>
+<div class="container text-center">
+  <a href="index.html" class="btn btn-info" role="button"><span><i class="fas fa-backward" aria-role="true"></i></span> Back</a>
+  <button type="button" class="btn btn-success" onclick="spybasedata()">Refresh Data <span><i class="fas fa-sync" aria-role="true"></i></span></button>
+</div>
+<br>
+<br>
+<!--<div class="container-fluid text-center">
+<div class="card text-center" style="width: 18rem;">
+<div class="card-header text-center">
+    Featured
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
+</div>
+</div>-->
+<div class="card text-center">
+  <div class="card-header">
+    <h5><strong id="name"></strong></h5>
+  </div>
+  <div class="card-body text-left">
+    <ul>
+      <li><strong>Rank:</strong> <span id="rank"></span></li>
+      <li><strong>Value:</strong> <span id="val"></span></li>
+      <li><strong>Members:</strong> <span id="mem"></span></li>
+      <li><strong>Total Contribution:</strong> <span id="sum"></span></li>
+      <li><strong>Average Contribution:</strong> <span id="avg"></span></li>
+    </ul>
+  </div>
+</div>
+<br>
+<div class="text-center">
+  <a href="top10.html" class="btn btn-success" role="button">Top 10 <span><i class="fas fa-trophy" aria-role="true"></i></span></a>
+  <a href="bot10.html" class="btn btn-danger" role="button">Bottom 10 <span><i class="fas fa-dumpster" aria-role="true"></i></span></a>
+  <br>
+  <br>
+  <a href="#" class="btn btn-primary" role="button">All Members <span><i class="fas fa-user-friends" aria-role="true"></i></span></a>
+  <a href="#" class="btn btn-info" role="button">More Stats <span><i class="fas fa-wave-square" aria-role="true"></i></span></a>
+</div>
+<script>
+  //addEventListener("load", spybasedata(), false);
+</script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+
+</html>
