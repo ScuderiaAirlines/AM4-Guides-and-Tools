@@ -1,5 +1,10 @@
-var token = "73JlkjdfhSSDHdkjciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2V43424ffLKKJKHDFWemnfsMsdnbfsaD5HwerwjjiIIIY2kjlhdfKLJbnmwekjhHGdjsj";
+var token = "oopr6tiPOULKHSLSIuerlSDL.SLHJDFlkwerKJhsdFKLuiyweu7";
 var url = "https://allow-any-origin.appspot.com/https://www.airline4.net/api/?access_token="+token+"&search=Star Alliance";
+
+//[Tokens]
+//Scuderia: JKJHkjhkSDHFGKSFDHKWerHGsbv.783KJhSLSKsdjfhskejfhskjjjhHHHllkihgHJKlSBmBNMVvxGAgdgh
+//Cathay: oopr6tiPOULKHSLSIuerlSDL.SLHJDFlkwerKJhsdFKLuiyweu7
+//Qatar: 73JlkjdfhSSDHdkjciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2V43424ffLKKJKHDFWemnfsMsdnbfsaD5HwerwjjiIIIY2kjlhdfKLJbnmwekjhHGdjsj
 
 function basedata() {
   var request = new XMLHttpRequest()
