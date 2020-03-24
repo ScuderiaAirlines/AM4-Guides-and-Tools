@@ -1,7 +1,9 @@
+var token = "73JlkjdfhSSDHdkjciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2V43424ffLKKJKHDFWemnfsMsdnbfsaD5HwerwjjiIIIY2kjlhdfKLJbnmwekjhHGdjsj";
+var url = "https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token="+token+"&search=Star Alliance";
 
 function basedata() {
   var request = new XMLHttpRequest()
-  request.open('GET', 'https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token=JKJHkjhkSDHFGKSFDHKWerHGsbv.783KJhSLSKsdjfhskejfhskjjjhHHHllkihgHJKlSBmBNMVvxGAgdgh&search=Star Alliance', true)
+  request.open('GET', url, true)
     request.onload = function() {
       // Begin accessing JSON data here
       var data = JSON.parse(this.response)
@@ -13,8 +15,9 @@ function basedata() {
       var msg = data.status.request;
 
       if (msg=="failed") {
-        document.getElementById("status").className = "badge badge-danger";
         document.getElementById("status").innerHTML = "Error: "+data.status.description;
+        document.getElementById("status").className = "badge badge-danger";
+        
       }
 
       else {
@@ -57,7 +60,7 @@ function basedata() {
 
 function allmemData() {
   var request = new XMLHttpRequest()
-  request.open('GET', 'https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token=JKJHkjhkSDHFGKSFDHKWerHGsbv.783KJhSLSKsdjfhskejfhskjjjhHHHllkihgHJKlSBmBNMVvxGAgdgh&search=Star Alliance', true)
+  request.open('GET', url, true)
     request.onload = function() {
     // Begin accessing JSON data here
     var data = JSON.parse(this.response)
@@ -171,7 +174,7 @@ function allmemData() {
 
 function bot10data() {
   var request = new XMLHttpRequest()
-  request.open('GET', 'https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token=JKJHkjhkSDHFGKSFDHKWerHGsbv.783KJhSLSKsdjfhskejfhskjjjhHHHllkihgHJKlSBmBNMVvxGAgdgh&search=Star Alliance', true)
+  request.open('GET', url, true)
   request.onload = function() {
   // Begin accessing JSON data here
   var data = JSON.parse(this.response)
