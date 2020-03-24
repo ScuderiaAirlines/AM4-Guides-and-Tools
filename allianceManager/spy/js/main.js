@@ -8,7 +8,7 @@ function spybasedata() {
   sessionStorage.setItem("getallname", allnameP);
 
   var request = new XMLHttpRequest()
-  request.open('GET', "https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token="+token+"&search="+allname, true)
+  request.open('GET', "https://allow-any-origin.appspot.com/https://www.airline4.net/api/?access_token="+token+"&search="+allname, true)
     request.onload = function() {
       // Begin accessing JSON data here
       var data = JSON.parse(this.response)
@@ -68,7 +68,7 @@ function spytop10() {
   //var allname2 = allname;
   //console.log(allname);
   var request = new XMLHttpRequest()
-  request.open('GET', "https://allow-any-origin.appspot.com//https://www.airline4.net/api/?access_token="+token+"&search="+allnameP, true)
+  request.open('GET', "https://allow-any-origin.appspot.com/https://www.airline4.net/api/?access_token="+token+"&search="+allnameP, true)
     request.onload = function() {
     // Begin accessing JSON data here
     var data = JSON.parse(this.response)
@@ -184,7 +184,7 @@ function spybot10() {
   var allnameP = sessionStorage.getItem("getallname");
   //console.log(allname);
   var request = new XMLHttpRequest()
-  request.open('GET', "https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token="+token+"&search="+allnameP, true)
+  request.open('GET', "https://allow-any-origin.appspot.com/https://www.airline4.net/api/?access_token="+token+"&search="+allnameP, true)
   request.onload = function() {
   // Begin accessing JSON data here
   var data = JSON.parse(this.response)
