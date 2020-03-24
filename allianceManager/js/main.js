@@ -1,3 +1,4 @@
+
 function basedata() {
   var request = new XMLHttpRequest()
   request.open('GET', 'https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token=JKJHkjhkSDHFGKSFDHKWerHGsbv.783KJhSLSKsdjfhskejfhskjjjhHHHllkihgHJKlSBmBNMVvxGAgdgh&search=Star Alliance', true)
@@ -8,12 +9,25 @@ function basedata() {
         style: 'currency',
         currency: 'USD',
       });
+
+      var msg = data.status.request;
+
+      if (msg=="failed") {
+        document.getElementById("status").className = "badge badge-danger";
+        document.getElementById("status").innerHTML = "Error: "+data.status.description;
+      }
+
+      else {
+        document.getElementById("status").className = "badge badge-success";
+        document.getElementById("status").innerHTML = data.status.request;
+      }
+
       document.getElementById("rank").innerHTML = data.alliance[0].rank;
       document.getElementById("val").innerHTML = '$'+data.alliance[0].value;
       document.getElementById("mem").innerHTML = data.alliance[0].members+'/60';
       
       //document.getElementById("fleet").innerHTML = data.fleet.length;
-      console.log(data.members[0].contributed);
+      //console.log(data.members[0].contributed);
       
 
       let arrayCont = data.members.map(a => a.contributed);
@@ -51,6 +65,18 @@ function allmemData() {
       style: 'currency',
       currency: 'USD',
     });
+
+    var msg = data.status.request;
+
+      if (msg=="failed") {
+        document.getElementById("status").className = "badge badge-danger";
+        document.getElementById("status").innerHTML = "Error: "+data.status.description;
+      }
+
+      else {
+        document.getElementById("status").className = "badge badge-success";
+        document.getElementById("status").innerHTML = data.status.request;
+      }
     
     var timeStamp_value = [data.members[0].joined, data.members[1].joined, data.members[2].joined, data.members[3].joined, data.members[4].joined, data.members[5].joined, data.members[6].joined, data.members[7].joined, data.members[8].joined, data.members[9].joined];
     var timerec = timeStamp_value.map(x => x*1000);
@@ -154,6 +180,18 @@ function bot10data() {
     currency: 'USD',
   });
 
+  var msg = data.status.request;
+
+      if (msg=="failed") {
+        document.getElementById("status").className = "badge badge-danger";
+        document.getElementById("status").innerHTML = "Error: "+data.status.description;
+      }
+
+      else {
+        document.getElementById("status").className = "badge badge-success";
+        document.getElementById("status").innerHTML = data.status.request;
+      }
+
   var ln = (data.members.length)-1;
 
   var timeStamp_value = [data.members[ln].joined, data.members[ln-1].joined, data.members[ln-2].joined, data.members[ln-3].joined, data.members[ln-4].joined, data.members[ln-5].joined, data.members[ln-6].joined, data.members[ln-7].joined, data.members[ln-8].joined, data.members[ln-9].joined];
@@ -246,5 +284,4 @@ function bot10data() {
 } 
 request.send() 
 }
-
 

@@ -16,6 +16,19 @@ function spybasedata() {
         style: 'currency',
         currency: 'USD',
       });
+
+      var msg = data.status.request;
+
+      if (msg=="failed") {
+        document.getElementById("status").className = "badge badge-danger";
+        document.getElementById("status").innerHTML = "Error: "+data.status.description;
+      }
+
+      else {
+        document.getElementById("status").className = "badge badge-success";
+        document.getElementById("status").innerHTML = data.status.request;
+      }
+
       document.getElementById("rank").innerHTML = data.alliance[0].rank;
       document.getElementById("val").innerHTML = '$'+data.alliance[0].value;
       document.getElementById("mem").innerHTML = data.alliance[0].members+'/60';
@@ -63,6 +76,18 @@ function spytop10() {
       style: 'currency',
       currency: 'USD',
     });
+
+    var msg = data.status.request;
+
+    if (msg=="failed") {
+      document.getElementById("status").className = "badge badge-danger";
+      document.getElementById("status").innerHTML = "Error: "+data.status.description;
+    }
+
+    else {
+      document.getElementById("status").className = "badge badge-success";
+      document.getElementById("status").innerHTML = data.status.request;
+    }
     
     var timeStamp_value = [data.members[0].joined, data.members[1].joined, data.members[2].joined, data.members[3].joined, data.members[4].joined, data.members[5].joined, data.members[6].joined, data.members[7].joined, data.members[8].joined, data.members[9].joined];
     var timerec = timeStamp_value.map(x => x*1000);
@@ -167,6 +192,18 @@ function spybot10() {
     style: 'currency',
     currency: 'USD',
   });
+
+  var msg = data.status.request;
+
+  if (msg=="failed") {
+    document.getElementById("status").className = "badge badge-danger";
+    document.getElementById("status").innerHTML = "Error: "+data.status.description;
+  }
+
+  else {
+    document.getElementById("status").className = "badge badge-success";
+    document.getElementById("status").innerHTML = data.status.request;
+  }
 
   var ln = (data.members.length)-1;
 
