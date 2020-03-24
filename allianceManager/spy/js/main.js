@@ -68,7 +68,7 @@ function spytop10() {
   //var allname2 = allname;
   //console.log(allname);
   var request = new XMLHttpRequest()
-  request.open('GET', "https://cors-anywhere.herokuapp.com/https://www.airline4.net/api/?access_token="+token+"&search="+allnameP, true)
+  request.open('GET', "http://allow-any-origin.appspot.com//https://www.airline4.net/api/?access_token="+token+"&search="+allnameP, true)
     request.onload = function() {
     // Begin accessing JSON data here
     var data = JSON.parse(this.response)
