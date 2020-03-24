@@ -1,5 +1,5 @@
 var token = "73JlkjdfhSSDHdkjciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2V43424ffLKKJKHDFWemnfsMsdnbfsaD5HwerwjjiIIIY2kjlhdfKLJbnmwekjhHGdjsj";
-var url = "http://allow-any-origin.appspot.com/https://www.airline4.net/api/?access_token="+token+"&search=Star Alliance";
+var url = "https://allow-any-origin.appspot.com/https://www.airline4.net/api/?access_token="+token+"&search=Star Alliance";
 
 function basedata() {
   var request = new XMLHttpRequest()
