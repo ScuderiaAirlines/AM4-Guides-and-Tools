@@ -1,207 +1,43 @@
-<!-- Does not work in Chromium, tested: Firefox, Chrome, Edge works. -->
-<!-- security.fileuri.strict_origin_policy --><!-- Chrome: CORS -->
-<!DOCTYPE HTML>
-<html style="height:100%">
-    <head>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514321-1"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() { dataLayer.push(arguments); }
-            gtag('js', new Date());
-            gtag('config', 'UA-153514321-1');
-        </script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-        <meta content="utf-8" http-equiv="encoding">
-        <title>AM4 Stopover Finder</title>
+<html lang="en">
 
-        <script type="text/javascript" src="autoForm.js"></script>
-        <link rel="stylesheet" href="autoForm.css">
-        <link rel="stylesheet" href="radio.css">
-        <link rel="stylesheet" href="switch.css">
-        
-        <script src="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Cesium.js"></script>
-        <link href="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
-        <script type="text/javascript" src="mapControl.js"></script>
-    </head>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514321-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    <body onload="cesiumInit();" style="height:100%">
-        <div id="loader">
-            Loading Globe, Please Wait...
-        </div>
-        <div id="cesiumContainer"></div>
-        <div id="all">
-            <div id="apMode" class="tableContainer">
-                <label class="radio" id="icaoC">
-                    <input type="radio" name="apMode" value="icao" autocomplete="off">
-                    <span>ICAO</span>
-                </label>
-                <label class="radio" id="iataC">
-                    <input type="radio" name="apMode" value="iata" autocomplete="off" checked>
-                    <span>IATA</span>
-                </label>
-                <label class="radio" id="cityRC">
-                    <input type="radio" name="apMode" value="cityRegion" autocomplete="off">
-                    <span>Name (City, Region)</span>
-                </label>
-                <br style="clear: both;">
-                <table class="switch-table">
-                    <tr class="switch-table">
-                        <td class="switch-text">Easy</td>
-                        <td>
-                            <label class="switch-wrap">
-                                <input type="checkbox" id="isRealism" autocomplete="off" />
-                                <div class="switch"></div>
-                            </label>
-                        </td>
-                        <td class="switch-text">Realism</td>
-                    </tr>
-                </table>
-            </div>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-            <div class="tableContainer padTop">
-                <table>
-                    <tr id="rhead">
-                        <td id="acInputGroup">
-                            <div class="autocomplete">
-                                <input id="acInput" type="text" name="inputAC" placeholder="Input Aircraft">
-                            </div>
-                        </td>
-                        <td class="centre bold padLR">Name</td>
-                        <td class="centre bold padLR" id="ticketPriceHeader">Ticket $</td>
-                        <td class="centre bold padLR">Dist</td>
-                        <td class="centre bold padLR">Actual</td>
-                    </tr>
-                    <tr id="r1">
-                        <td>
-                            <div class="autocomplete">
-                                <input id="orig" type="text" name="inputAP" placeholder="Input Origin">
-                            </div>
-                        </td>
-                        <td class="padLR" id="origName">---</td>
-                        <td class="padLR right" id="yP">---</td>
-                        <td class="padLR centre" id="leg1d" rowspan="2">---</td>
-                        <td class="padLR centre line" id="diff" rowspan="4">---</td>
-                    </tr>
-                    <tr id="r2">
-                        <td class="padLR" id="stopoverDisplay" rowspan="2">---</td>
-                        <td class="padLR" id="stopName" rowspan="2">---</td>
-                        <td class="padLR right" id="jP" rowspan="2">---</td>
-                    </tr>
-                    <tr id="r3">
-                        <td class="padLR centre" id="leg2d" rowspan="2">---</td>
-                    </tr>
-                    <tr id="r4">
-                        <td>
-                            <div class="autocomplete">
-                                <input id="dest" type="text" name="inputAP" placeholder="Input Destination">
-                            </div>
-                        </td>
-                        <td class="padLR" id="destName">---</td>
-                        <td class="padLR right" id="fP">---</td>
-                    </tr>
-                    <tr id="r5">
-                        <td colspan="5">
-                            <button type="button" id="submitBtn" onclick="run()" class="btn">Search</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <style>
-            @font-face {
-                font-family: AirlineFont;
-                src: url('../assets/fonts/am4-font.woff2');
-            }
+        gtag('config', 'UA-153514321-1');
+    </script>
 
-            body {
-                font-family: 'AirlineFont', sans-serif;
-                font-size: 100%;
-                color: white;
-                /*background: #0575E6;*/
-                background: black;
-            }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/design.css">
+    <title>AM4 Guides and Tools</title>
+    <style>
+        .redbtn {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            margin-top: 30%;
+        }
+    </style>
+</head>
 
-            .tableContainer {
-                display: block;
-                margin-left: auto; margin-right: auto;
-                max-width: 95%;
-                overflow-x: auto;
-            }
+<body>
 
-            #stopover {
-                margin: 26px 10px 0px 10px;
-                color: white;
-            }
+<div class="redbtn">
+    <a href="https://am4tools.com">
+        <button class="btn btn-success">Proceed to New Website</button>
+    </a>
+</div>
+</body>
 
-            .btn {
-                color: white;
-                background-color: #28a745;
-                border: 0;
-                padding: 0.375rem 0.75rem;
-                font-size: 1rem;
-                border-radius: 0.25rem;
-                vertical-align: middle;
-                cursor: pointer;
-            }
-
-            .btn:hover {
-                background-color: #218838
-            }
-
-            .padTop {padding-top: 10px;}
-            .padLR { padding-left: 5px; padding-right: 5px; }
-            .centre { text-align: center; }
-            .right { text-align: right; }
-            .bold { font-weight: bold; }
-            .grey { color: grey; font-size: 70%; }
-            .line { line-height: 15px; }
-
-            table, td {
-                border-collapse: collapse;
-                border: 1px solid grey;
-            }
-
-            td {
-                white-space: nowrap;
-                vertical-align: middle;
-            }
-
-            /* LOADER */
-            #loader {
-                width: 100%;
-                height: 100%;
-                top: 0;
-                left: 0;
-                position: fixed;
-                display: block;
-                background-color: rgba(0,0,0,0.5);
-                z-index: 99;
-                text-align: center;
-            }
-
-            #cesiumContainer {
-                cursor: move; /* fallback if grab cursor is unsupported */
-                cursor: grab;
-                cursor: -moz-grab;
-                cursor: -webkit-grab;
-                font-family: 'AirlineFont';
-                height: calc(100% - 210px);
-            }
-
-             /* (Optional) Apply a "closed-hand" cursor during drag operation. */
-            #cesiumContainer:active {
-                cursor: grabbing;
-                cursor: -moz-grabbing;
-                cursor: -webkit-grabbing;
-            }
-
-            img {
-                max-height: 20px;
-                vertical-align: middle;
-                float: left;
-            }
-        </style>
-    </body>
 </html>
