@@ -1,7 +1,7 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153514321-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -13,7 +13,7 @@
 
         gtag('config', 'UA-153514321-1');
     </script>
-    <script data-ad-client="ca-pub-3779251776549532" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -21,129 +21,23 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/design.css">
     <title>AM4 Guides and Tools</title>
+    <style>
+        .redbtn {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            margin-top: 30%;
+        }
+    </style>
 </head>
 
-<body class="seats-page">
-    <div id="backover"></div>
-    <div class="result-box" style="position: absolute;">
-        <button class="result-close"></button>
-        <div class="result-content">
-            <h5>Results</h5>
-            <span>Recommended settings</span>
-            <hr>
-            <span>Realism:</span>
-            <div class="label-item">Seats Y: <span class="label-result result-realism-seats-y"></span></div>
-            <div class="label-item">Seats J: <span class="label-result result-realism-seats-j"></span></div>
-            <div class="label-item">Seats F: <span class="label-result result-realism-seats-f"></span></div>
-            <div class="label-item">Trips per day: <span class="label-result result-realism-trips-day"></span></div>
-            <hr>
-            <span>Easy:</span>
-            <div class="label-item">Seats Y: <span class="label-result result-easy-seats-y"></span></div>
-            <div class="label-item">Seats J: <span class="label-result result-easy-seats-j"></span></div>
-            <div class="label-item">Seats F: <span class="label-result result-easy-seats-f"></span></div>
-            <div class="label-item">Trips per Day*: <span class="label-result result-easy-trips-day"></span></div>
-            <br>
-            <br>
-            <p><strong>*NOTE: 18 hours is considered one day.<strong><p>
+<body>
 
-        </div>
-    </div>
-    <a href="index.html"><button class="model-button back-button">Back</button></a>
-    <section>
-        <div class="container">
-            <div class="content-all">
-                <div class="content-box">
-                    <h2>Seats Configuration</h2>
-                    <form id="seats-configuration-form" method="POST" autocomplete="off">
-                        <!-- <input type="text" name="input-demand-y" placeholder="Economy (Y) Demand" required> -->
-                        <input type="text" name="input-demand-j" placeholder="Business (J) Demand" required>
-                        <input type="text" name="input-demand-f" placeholder="First Class (F) Demand" required>
-                        <input type="text" name="input-total-seats" placeholder="Maximum seats" required>
-                        <input type="text" name="input-flight-range" placeholder="Route Distance (km)" required>
-                        <input type="text" name="input-air-speed" placeholder="Speed (km/h)" required>
-                        <button class="model-button">Calculate</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    <script src="js/library/popper.js"></script>
-    <script src="js/library/jquery.js"></script>
-    <script src="js/library/bootstrap.js"></script>
-    <script src="js/utils/Format.js "></script>
-    <script src="js/control/main.js "></script>
-    <script src="js/app.js "></script>
-    <script>
-        app.centralize(document.querySelector('.seats-page section'));
-
-        app.el.seatsConfigurationForm.on('submit', (e) => {
-
-            e.preventDefault();
-
-            let input = app.el.seatsConfigurationForm.querySelectorAll('input');
-            let views = document.querySelectorAll('.result-box .result-content .label-item .label-result');
-            let isValid = true;
-            let values = {
-                demandJ: 0,
-                demandF: 0,
-                flightRange: 0,
-                airSpeed: 0,
-                totalSeats: 0
-            };
-            [...input].forEach((element) => {
-                if (!isValid) return;
-                if (!element.value) {
-                    isValid = false;
-                    return;
-                } else if (element.value < 0) {
-                    isValid = false;
-                    return;
-                }
-                switch (element.name) {
-                    // case 'input-demand-y':
-                    //     values.demandY = element.value;
-                    //     break;
-                    case 'input-demand-j':
-                        values.demandJ = element.value;
-                        break;
-                    case 'input-demand-f':
-                        values.demandF = element.value;
-                        break;
-                    case 'input-flight-range':
-                        values.flightRange = element.value;
-                        break;
-                    case 'input-air-speed':
-                        values.airSpeed = element.value;
-                        break;
-                    case 'input-total-seats':
-                        values.totalSeats = element.value;
-                        break;
-                }
-            });
-            if (!isValid) {
-                alert('Please fill in all fields for the calculation to be done correctly! ;)');
-                return;
-            };
-            let result = app.paxSeats(values.demandJ, values.demandF, values.totalSeats, values.flightRange, values.airSpeed);
-
-            [...views].forEach((label) => {
-                if (label.classList.contains('result-realism-seats-y')) label.innerText = result.reaslimSeatsY;
-                if (label.classList.contains('result-realism-seats-j')) label.innerText = result.reaslimSeatsJ;
-                if (label.classList.contains('result-realism-seats-f')) label.innerText = result.reaslimSeatsF;
-                if (label.classList.contains('result-realism-trips-day')) label.innerText = result.reaslimTripsPerDay;
-                if (label.classList.contains('result-easy-seats-y')) label.innerText = result.easySeatsY;
-                if (label.classList.contains('result-easy-seats-j')) label.innerText = result.easySeatsJ;
-                if (label.classList.contains('result-easy-seats-f')) label.innerText = result.easySeatsF;
-                if (label.classList.contains('result-easy-trips-day')) label.innerText = result.easyTripsPerDay;
-            });
-            app.centralize(document.querySelector('.seats-page .result-box'));
-            toggleOver([document.querySelector('.seats-page .result-box')], ['click']);
-        });
-
-        document.querySelector('.seats-page .result-box .result-close').on('click', (e) => {
-            toggleOver(null, null);
-        });
-    </script>
+<div class="redbtn">
+    <a href="https://am4tools.com">
+        <button class="btn btn-success">Proceed to New Website</button>
+    </a>
+</div>
 </body>
 
 </html>
